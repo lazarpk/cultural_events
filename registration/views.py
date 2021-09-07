@@ -3,6 +3,7 @@ from django.shortcuts import HttpResponse
 from .forms import RegisterForm, RegisterFormOrg, User
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
+from .models import Profile
 
 # Create your views here.
 def registration (request):
@@ -46,7 +47,18 @@ def register_org (request):
         form = RegisterFormOrg (request.POST)
 
         if (form.is_valid()):
+            info = Profile()
+            info.city = form.cleaned_data.get('city')
+            info.address = form.cleaned_data.get('address')
+            info.number = form.cleaned_data.get('number')
+            info.contact_person = form.cleaned_data.get("contact_person")
+            info.phone = form.cleaned_data.get('phone')
+            info.description = form.cleaned_data.get ('description')
+            info.work_area = form.cleaned_data.get('work_area')
+            info.web_site = form.cleaned_data.get("web_site")
             form.save()
+            info.user = User.objects.last()
+            info.save()
 
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password1")
