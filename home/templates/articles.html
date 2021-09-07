@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Kulturni dogadjaji</title>
+{% endblock %}
+
+{% block body %}
+    {% for article in articles %}
+        <div class="row mt-5 parent">
+            <div class="col-3 child">
+                {{ article.Title }}
+            </div>
+            <div class="col-3 child">
+                {{ article.Content }}
+            </div>
+            <div class="col-3 child">
+                {{ article.CreationDate }}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
