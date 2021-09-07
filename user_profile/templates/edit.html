@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Editovanje</title>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-5">
+        <form action="#" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="col">
+                <label class="form-label" id="{{ field.auto_id }}">{{ field.label }} </label>
+                {{ field }}
+                <div class="text-danger">
+                    {{ field.errors }}
+                </div>
+            </div>
+            {% endfor %}
+            {% for field in form1 %}
+            <div class="col">
+                <label class="form-label" id="{{ field.auto_id }}">{{ field.label }} </label>
+                {{ field }}
+                <div class="text-danger">
+                    {{ field.errors }}
+                </div>
+            </div>
+            {% endfor %}
+            <div class="col">
+                <input type="submit" class="btn btn-primary mt-3" value="Sačuvaj"/>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
