@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
 from registration.models import Profile
+from .forms import UpdateUserForm, UpdateProfileForm
+from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 # Create your views here.
 def details (request):
@@ -23,3 +25,17 @@ def details (request):
         return HttpResponse("<h1>Niste organizacija. Dopuniti izgled ove strane</h1>")
     else:
         return render(request, 'details.html')
+
+
+
+
+
+
+def edit (request):
+    form = UpdateUserForm(instance=request.user)
+    form1 = UpdateProfileForm(instance=Profile.objects.get(user_id = request.user.id))
+    context = {
+        'form': form,
+        'form1': form1
+    }
+    return render (request, 'edit.html', context)
