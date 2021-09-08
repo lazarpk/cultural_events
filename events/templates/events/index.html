@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Dogadjaji
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col">
+        <a class="btn btn-primary" href="{% url "create" %}">Kreiraj novi dogadjaj</a>
+    </div>
+</div>
+<div class="row mt-2">
+    <div class="col">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Naslov</th>
+                    <th>Tekst</th>
+                    <th>Vrsta</th>
+                    <th>Mesto</th>
+                    <th>Vreme</th>
+                    <th>Uzrast</th>
+                    <th>Karakteristike_prostora</th>
+                    <th>Datum_i_vreme_postavljanja</th>
+                    <th>Vazi_do</th>
+                    <th>Autor</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for event in events %}
+                <tr>
+                    <td>{{ events.naslov }}</td>
+                    <td>{{ events.tekst }}</td>
+                    <td>{{ events.vrsta }}</td>
+                    <td>{{ events.mesto }}</td>
+                    <td>{{ events.vreme }}</td>
+                    <td>{{ events.uzrast }}</td>
+                    <td>{{ events.karakteristike_prostora }}</td>
+                    <td>{{ events.datum_i_vreme_postavljanja }}</td>
+                    <td>{{ events.vazi_do }}</td>
+                    <td>{{ events.autor }}</td>
+
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
