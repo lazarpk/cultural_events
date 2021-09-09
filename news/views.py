@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import permission_required
 from .models import Article, ArticleDeletionRequest
 from .forms import ArticleForm
 
+
 # Create your views here.
 
 def news(request):
@@ -33,8 +34,8 @@ def article_new(request):
             article.Author = request.user
             article.save()
 
-            #return redirect('/articles/{}'.format(article.id))
-            return redirect('/articles')
+            # return redirect('/articles/{}'.format(article.id))
+            return redirect('/news')
         else:
             return render(request, "create_article.html", {'form': form})
 
@@ -67,19 +68,19 @@ def article_create_delete_request(request, *args, **kwargs):
     id = kwargs['id']
     article = Article.objects.get(pk=id)
 
-    if article is not None and ArticleDeletionRequest.get_if_exists(article.id) is None and request.user.id == article.Author.id:
+    if article is not None and ArticleDeletionRequest.get_if_exists(
+            article.id) is None and request.user.id == article.Author.id:
         article_delete_request = ArticleDeletionRequest()
         article_delete_request.User = request.user
         article_delete_request.Article = article
         article_delete_request.Reason = "Zahtevano od autora."
         article_delete_request.save()
-
         message = "Uspesno poslat zahtev za brisanje vesti."
 
         return render(request, "request_success.html", {'success_message': message})
     else:
         return HttpResponse(status=400)
 
-def index(request):
 
+def index(request):
     return render(request, "index.html")
