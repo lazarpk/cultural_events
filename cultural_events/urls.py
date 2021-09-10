@@ -16,12 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
+from registration.views import login_success
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("home.urls")),
     path("accounts/", include('django.contrib.auth.urls')),
     path('registration/', include('registration.urls')),
-    path('profile/', include('user_profile.urls'))
+    path('profile/', include('user_profile.urls')),
+    path('login_success/', login_success, name="login_success"),
 ]
 

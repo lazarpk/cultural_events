@@ -71,3 +71,14 @@ def register_org (request):
                 'form':form
             }
             return render (request, 'reg_org.html', context)
+
+def login_success (request):
+    try:
+        curently_user = Profile.objects.get(user_id = request.user)
+    except Profile.DoesNotExist:
+        curently_user = None
+
+    if curently_user == None:
+        return redirect('/')
+    else:
+        return redirect('/profile')
