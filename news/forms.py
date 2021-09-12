@@ -8,17 +8,17 @@ class ArticleForm(ModelForm):
         model = Article
         fields = ['Title', 'Content', 'Category']
         widgets = {
-            "title": forms.TextInput(
+            "Title": forms.TextInput(
                 attrs={
                     "class": "form-control"
                 }
             ),
-            "content": forms.EmailInput(
+            "Content": forms.Textarea(
                 attrs={
                     'class': 'form-control'
                 }
             ),
-            "category": forms.TextInput(
+            "Category": forms.SelectMultiple(
                 attrs={
                     'class': 'form-control'
                 }
