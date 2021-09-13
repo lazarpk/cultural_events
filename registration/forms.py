@@ -32,9 +32,14 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ["first_name", "last_name", "email", "username"]
         widgets = {
-            "username": forms.TextInput(
+            "first_name": forms.TextInput(
                 attrs={
                     "class": "form-control"
+                }
+            ),
+            "last_name": forms.TextInput(
+                attrs={
+                    'class': 'form-control'
                 }
             ),
             "email": forms.EmailInput(
@@ -42,12 +47,7 @@ class RegisterForm(UserCreationForm):
                     'class': 'form-control'
                 }
             ),
-            "first_name": forms.TextInput(
-                attrs={
-                    'class': 'form-control'
-                }
-            ),
-            "last_name": forms.TextInput(
+            "username": forms.TextInput(
                 attrs={
                     'class': 'form-control'
                 }
