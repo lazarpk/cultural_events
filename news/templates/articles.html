@@ -25,9 +25,10 @@
               <h3 class="mb-0">
                 <a class="text-dark" href="/articles/{{ article.id }}">{{ article.Title }}</a>
               </h3>
-              <div class="mb-1 text-muted">{{ article.CreationDate }}</div>
+              <div class="mb-1 text-muted">{{ article.CreationDate }} &nbsp&nbsp&nbsp{{ article.Author.username }}</div>
               <p class="card-text mb-auto">{{ article.Content }}</p>
-              <a href="/users/{{article.Author.username}}">{{ article.Author.username }}</a>
+              <!-- <a href="/users/{{article.Author.username}}">{{ article.Author.username }}</a> -->
+                <!-- <a href="{% url 'profile' %}">{{ article.Author.username }}</a> -->
                 {% if article.Author.id == user.id %}
                     <a href="/articles/{{article.id}}/archive">Arhiviraj</a>
                     <a href="/articles/{{article.id}}/delete">Obrisi</a>
