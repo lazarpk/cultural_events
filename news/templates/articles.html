@@ -9,7 +9,8 @@
 
 
     <div class="row mb-2">
-        {% if user.is_authenticated and perms.home.article_can_create %}
+        <!-- and perms.home.article_can_create -->
+        {% if user.is_authenticated and perms.news.article_can_create %}
         <div class="col-md-12">
             <div class="form-group">
               <a class="btn btn-warning form-control" href="{% url 'new_article' %}">Dodaj novu vest</a>
