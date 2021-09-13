@@ -14,9 +14,9 @@
     margin: auto;
 }
 body {
-    background-color: #0f121f;
+    background-color: #FFFAF0;
     background-repeat-y: no-repeat;
-    color: white;
+    color: black;
 }
 
 body * {
@@ -24,6 +24,6 @@ body * {
 }
 
 a, a:hover, a:visited {
-    color: green;
+    color: blue;
     text-decoration: none;
 }
