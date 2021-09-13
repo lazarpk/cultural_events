@@ -3,18 +3,19 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-
-'''
 class Category(models.Model):
     Name = models.CharField(max_length=100)
 
     def __str__(self):
-        return 'Category: ' + self.Name
+        return self.Name
 
 
 class Article(models.Model):
+    #categorylist = Category.objects.all()
     Title = models.CharField(max_length=250, verbose_name="Naslov vesti")
     Content = models.TextField(verbose_name="Tekst vesti")
+    #Category = models.ManyToManyField(Category, verbose_name="Kategorija")
+    #your_choice = models.ManyToManyField(Category, on_delete=models.CASCADE)
     Category = models.ManyToManyField(Category, verbose_name="Kategorija")
     CreationDate = models.DateTimeField(auto_now_add=True, blank=True)
     ArchivedDate = models.DateTimeField(null=True, blank=True)
@@ -43,4 +44,3 @@ class ArticleDeletionRequest(models.Model):
             return request
         except ObjectDoesNotExist:
             return None
-'''

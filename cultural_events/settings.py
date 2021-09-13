@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'home',
     'registration',
     'user_profile',
+    'news'
 ]
 
 MIDDLEWARE = [
@@ -77,14 +78,21 @@ WSGI_APPLICATION = 'cultural_events.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'culture',
+#        "HOST": "localhost",
+#        "PORT": "3306",
+#        "USER": 'root',
+#        "PASSWORD": "12345678"
+#    }
+#}
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'culture',
-        "HOST": "localhost",
-        "PORT": "3306",
-        "USER": 'root',
-        "PASSWORD": "12345678"
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase', # This is where you put the name of the db file.
+                 # If one doesn't exist, it will be created at migration time.
     }
 }
 

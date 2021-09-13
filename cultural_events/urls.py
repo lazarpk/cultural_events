@@ -25,5 +25,6 @@ urlpatterns = [
     path('registration/', include('registration.urls')),
     path('profile/', include('user_profile.urls')),
     path('login_success/', login_success, name="login_success"),
+    path('', include('news.urls')),
 ]
 
