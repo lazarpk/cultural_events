@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 from registration.views import login_success
+from django.conf.urls.static import static;
+from django.conf import settings;
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,5 +28,4 @@ urlpatterns = [
     path('profile/', include('user_profile.urls')),
     path('login_success/', login_success, name="login_success"),
     path('', include('news.urls')),
-]
-
+] + static ( settings.MEDIA_URL, document_root = settings.MEDIA_ROOT );

@@ -9,8 +9,8 @@
 {% if form.errors %}
 Wrong username or password.
 {% endif %}
-    <div class="row">
-        <div class="col-5">
+    <div class="row parent">
+        <div class="col-5 child">
             <form method="post" action="{% url 'login' %}">
                 {% csrf_token %}
                 <input type="hidden" name="next" value="{{ next }}">
