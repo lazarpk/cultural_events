@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from .models import Events
+from .forms import EventsForm
 
 def index (request):
     events = Events.objects.all ()
@@ -11,4 +12,8 @@ def index (request):
     return render (request, 'events/index.html', context)
 
 def create (request):
-    return render(request, 'events/create.html')
+    form = EventsForm()
+    context = {
+        "form" : form
+    }
+    return render(request, 'events/create.html', context)

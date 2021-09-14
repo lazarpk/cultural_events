@@ -15,31 +15,35 @@ Dogadjaji
         <table class="table">
             <thead>
                 <tr>
-                    <th>Naslov</th>
-                    <th>Tekst</th>
-                    <th>Vrsta</th>
-                    <th>Mesto</th>
-                    <th>Vreme</th>
-                    <th>Uzrast</th>
-                    <th>Karakteristike_prostora</th>
-                    <th>Datum_i_vreme_postavljanja</th>
-                    <th>Vazi_do</th>
-                    <th>Autor</th>
+                    <th>event_name</th>
+                    <th>text</th>
+                    <th>type</th>
+                    <th>place</th>
+                    <th>time</th>
+                    <th>age</th>
+                    <th>space_characteristics</th>
+                    <th>date_published</th>
+                    <th>expiration_date</th>
+                    <th>author</th>
+                    <th>archive</th>
+                    <th>delete</th>
                 </tr>
             </thead>
             <tbody>
             {% for event in events %}
                 <tr>
-                    <td>{{ events.naslov }}</td>
-                    <td>{{ events.tekst }}</td>
-                    <td>{{ events.vrsta }}</td>
-                    <td>{{ events.mesto }}</td>
-                    <td>{{ events.vreme }}</td>
-                    <td>{{ events.uzrast }}</td>
-                    <td>{{ events.karakteristike_prostora }}</td>
-                    <td>{{ events.datum_i_vreme_postavljanja }}</td>
-                    <td>{{ events.vazi_do }}</td>
-                    <td>{{ events.autor }}</td>
+                    <td>{{ events.event_name }}</td>
+                    <td>{{ events.text }}</td>
+                    <td>{{ events.type }}</td>
+                    <td>{{ events.place }}</td>
+                    <td>{{ events.time }}</td>
+                    <td>{{ events.age }}</td>
+                    <td>{{ events.space_characteristics }}</td>
+                    <td>{{ events.date_published }}</td>
+                    <td>{{ events.expiration_date }}</td>
+                    <td>{{ events.author }}</td>
+                    <td><a class="btn btn-primary" href="index.html">Arhiviraj</a>{{ events.archive }}</td>
+                    <td><a class="btn btn-secondary" href="index.html">Obrisi</a>{{ events.delete }}</td>
 
 
                 </tr>
