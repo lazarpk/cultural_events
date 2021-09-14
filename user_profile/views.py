@@ -4,6 +4,7 @@ from registration.models import Profile
 from .forms import UpdateUserForm, UpdateProfileForm
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
+from news.models import Article
 # Create your views here.
 def details (request):
 
@@ -24,7 +25,11 @@ def details (request):
     if curently_user == None :
         return HttpResponse("<h1>Niste organizacija. Dopuniti izgled ove strane</h1>")
     else:
-        return render(request, 'details.html')
+        articles = Article.objects.filter(ArchivedDate__isnull=True, Author=request.user).order_by('-id')[:10]
+        context = {
+            'articles': articles
+        }
+        return render(request, 'details.html', context)
 
 
 
