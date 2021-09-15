@@ -18,8 +18,6 @@ def index(request):
     #print (user.city)
     return render(request, "index.html")
 
-    return render(request, "index.html")
-
 '''
 def news(request):
     articles = Article.objects.filter(ArchivedDate__isnull=True).order_by('-id')[:10]
