@@ -24,6 +24,6 @@ body * {
 }
 
 a, a:hover, a:visited {
-    color: white;
+    color: green;
     text-decoration: none;
 }

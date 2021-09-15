@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'home',
     'registration',
     'user_profile',
-    'news'
+    'news',
+    'user_admin',
 ]
 
 MIDDLEWARE = [

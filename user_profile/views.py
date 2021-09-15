@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse, Http404
 from registration.models import Profile
 from .forms import UpdateUserForm, UpdateProfileForm
 from django.contrib.auth.models import User
@@ -23,7 +23,7 @@ def details (request):
         curently_user = None
 
     if curently_user == None :
-        return HttpResponse("<h1>Niste organizacija. Dopuniti izgled ove strane</h1>")
+        raise Http404
     else:
         articles = Article.objects.filter(ArchivedDate__isnull=True, Author=request.user).order_by('-id')[:10]
         context = {
