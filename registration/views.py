@@ -23,14 +23,21 @@ def register (request):
         form = RegisterForm(request.POST)
 
         if (form.is_valid()):
-            form.save()
+            if request.user.is_superuser:
+                form.save()
+                user = User.objects.last()
+                user.is_superuser = 1
+                user.save()
+                return render(request, 'index-admin.html')
+            else:
+                form.save()
 
-            username = form.cleaned_data.get ("username")
-            password = form.cleaned_data.get ("password1")
+                username = form.cleaned_data.get ("username")
+                password = form.cleaned_data.get ("password1")
 
-            user = authenticate(username= username, password= password)
-            login (request, user)
-            return redirect('index')
+                user = authenticate(username= username, password= password)
+                login (request, user)
+                return redirect('index')
         else:
             context = {
                 'form': form

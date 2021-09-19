@@ -8,12 +8,21 @@
     <div class="row mt-3 parent">
         <div class="col-3 child">
             <form action="#">
+                {% if not user.is_superuser %}
                 <div class="form-group">
                     <a class="btn btn-warning form-control" href="{% url 'reg_guest' %}">Gost</a>
                 </div>
                 <div class="form-group">
                     <a class="btn btn-warning form-control" href="{% url 'reg_org' %}">Organizacija</a>
                 </div>
+                {% else %}
+                <div class="form-group">
+                    <a class="btn btn-warning form-control" href="{% url 'reg_org' %}">Organizacija</a>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-warning form-control" href="{% url 'reg_guest' %}">Administrator</a>
+                </div>
+                {% endif %}
             </form>
         </div>
     </div>
