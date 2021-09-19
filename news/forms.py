@@ -1,6 +1,7 @@
 from django.forms import ModelForm
 from .models import Article
 from django.contrib.auth.forms import forms
+from news.models import Category
 
 class ArticleForm(ModelForm):
 
@@ -21,6 +22,8 @@ class ArticleForm(ModelForm):
             "Category": forms.SelectMultiple(
                 attrs={
                     'class': 'form-control'
-                }
+                },
+                #choices = [(item.id, item.Name) for item in Category.objects.all()],
             )
+
         }
