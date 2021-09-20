@@ -24,6 +24,9 @@ def register (request):
 
         if (form.is_valid()):
             if request.user.is_superuser:
+                # user = form.save (commit = False)
+                # user.is_superuser = 1
+                # user.save()
                 form.save()
                 user = User.objects.last()
                 user.is_superuser = 1
