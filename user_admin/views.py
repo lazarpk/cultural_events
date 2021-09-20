@@ -35,15 +35,15 @@ def editUsers (request):
     id = request.GET.get ('id')
     user = User.objects.get (id = id)
     form = UpdateUserForm (instance = user)
-    context = {
-        'form': form
-    }
-    '''
-    if user.profile.city:
+
+    try:
         form1 = UpdateProfileForm (instance=Profile.objects.get(user_id = user.id))
         context = {
             'form': form,
             'form1': form1
         }
-    '''
+    except Profile.DoesNotExist:
+        context = {
+            'form': form
+        }
     return render(request, 'edit-users.html', context)

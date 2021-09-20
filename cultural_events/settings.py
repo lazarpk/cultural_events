@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'news',
     'user_admin',
     'adverts',
+    'polls',
 ]
 
 MIDDLEWARE = [

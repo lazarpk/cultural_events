@@ -29,7 +29,7 @@ urlpatterns = [
     path('login_success/', login_success, name="login_success"),
     path('', include('news.urls')),
     path('administration/', include('user_admin.urls')),
+    path('adverts/', include(('adverts.urls', 'adverts'), namespace='adverts')),
+    path('polls', include(('polls.urls', 'polls'), namespace='polls')),
 ] + static ( settings.MEDIA_URL, document_root = settings.MEDIA_ROOT );
-    path('adverts/', include('adverts.urls')),
-]
 

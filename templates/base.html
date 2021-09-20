@@ -31,10 +31,10 @@
                     <a class="nav-link active" aria-current="page" href="{% url 'Novosti' %}">Vesti</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Oglasi</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'adverts:index' %}">Oglasi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Ankete</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'polls:index' %}">Ankete</a>
                 </li>
                 <li class="nav-item">
                     {% endif %}
