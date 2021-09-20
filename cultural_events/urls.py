@@ -28,5 +28,5 @@ urlpatterns = [
     path('profile/', include('user_profile.urls')),
     path('login_success/', login_success, name="login_success"),
     path('', include('news.urls')),
-    path('administration', include('user_admin.urls')),
+    path('administration/', include('user_admin.urls')),
 ] + static ( settings.MEDIA_URL, document_root = settings.MEDIA_ROOT );
