@@ -21,7 +21,7 @@ def search (request):
         username = form.cleaned_data.get ('username')
         if (len (username) > 0):
             query = query.filter(
-                username__contains = username
+                username__icontains = username
             )
 
     users = query.all()

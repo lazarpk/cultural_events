@@ -10,17 +10,17 @@
             <form action="#">
                 {% if not user.is_superuser %}
                 <div class="form-group">
-                    <a class="btn btn-warning form-control" href="{% url 'reg_guest' %}">Gost</a>
+                    <a class="btn btn-dark rounded-pill form-control" href="{% url 'reg_guest' %}">Gost</a>
                 </div>
                 <div class="form-group">
-                    <a class="btn btn-warning form-control" href="{% url 'reg_org' %}">Organizacija</a>
+                    <a class="btn btn-dark rounded-pill form-control" href="{% url 'reg_org' %}">Organizacija</a>
                 </div>
                 {% else %}
                 <div class="form-group">
-                    <a class="btn btn-warning form-control" href="{% url 'reg_org' %}">Organizacija</a>
+                    <a class="btn btn-dark rounded-pill form-control" href="{% url 'reg_org' %}">Organizacija</a>
                 </div>
                 <div class="form-group">
-                    <a class="btn btn-warning form-control" href="{% url 'reg_guest' %}">Administrator</a>
+                    <a class="btn btn-dark rounded-pill form-control" href="{% url 'reg_guest' %}">Administrator</a>
                 </div>
                 {% endif %}
             </form>

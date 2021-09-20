@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-<div class="row parent">
+<div class="row parent mt-3">
     <div class="col-6 child">
             <form action="{% url 'search-users' %}">
                 {% csrf_token %}
@@ -14,8 +14,10 @@
                     <label class="form-label" id="{{ field.auto_id }}">{{ field.label }}</label>
                     {{ field }}
                 </div>
+                <div>
+                    <input type="submit" class="btn btn-dark rounded-pill" value="Search"/>
+                </div>
                 {% endfor %}
-                <input type="submit" class="btn btn-primary" value="Search"/>
             </form>
     </div>
 </div>
@@ -35,7 +37,7 @@
                 <td>{{ user.first_name }}</td>
                 <td>{{ user.last_name }}</td>
                 <td>
-                    <a class="btn btn-primary" href="{% url 'edit-users' %}?id={{ user.id }}">Edit</a>
+                    <a class="btn btn-dark rounded-pill" href="{% url 'edit-users' %}?id={{ user.id }}">Edit</a>
                 </td>
             </tr>
             {% endfor %}
