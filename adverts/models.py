@@ -4,6 +4,12 @@ from django.db import models
 class Adverts ( models.Model):
     title = models.CharField( max_length=32);
     description = models.TextField();
-    date_time_load = models.DateTimeField();
-    date_time_expire = models.DateTimeField();
+    load_date = models.DateField();
+    expire_date = models.DateField();
     archived = models.Choices ('archived', 'YES NO');
+
+class Archived(models.IntegerChoices):
+    NO = 0, ('No')
+    YES = 1, ('Yes')
+
+    __empty__ = ('(Unknown)')
