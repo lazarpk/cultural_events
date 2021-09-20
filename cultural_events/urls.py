@@ -30,3 +30,6 @@ urlpatterns = [
     path('', include('news.urls')),
     path('administration/', include('user_admin.urls')),
 ] + static ( settings.MEDIA_URL, document_root = settings.MEDIA_ROOT );
+    path('adverts/', include('adverts.urls')),
+]
+

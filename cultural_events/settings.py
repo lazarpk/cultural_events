@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'user_profile',
     'news',
     'user_admin',
+    'adverts',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Adverts edit
+{% endblock %}
+
+{% block body %}
+<div class="row">
+  <div class="col">
+    <form method="post" action="{% url 'adverts:edit' %}">
+      {% csrf_token %}
+      <input type="hidden" name="id" value="{{ id }}"/>
+      {% for field in form %}
+      <label class="form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
+      {{ field }}
+      <div class="text-danger">
+        {{ field.errors }}
+      </div>
+      {% endfor %}
+      <input type="submit" class="btn btn-primary" value="Save"/>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

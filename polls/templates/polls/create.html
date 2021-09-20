@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title mb-4 mt-3 ">Kreiraj novu anketu</h3>
+                    {% for field in form %}
+                    <label class="form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
+                    {{ field }}
+                    <div class="text-danger">
+                        {{ field.errors }}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="col-lg-4">
+                    <button type="submit" class="btn btn-info mt-4">Sačuvaj</button>
+                </div>
+            </div>
+        </div>
+</form>
+
+{% endblock %}
+
