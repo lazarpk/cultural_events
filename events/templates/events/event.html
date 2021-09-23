@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Dogadjaji</title>
+{% endblock %}
+
+{% block body %}
+    <div class="row mb-2">
+        <div class="col-md-12">
+            <div class = "card-body d-flex flex-column align-items-start">
+                <h3 class = "mb-2">
+                    <h3 class = "text-dark" href = "/events/{{ event.id }}">{{ event.event_name }}</h3>
+                </h3>
+                <p class = "card-text mb-auto">{{ event.text }}</p>
+                <p class="card-text mb-auto">Vrsta dogadjaja: {{ event.type }}</p>
+                <p class="card-text mb-auto">Mesto i vreme odrzavanja: {{ event.place }}, &nbsp {{ event.time }} </p>
+                <p class="card-text mb-auto">Uzrast: {{ event.age }}</p>
+                <p class="card-text mb-auto">Karakteristike prostora: {{ event.space_characteristics }}</p>
+                <div class = "mb-1 text-muted">{{ event.date_published }} &nbsp&nbsp {{ event.author.username }}</div>
+                    {% if event.author.id == user.id %}
+                        <a href = "/events/{{event.id}}/archive">Arhiviraj</a>
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

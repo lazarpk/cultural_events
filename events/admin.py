@@ -1,7 +1,9 @@
 from django.contrib import admin
+from .models import Events, EventDeleteRequest
+from django.contrib.auth.models import Permission
 
 # Register your models here.
 
-from .models import Events
-
 admin.site.register (Events)
+admin.site.register (EventDeleteRequest)
+admin.site.register (Permission)

@@ -1,5 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils import timezone
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your models here.
 class Events (models.Model):
@@ -7,15 +9,35 @@ class Events (models.Model):
     text = models.CharField (max_length = 200, default = '');
     type = models.CharField (max_length = 30, default = '');
     place = models.CharField (max_length = 30, default = '');
-    time = models.DateTimeField(default = timezone.now);
+    time = models.DateTimeField(null = True, blank = True);
     age = models.IntegerField(default = False);
     space_characteristics = models.CharField(max_length = 150, default = '');
-    date_published = models.DateTimeField (default = timezone.now);
-    expiration_date = models.DateTimeField(default = timezone.now);
-    author = models.CharField (max_length = 30, default = '');
-    archive = models.CharField (max_length = 1, default = 'N');
-    delete = models.CharField (max_length = 1, default = 'N');
+    date_published = models.DateTimeField (auto_now_add = True, blank = True);
+    expiration_date = models.DateTimeField(null = True, blank = True);
+    author = models.ForeignKey (User, on_delete = models.CASCADE);
+    date_archived = models.DateTimeField (null = True, blank = True);
 
+
+    class Meta:
+        permissions = [
+            ('event_can_create', 'Can create event'),
+            ('event_edit', 'Can edit event'),
+            ('event_can_archive', 'Can archive event'),
+            ('event_can_delete', 'Can delete evetn'),
+        ]
+
+class EventDeleteRequest (models.Model):
+    User = models.ForeignKey(User, on_delete = models.CASCADE)
+    Event = models.ForeignKey(Events, on_delete = models.CASCADE)
+    Date = models.DateTimeField(auto_now_add = True, blank = True)
+
+    @staticmethod
+    def get_if_exists (event_id):
+        try:
+            request = EventDeleteRequest.objects.get(Event = event_id) is not None
+            return request
+        except ObjectDoesNotExist:
+            return None
 
 
 
