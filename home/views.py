@@ -85,3 +85,4 @@ def article_create_delete_request(request, *args, **kwargs):
     else:
         return HttpResponse(status=400)
 '''
+    return render(request, "events.html")
