@@ -6,4 +6,4 @@ from django.contrib.auth.models import Permission
 
 admin.site.register (Events)
 admin.site.register (EventDeleteRequest)
-admin.site.register (Permission)
+#admin.site.register (Permission)

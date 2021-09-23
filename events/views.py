@@ -30,7 +30,7 @@ def create (request):
             event.author = current_user
             event.save()
 
-            return redirect ('/events/events')
+            return redirect ('events')
         else:
 
             return render (request, 'events/create.html', {'form' : form})
@@ -48,7 +48,7 @@ def archive_event (request, *args, **kwargs):
     id = kwargs ['id']
     event = Events.objects.get (pk = id)
 
-    if event is not None and event.date_archived is None and request.user.id == event.Author.id:
+    if event is not None and event.date_archived is None and request.user.id == event.author.id:
         event.date_archived = timezone.now()
         event.save()
         message = 'Dogadjaj je arhiviran.'

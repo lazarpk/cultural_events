@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from django.contrib import auth
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -89,7 +90,7 @@ DATABASES = {
         "HOST": "localhost",
         "PORT": "3306",
         "USER": 'root',
-        "PASSWORD": 'danica021'
+        "PASSWORD": '12345678'
     }
 }
 '''

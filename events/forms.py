@@ -21,45 +21,47 @@ class EventsForm (forms.ModelForm):
         widgets = {
             'event_name' : forms.TextInput (
                 attrs = {
-                    "class" : "form-control"
+                    "class" : "form-control rounded-pill"
                 }
             ),
             'text' : forms.TextInput (
                  attrs = {
-                     "class" : "form-control"
+                     "class" : "form-control rounded-pill"
                  }
             ),
             'type' : forms.TextInput (
                  attrs = {
-                     "class" : "form-control"
+                     "class" : "form-control rounded-pill"
                 }
             ),
             'place' : forms.TextInput (
                  attrs = {
-                     "class": "form-control"
+                     "class": "form-control rounded-pill"
                  }
             ),
             'time' : forms.DateTimeInput (
                  # format = '%d%m%Y %H%M',
                  attrs = {
-                     "type": "datetime",
-                     "class": "form-control"
+                     #"type": "datetime",
+                     "type": "datetime-local",
+                     "class": "form-control rounded-pill"
                  }
             ),
             'age' : forms.NumberInput (
                  attrs = {
-                     "class": "form-control"
+                     "class": "form-control rounded-pill"
                  }
             ),
             'space_characteristics' : forms.TextInput (
                  attrs = {
-                     "class": "form-control"
+                     "class": "form-control rounded-pill"
                  }
             ),
             'expiration_date' : forms.DateTimeInput (
                  # format='%d%m%Y %H%M',
                  attrs = {
-                     "class": "form-control"
+                     'type': 'datetime-local',
+                     "class": "form-control rounded-pill"
                  }
             ),
         }

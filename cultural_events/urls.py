@@ -31,6 +31,6 @@ urlpatterns = [
     path('administration/', include('user_admin.urls')),
     path('adverts/', include(('adverts.urls', 'adverts'), namespace='adverts')),
     path('polls', include(('polls.urls', 'polls'), namespace='polls')),
-    path('events/', include('events.urls')),
+    path('', include('events.urls')),
 ] + static ( settings.MEDIA_URL, document_root = settings.MEDIA_ROOT );
 
