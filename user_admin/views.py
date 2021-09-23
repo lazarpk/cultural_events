@@ -71,9 +71,9 @@ def editUsers (request):
                     profile.work_area = form1.cleaned_data.get('work_area')
                     profile.web_site = form1.cleaned_data.get('web_site')
                     profile.save()
-                    return render(request, 'index-admin.html')
             except:
                 return render(request, 'index-admin.html')
+            return render(request, 'index-admin.html')
         else:
             form = UpdateUserForm(request.POST, instance=user)
             context = {
