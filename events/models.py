@@ -23,7 +23,7 @@ class Events (models.Model):
             ('event_can_create', 'Can create event'),
             ('event_edit', 'Can edit event'),
             ('event_can_archive', 'Can archive event'),
-            ('event_can_delete', 'Can delete evetn'),
+            ('event_can_delete', 'Can delete event'),
         ]
 
 class EventDeleteRequest (models.Model):

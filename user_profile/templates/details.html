@@ -10,10 +10,11 @@
 </div>
 <div class="row mb-3">
     <div class="col">
-        <a class="btn btn-dark rounded-pill" href="#">Dodaj događaj</a>
-        <a class="btn btn-dark rounded-pill" href="#">Dodaj oglas</a>
+        <a class="btn btn-dark rounded-pill" href="{% url 'create' %}">Dodaj događaj</a>
+        <a class="btn btn-dark rounded-pill" href="{% url 'adverts:create' %}">Dodaj oglas</a>
         <a class="btn btn-dark rounded-pill" href="{% url 'new_article' %}">Dodaj vest</a>
         <a class="btn btn-dark rounded-pill" href="{% url 'edit' %}?id={{ user.id }}">Uredi profil</a>
+        <a class="btn btn-dark rounded-pill" href="{% url 'search-org' %}">Pretrazi organizacije</a>
     </div>
 </div>
 <div class="row">

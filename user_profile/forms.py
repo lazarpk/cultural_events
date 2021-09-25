@@ -99,3 +99,13 @@ class UpdateProfileForm (forms.ModelForm):
 
         return user;
     '''
+
+class OrgSearchForm ( forms.Form ):
+    username = forms.CharField (
+        required= False,
+        widget= forms.TextInput (
+            attrs= {
+                'class': 'form-control rounded-pill'
+            }
+        )
+    )

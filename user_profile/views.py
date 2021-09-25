@@ -5,6 +5,7 @@ from .forms import UpdateUserForm, UpdateProfileForm
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from news.models import Article
+from .forms import OrgSearchForm
 # Create your views here.
 def details (request):
 
@@ -76,3 +77,18 @@ def edit (request):
                 'form1': form1
             }
             return render (request, 'edit.html', context)
+
+
+def searchOrg (request):
+    form = OrgSearchForm(request.GET)
+    orgs = Profile.objects.all()
+
+    if (form.is_valid()):
+        username = form.cleaned_data.get('username')
+        orgs = orgs.filter(user__username__icontains=username)
+
+    context = {
+        'form': form,
+        'orgs': orgs
+    }
+    return render(request, 'search-organisations.html', context)
