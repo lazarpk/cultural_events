@@ -49,13 +49,13 @@ def editUsers (request):
             }
         return render(request, 'edit-users.html', context)
     elif (request.method == "POST"):
-        print(request.POST)
+
         username = request.POST.get ('username')
         user = User.objects.get (username = username)
-        print(user.id)
+
         form = UpdateUserForm(request.POST, instance=user)
         if (form.is_valid()):
-            print('forma je validna')
+
             user.first_name = form.cleaned_data.get('first_name')
             user.last_name = form.cleaned_data.get('last_name')
             user.username = form.cleaned_data.get('username')
