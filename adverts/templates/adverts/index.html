@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col">
+        <a class="btn btn-primary " href="{% url 'adverts:create' %}">Kreiraj oglas</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <form action="{% url "adverts:index" %}">
+        {% for field in form %}
+        <label class="form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
+        {{ field }}
+        {% endfor %}
+        <input type="submit" class="btn btn-primary" , value="Trazi"/>
+        </form>
+    </div>
+</div>
+<table class="table table-striped">
+    <thead class="text-center">
+    <th>Naslov</th>
+    <th>Opis oglasa</th>
+    <th>Datum objave i isteka oglasa</th>
+    <th></th>
+    </thead>
+    <tbody>
+    {% for advert in adverts %}
+    <tr class="text-center">
+        <td> {{ advert.title }}</td>
+        <td> {{ advert.description }}</td>
+        <td>{{ advert.load_date }}<br>
+            {{ advert.expire_date}}
+        </td>
+        <td>
+            <a class="btn btn-primary" href="{% url "adverts:edit" %}?id={{ advert.id }}">Izmeni oglas</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

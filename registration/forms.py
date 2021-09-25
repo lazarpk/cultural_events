@@ -11,7 +11,7 @@ class RegisterForm(UserCreationForm):
         widget=forms.PasswordInput(
             attrs={
                 'autocomplete': 'new-password',
-                'class': 'form-control'
+                'class': 'form-control rounded-pill'
             }
         ),
         help_text=password_validation.password_validators_help_text_html(),
@@ -21,7 +21,7 @@ class RegisterForm(UserCreationForm):
         widget=forms.PasswordInput(
             attrs={
                 'autocomplete': 'new-password',
-                'class': 'form-control'
+                'class': 'form-control rounded-pill'
             }
         ),
         strip=False,
@@ -32,24 +32,24 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ["first_name", "last_name", "email", "username"]
         widgets = {
-            "username": forms.TextInput(
-                attrs={
-                    "class": "form-control"
-                }
-            ),
-            "email": forms.EmailInput(
-                attrs={
-                    'class': 'form-control'
-                }
-            ),
             "first_name": forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    "class": "form-control rounded-pill"
                 }
             ),
             "last_name": forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control rounded-pill'
+                }
+            ),
+            "email": forms.EmailInput(
+                attrs={
+                    'class': 'form-control rounded-pill'
+                }
+            ),
+            "username": forms.TextInput(
+                attrs={
+                    'class': 'form-control rounded-pill'
                 }
             )
         }
@@ -71,17 +71,17 @@ class RegisterFormOrg(UserCreationForm):
         widgets = {
             "username": forms.TextInput(
                 attrs={
-                    "class": "form-control"
+                    "class": "form-control rounded-pill"
                 }
             ),
             "email": forms.EmailInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control rounded-pill'
                 }
             ),
             "first_name": forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control rounded-pill'
                 }
             )
         }
@@ -92,7 +92,7 @@ class RegisterFormOrg(UserCreationForm):
         widget=forms.PasswordInput(
             attrs={
                 'autocomplete': 'new-password',
-                'class': 'form-control'
+                'class': 'form-control rounded-pill'
             }
         ),
         help_text=password_validation.password_validators_help_text_html(),
@@ -102,7 +102,7 @@ class RegisterFormOrg(UserCreationForm):
         widget=forms.PasswordInput(
             attrs={
                 'autocomplete': 'new-password',
-                'class': 'form-control'
+                'class': 'form-control rounded-pill'
             }
         ),
         strip=False,
@@ -112,7 +112,7 @@ class RegisterFormOrg(UserCreationForm):
         label="Address",
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control'
+                'class': 'form-control rounded-pill'
             }
         ),
         help_text='Enter your address.',
@@ -121,7 +121,7 @@ class RegisterFormOrg(UserCreationForm):
         label='Number',
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control'
+                'class': 'form-control rounded-pill'
             }
         ),
         help_text='Address number.',
@@ -130,7 +130,7 @@ class RegisterFormOrg(UserCreationForm):
         label="City.",
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control'
+                'class': 'form-control rounded-pill'
             }
         ),
         help_text='City.',
@@ -139,7 +139,7 @@ class RegisterFormOrg(UserCreationForm):
         label="Contact person.",
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control'
+                'class': 'form-control rounded-pill'
             }
         ),
         help_text='Contact person.',
@@ -149,7 +149,7 @@ class RegisterFormOrg(UserCreationForm):
         label="Phone.",
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control'
+                'class': 'form-control rounded-pill'
             }
         ),
         help_text='Phone',
@@ -158,7 +158,7 @@ class RegisterFormOrg(UserCreationForm):
         label="Description.",
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control'
+                'class': 'form-control rounded-pill'
             }
         ),
         help_text='Description',
@@ -168,7 +168,7 @@ class RegisterFormOrg(UserCreationForm):
         label="The area of work.",
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control'
+                'class': 'form-control rounded-pill'
             }
         ),
         help_text='The area of work.',
@@ -177,7 +177,7 @@ class RegisterFormOrg(UserCreationForm):
         label="Web site.",
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control'
+                'class': 'form-control rounded-pill'
             }
         ),
         help_text='Web site.',

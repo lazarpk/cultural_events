@@ -1,3 +1,4 @@
+from django.contrib.auth.models import Permission
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
 from .forms import RegisterForm, RegisterFormOrg, User
@@ -22,14 +23,24 @@ def register (request):
         form = RegisterForm(request.POST)
 
         if (form.is_valid()):
-            form.save()
+            if request.user.is_superuser:
+                # user = form.save (commit = False)
+                # user.is_superuser = 1
+                # user.save()
+                form.save()
+                user = User.objects.last()
+                user.is_superuser = 1
+                user.save()
+                return render(request, 'index-admin.html')
+            else:
+                form.save()
 
-            username = form.cleaned_data.get ("username")
-            password = form.cleaned_data.get ("password1")
+                username = form.cleaned_data.get ("username")
+                password = form.cleaned_data.get ("password1")
 
-            user = authenticate(username= username, password= password)
-            login (request, user)
-            return redirect('index')
+                user = authenticate(username= username, password= password)
+                login (request, user)
+                return redirect('index')
         else:
             context = {
                 'form': form
@@ -64,6 +75,8 @@ def register_org (request):
             password = form.cleaned_data.get("password1")
 
             user = authenticate(username=username, password=password)
+            permission = Permission.objects.get(codename='article_can_create')
+            user.user_permissions.add(permission)
             login(request, user)
             return redirect('index')
         else:
@@ -71,3 +84,14 @@ def register_org (request):
                 'form':form
             }
             return render (request, 'reg_org.html', context)
+
+def login_success (request):
+    try:
+        curently_user = Profile.objects.get(user_id = request.user)
+    except Profile.DoesNotExist:
+        curently_user = None
+
+    if curently_user == None:
+        return redirect('/')
+    else:
+        return redirect('/profile')

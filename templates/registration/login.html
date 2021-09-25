@@ -9,20 +9,20 @@
 {% if form.errors %}
 Wrong username or password.
 {% endif %}
-    <div class="row">
-        <div class="col-5">
+    <div class="row parent">
+        <div class="col-5 child">
             <form method="post" action="{% url 'login' %}">
                 {% csrf_token %}
                 <input type="hidden" name="next" value="{{ next }}">
                 <div class="mb-3">
                     <label for="username" class="form-label">{{ form.username.label_tag }}</label>
-                    <input id="username" type="text" name="username" class="form-control"/>
+                    <input id="username" type="text" name="username" class="rounded-pill form-control"/>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="from-label">{{ form.password.label_tag }}</label>
-                    <input id="password" type="password" name="password" class="form-control"/>
+                    <input id="password" type="password" name="password" class="rounded-pill form-control"/>
                 </div>
-                <input type="submit" value="Login" class="btn btn-primary">
+                <input type="submit" value="Login" class="btn btn-dark rounded-pill">
             </form>
         </div>
     </div>

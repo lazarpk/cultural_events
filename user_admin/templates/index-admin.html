@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Administracija</title>
+{% endblock %}
+
+{% block admin %}
+<div class="row mt-0">
+    <div class="col-2">
+        <div class="list-group">
+            <a href="{% url 'registration' %}" class="list-group-item list-group-item-action list-group-item-warning ">Dodaj nove
+                korisnike</a>
+
+            <a href="{% url 'search-users' %}" class="list-group-item list-group-item-action list-group-item-warning">Izmeni
+                informacije o korisnicima</a>
+
+            <a href="#" class="list-group-item list-group-item-action list-group-item-warning ">Napravi
+                šifarnik</a>
+
+            <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Ažuriraj
+                šifarnik</a>
+
+            <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Kreiraj
+                statistiku</a>
+
+            <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Zahtevi za
+                brisanje vesti</a>
+
+            <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Zahtevi za
+                brisanje događaja</a>
+
+            <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Zahtevi za
+                brisanje oglasa</a>
+
+            <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Ažuriraj
+                kategorije za vesti</a>
+
+            <a href="#" class="list-group-item list-group-item-action list-group-item-warning ">Ažuriraj
+                kategorije za događaj</a>
+
+            <a href="#" class="list-group-item list-group-item-action list-group-item-warning ">Napravi
+                izveštaj</a>
+
+            <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Izmeni
+                osnovne podatke o portalu</a>
+
+        </div>
+    </div>
+    <div class="col-10">
+
+    </div>
+</div>
+{% endblock %}

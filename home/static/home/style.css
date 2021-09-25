@@ -14,6 +14,11 @@
     margin: auto;
 }
 body {
-    padding-bottom: 70px;
-    background-color: khaki;
+    background-color: #FFFAF0;
+    background-repeat-y: no-repeat;
+    color: black;
+}
+
+body * {
+    font-family: Ubuntu;
 }

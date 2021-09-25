@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Kreiraj novi dogadjaj</title>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+      <div class="col">
+          <form method = "post" action = "{% url 'create' %}">
+              {% csrf_token %}
+              {% for field in form %}
+              <div class = 'mb-3'>
+                    <label class="form-label" id="{{ field.auto_id }}">{{ field.label }}</label>
+                    {{ field }}
+                    <div class = "text-danger">
+                        {{ field.errors }}
+                    </div>
+              </div>
+              {% endfor %}
+              <input type="submit" class="btn btn-primary mt-3" value="Sačuvaj"/>
+          </form>
+      </div>
+    </div>
+{% endblock %}

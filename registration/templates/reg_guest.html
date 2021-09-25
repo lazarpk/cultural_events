@@ -3,8 +3,8 @@
 {% endblock %}
 
 {% block body %}
-    <div class="row">
-        <div class="col-5">
+    <div class="row parent">
+        <div class="col-5 child">
             <h1>Registration form</h1>
             <form method="post" action="{% url 'reg_guest' %}">
                 {% csrf_token %}
@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 {% endfor %}
-                <input type="submit" class="btn btn-primary" value="Register"/>
+                <input type="submit" class="btn btn-dark rounded-pill" value="Register"/>
             </form>
         </div>
     </div>

@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block body %}
-<div class="row">
-    <div class="col-5">
+<div class="row parent">
+    <div class="col-5 child">
         <form action="#" method="POST">
             {% csrf_token %}
             {% for field in form %}
@@ -28,7 +28,7 @@
             </div>
             {% endfor %}
             <div class="col">
-                <input type="submit" class="btn btn-primary mt-3" value="Sačuvaj"/>
+                <input type="submit" class="btn btn-light mt-3" value="Sačuvaj"/>
             </div>
         </form>
     </div>
