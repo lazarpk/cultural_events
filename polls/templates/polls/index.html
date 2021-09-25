@@ -21,16 +21,17 @@
                     <span class="nav justify-content-end fs-2">
                     <a href="{% url 'polls:results' poll.id %}" class="link-primary">Vidi rezultate</a> &nbsp;
                     </span>
-                </li>
+                </li><br>
                 {% endfor %}
             </ul>
             <br>
+            {% if user.profile.city or user.is_superuser %}
             <div class="row">
                 <div class="col">
                     <a class="btn btn-primary" href="{% url 'polls:create' %}">Kreiraj anketu</a>
                 </div>
             </div>
-
+            {% endif %}
         </div>
     </div>
 </div>

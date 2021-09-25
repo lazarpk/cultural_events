@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from news.models import Article
 from .forms import OrgSearchForm
+from polls.models import Poll
 # Create your views here.
 def details (request):
 
@@ -27,8 +28,10 @@ def details (request):
         raise Http404
     else:
         articles = Article.objects.filter(ArchivedDate__isnull=True, Author=request.user).order_by('-id')[:10]
+        polls = Poll.objects.filter (author=request.user)
         context = {
-            'articles': articles
+            'articles': articles,
+            'polls': polls
         }
         return render(request, 'details.html', context)
 
