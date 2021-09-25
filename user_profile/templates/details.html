@@ -179,4 +179,9 @@
         </div>
     </div>
 </div>
+{% if not polls %}
+        <div class="col">
+            <h3>Trenutno nemate nikakvu anketu!</h3>
+        </div>
+{% endif %}
 {% endblock %}

@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
 
 {% block title %}
+<title>Oglasi</title>
 {% endblock %}
 
 {% block body %}
+{% if user.profile.city or user.is_superuser %}
 <div class="row">
     <div class="col">
         <a class="btn btn-primary " href="{% url 'adverts:create' %}">Kreiraj oglas</a>
     </div>
 </div>
+{% endif %}
 <div class="row">
     <div class="col">
         <form action="{% url "adverts:index" %}">
@@ -16,10 +19,11 @@
         <label class="form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
         {{ field }}
         {% endfor %}
+        <br>
         <input type="submit" class="btn btn-primary" , value="Trazi"/>
         </form>
     </div>
-</div>
+</div><br>
 <table class="table table-striped">
     <thead class="text-center">
     <th>Naslov</th>
