@@ -4,10 +4,16 @@ from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
 
 # Create your models here.
+class CategoryEvents (models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
 class Events (models.Model):
     event_name = models.CharField (max_length = 50, default = '');
     text = models.CharField (max_length = 200, default = '');
-    type = models.CharField (max_length = 30, default = '');
+    category = models.ManyToManyField(CategoryEvents, verbose_name="kategorija");
     place = models.CharField (max_length = 30, default = '');
     time = models.DateTimeField(null = True, blank = True);
     age = models.IntegerField(default = False);

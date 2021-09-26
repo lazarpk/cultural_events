@@ -5,12 +5,12 @@ from .models import Events
 class EventsForm (forms.ModelForm):
     class Meta:
         model = Events
-        fields = ['event_name', 'text', 'type', 'place', 'time', 'age', 'space_characteristics', 'expiration_date']
+        fields = ['event_name', 'text', 'category', 'place', 'time', 'age', 'space_characteristics', 'expiration_date']
 
         labels = {
             'event_name':'Naziv',
             'text':'Tekst',
-            'type':'Vrsta',
+            'category':'Vrsta',
             'place':'Mesto',
             'time':'Vreme',
             'age':'Uzrast',
@@ -29,9 +29,9 @@ class EventsForm (forms.ModelForm):
                      "class" : "form-control rounded-pill"
                  }
             ),
-            'type' : forms.TextInput (
+            'category' : forms.SelectMultiple (
                  attrs = {
-                     "class" : "form-control rounded-pill"
+                     "class" : "form-control"
                 }
             ),
             'place' : forms.TextInput (

@@ -6,13 +6,19 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import permission_required
 
 # Create your views here.
-from .models import Events, EventDeleteRequest
+from .models import Events, EventDeleteRequest, CategoryEvents
 from .forms import EventsForm
 
 
 def events (request):
     events = Events.objects.filter (date_archived__isnull = True).order_by('time')[:10]
-    return render (request, 'events/events.html', {'events' : events})
+    dictValues = {}
+    for event in events:
+        eventItem = Events.objects.get(id=event.id)
+        categories = eventItem.category.all()
+        dictValues[event.id] = categories
+
+    return render (request, 'events/events.html', {'events' : events, 'values':dictValues })
 
 
 @permission_required('events.event_can_create', '/login')
@@ -25,11 +31,11 @@ def create (request):
 
         if (form.is_valid()):
             event = form.save(commit = False)
+            category = form.cleaned_data.get ('category')
             current_user = request.user
-
             event.author = current_user
             event.save()
-
+            event.category.set(category)
             return redirect ('events')
         else:
 
@@ -38,11 +44,12 @@ def create (request):
 def event (request, *args, **kwargs):
     id = kwargs['id']
     event = Events.objects.get (pk = id)
+    categories = event.category.all()
 
     if event is None:
         raise Http404
     else:
-        return render (request, 'events/event.html', {'event': event})
+        return render (request, 'events/event.html', {'event': event, 'categories': categories})
 
 def archive_event (request, *args, **kwargs):
     id = kwargs ['id']
