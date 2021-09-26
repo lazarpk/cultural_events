@@ -24,15 +24,17 @@
     <div class="col">
         <table class="table">
             <thead>
+            <th>ID</th>
             <th>Ime</th>
             <th></th>
             </thead>
             <tbody>
             {% for category in categories %}
             <tr>
+                <td>{{ category.id }}</td>
                 <td>{{ category.Name }}</td>
                 <td>
-                    <a class="btn btn-dark rounded-pill" href="{% url 'categories-news' %}?id={{ category.id }}">Edit</a>
+                    <a class="btn btn-dark rounded-pill" href="{% url 'categories-news-edit' %}?id={{ category.id }}">Edit</a>
                 </td>
             </tr>
             {% endfor %}

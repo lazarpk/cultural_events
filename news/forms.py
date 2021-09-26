@@ -27,3 +27,16 @@ class ArticleForm(ModelForm):
             )
 
         }
+
+
+class AddCategoryForm (ModelForm):
+    class Meta:
+        model = Category
+        fields = ['Name']
+        widgets = {
+            'Name':forms.TextInput (
+                attrs = {
+                    'class': 'form-control'
+                }
+            ),
+        }

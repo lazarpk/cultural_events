@@ -5,6 +5,8 @@ from .forms import UserSearchForm, NewsCategorySearchForm
 from user_profile.forms import UpdateUserForm, UpdateProfileForm
 from registration.models import Profile
 from news.models import Category
+from news.forms import AddCategoryForm
+from django.shortcuts import redirect
 # Create your views here.
 def index (request):
     curently_user = User.objects.get(id=request.user.id)
@@ -106,3 +108,30 @@ def newsCategories (request):
         'categories': categories
     }
     return render(request, 'categories-news.html', context)
+
+def newsCategoriesEdit (request):
+    if (request.method == "GET"):
+        id = request.GET.get ('id')
+        category = Category.objects.get (id = id)
+        form = AddCategoryForm(instance=category)
+        context = {
+            'form': form,
+            'id': id
+        }
+        return render(request, 'categories-news-edit.html', context)
+    elif (request.method == "POST"):
+        id = request.POST.get ("id")
+        form = AddCategoryForm(request.POST)
+        if (form.is_valid()):
+            category = Category.objects.get(id=id)
+            name = form.cleaned_data.get ('Name')
+            category.Name = name
+            category.save()
+            #return render(request, 'index-admin.html')
+            return redirect ('/administration/categories-news')
+        else:
+            context = {
+                'form': form,
+                'id': id
+            }
+            return render(request, 'categories-news-edit.html', context)
