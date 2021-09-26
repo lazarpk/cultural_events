@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from django.contrib.auth.models import User
-from .forms import UserSearchForm
+from .forms import UserSearchForm, NewsCategorySearchForm
 from user_profile.forms import UpdateUserForm, UpdateProfileForm
 from registration.models import Profile
+from news.models import Category
 # Create your views here.
 def index (request):
     curently_user = User.objects.get(id=request.user.id)
@@ -92,3 +93,16 @@ def editUsers (request):
             except:
                 pass
             return render(request, 'edit-users.html', context)
+
+
+def newsCategories (request):
+    categories = Category.objects.all()
+    form = NewsCategorySearchForm(request.GET)
+    if (form.is_valid()):
+        name = form.cleaned_data.get('name')
+        categories = categories.filter(Name__icontains = name)
+    context = {
+        'form':form,
+        'categories': categories
+    }
+    return render(request, 'categories-news.html', context)
