@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Kategorije za vesti</title>
+{% endblock %}
+
+{% block body %}
+<div class="row parent mt-3">
+    <div class="col-6 child">
+            <form action="{% url 'categories-events' %}">
+                {% for field in form %}
+                <div class="mb-3">
+                    <label class="form-label" id="{{ field.auto_id }}">{{ field.label }}</label>
+                    {{ field }}
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-dark rounded-pill" value="Search"/>
+                </div>
+                {% endfor %}
+            </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <table class="table">
+            <thead>
+            <th>ID</th>
+            <th>Ime</th>
+            <th></th>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>
+                    <a class="btn btn-dark rounded-pill" href="{% url 'categories-events-edit' %}?id={{ category.id }}">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

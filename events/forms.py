@@ -1,5 +1,7 @@
 from django import forms
 from .models import Events
+from django.forms import ModelForm
+from .models import CategoryEvents
 # from django.contrib.auth.forms import forms
 
 class EventsForm (forms.ModelForm):
@@ -63,6 +65,18 @@ class EventsForm (forms.ModelForm):
                      'type': 'datetime-local',
                      "class": "form-control rounded-pill"
                  }
+            ),
+        }
+
+class AddEventCategoryForm(ModelForm):
+    class Meta:
+        model = CategoryEvents
+        fields = ['name']
+        widgets = {
+            'name': forms.TextInput(
+                attrs={
+                    'class': 'form-control'
+                }
             ),
         }
 

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Azuriraj kategoriju</title>
+{% endblock %}
+
+{% block body %}
+<div class="row parent mt-3">
+    <div class="col-6 child">
+            <form action="{% url 'categories-events-edit' %}" method="post">
+                {% for field in form %}
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ id }}">
+                <div class="mb-3">
+                    <label class="form-label" id="{{ field.auto_id }}">{{ field.label }}</label>
+                    {{ field }}
+                    {{ field.errors }}
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-dark rounded-pill" value="Azuriraj"/>
+                </div>
+                {% endfor %}
+            </form>
+    </div>
+</div>
+{% endblock %}

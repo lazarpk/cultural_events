@@ -19,3 +19,13 @@ class NewsCategorySearchForm ( forms.Form ):
             }
         )
     )
+
+class EventsCategorySearchForm ( forms.Form ):
+    name = forms.CharField (
+        required= False,
+        widget= forms.TextInput (
+            attrs= {
+                'class': 'form-control rounded-pill'
+            }
+        )
+    )

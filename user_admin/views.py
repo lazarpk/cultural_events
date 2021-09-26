@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from django.contrib.auth.models import User
-from .forms import UserSearchForm, NewsCategorySearchForm
+from .forms import UserSearchForm, NewsCategorySearchForm, EventsCategorySearchForm
 from user_profile.forms import UpdateUserForm, UpdateProfileForm
 from registration.models import Profile
 from news.models import Category
 from news.forms import AddCategoryForm
 from django.shortcuts import redirect
+from events.models import CategoryEvents
+from events.forms import AddEventCategoryForm
 # Create your views here.
 def index (request):
     curently_user = User.objects.get(id=request.user.id)
@@ -135,3 +137,41 @@ def newsCategoriesEdit (request):
                 'id': id
             }
             return render(request, 'categories-news-edit.html', context)
+
+def eventsCategories(request):
+    categories = CategoryEvents.objects.all()
+    form = EventsCategorySearchForm(request.GET)
+    if (form.is_valid()):
+        name = form.cleaned_data.get('name')
+        categories = categories.filter(name__icontains = name)
+    context = {
+        'form':form,
+        'categories': categories
+    }
+    return render(request, 'categories-events.html', context)
+
+def eventsCategoriesEdit (request):
+    if (request.method == "GET"):
+        id = request.GET.get ('id')
+        category = CategoryEvents.objects.get (id = id)
+        form = AddEventCategoryForm(instance=category)
+        context = {
+            'form': form,
+            'id': id
+        }
+        return render(request, 'categories-events-edit.html', context)
+    elif (request.method == "POST"):
+        id = request.POST.get ("id")
+        form = AddEventCategoryForm(request.POST)
+        if (form.is_valid()):
+            category = CategoryEvents.objects.get(id=id)
+            name = form.cleaned_data.get ('name')
+            category.name = name
+            category.save()
+            return redirect ('/administration/categories-events')
+        else:
+            context = {
+                'form': form,
+                'id': id
+            }
+            return render(request, 'categories-events-edit.html', context)
