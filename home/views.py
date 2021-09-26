@@ -13,10 +13,13 @@ from django.contrib.auth.decorators import permission_required
 
 
 def index(request):
-    #print(request.user.id)
-    #user = Profile.objects.get(user_id=request.user.id)
-    #print (user.city)
     return render(request, "index.html")
 
+def aboutUs (request):
+    return render(request, 'about-us.html')
 
-    #return render(request, "events.html")
+def contact(request):
+    return render(request, 'contact.html')
+
+def guide(request):
+    return render(request, 'guide.html')
