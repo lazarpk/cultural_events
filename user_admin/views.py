@@ -13,6 +13,8 @@ from events.models import Events
 from news.models import Article
 from adverts.models import Adverts
 from polls.models import Poll
+from home.forms import AboutUsForm
+from home.models import AboutUs
 # Create your views here.
 def index (request):
     curently_user = User.objects.get(id=request.user.id)
@@ -214,3 +216,29 @@ def statisticsUser (request):
         'requested_user': requested_user
     }
     return render(request, 'statistics-user.html', context)
+
+def aboutUsEdit (request):
+    if(request.method=="GET"):
+        obj = AboutUs.objects.last()
+        form = AboutUsForm(instance=obj)
+        context = {
+            'form': form
+        }
+        return render(request, 'about-us-edit.html', context)
+    elif (request.method == "POST"):
+        form = AboutUsForm(request.POST)
+        obj = AboutUs.objects.last()
+
+        if (form.is_valid()):
+            content1 = form.cleaned_data.get('content1')
+            content2 = form.cleaned_data.get('content2')
+            obj.content1 = content1
+            obj.content2 = content2
+            obj.save()
+            return redirect('/about')
+
+        else:
+            context = {
+                'form':form
+            }
+            return render(request, 'about-us-edit.html', context)

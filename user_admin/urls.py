@@ -12,4 +12,5 @@ urlpatterns = [
     path('categories-events-edit/', views.eventsCategoriesEdit, name='categories-events-edit'),
     path('statistics/', views.statistics, name='statistics'),
     path('statistics-user/', views.statisticsUser, name='statistics-user'),
+    path('about-us-edit/', views.aboutUsEdit, name='about-us-edit'),
 ]
