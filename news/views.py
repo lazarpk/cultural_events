@@ -31,10 +31,12 @@ def article_new(request):
 
         if (form.is_valid()):
             article = form.save(commit=False)
+            category = form.cleaned_data.get('Category')
             article.Author = request.user
             article.save()
+            article.Category.set(category)
 
-            # return redirect('/articles/{}'.format(article.id))
+
             return redirect('/news')
         else:
             return render(request, "create_article.html", {'form': form})

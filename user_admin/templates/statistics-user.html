@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Statistika korisnika</title>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-4">
+        <h4>Statistika za korisnika <b>{{ requested_user }}</b></h4>
+        <form action="#">
+            <div class="mb-3">
+                <label for="events" class="form-label">Broj napravljenih dogadjaja:</label>
+                <input id="events" type="text" name="events" value="{{ events }}" class="form-control" disabled/>
+            </div>
+            <div class="mb-3">
+                <label for="news" class="from-label">Broj napravljenih vesti:</label>
+                <input id="news" type="text" name="news" value="{{ news }}" class="form-control" disabled/>
+            </div>
+            <div class="mb-3">
+                <label for="adverts" class="from-label">Broj napravljenih oglasa:</label>
+                <input id="adverts" type="text" name="adverts" value="{{ adverts }}" class="form-control" disabled/>
+            </div>
+            <div class="mb-3">
+                <label for="polls" class="from-label">Broj napravljenih anketa:</label>
+                <input id="polls" type="text" name="polls" value="{{ polls }}" class="form-control" disabled/>
+            </div>
+            <!-- <input type="submit" value="Posalji na email" class="btn btn-dark rounded-pill"> -->
+        </form>
+    </div>
+</div>
+{% endblock %}

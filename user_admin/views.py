@@ -9,6 +9,10 @@ from news.forms import AddCategoryForm
 from django.shortcuts import redirect
 from events.models import CategoryEvents
 from events.forms import AddEventCategoryForm
+from events.models import Events
+from news.models import Article
+from adverts.models import Adverts
+from polls.models import Poll
 # Create your views here.
 def index (request):
     curently_user = User.objects.get(id=request.user.id)
@@ -175,3 +179,38 @@ def eventsCategoriesEdit (request):
                 'id': id
             }
             return render(request, 'categories-events-edit.html', context)
+
+def statistics (request):
+    form = UserSearchForm(request.GET)
+    query = User.objects
+
+    if (form.is_valid()):
+        username = form.cleaned_data.get('username')
+        if (len(username) > 0):
+            query = query.filter(
+                username__icontains=username
+            )
+
+    users = query.all()
+    context = {
+        'form': form,
+        'users': users
+    }
+    return render(request, 'statistics.html', context)
+
+def statisticsUser (request):
+    id = request.GET.get('id')
+    requested_user = User.objects.get(id=id)
+    events = Events.objects.filter(author_id=id).count()
+    news = Article.objects.filter(Author_id = id).count()
+    adverts = Adverts.objects.filter(author_id = id).count()
+    polls = Poll.objects.filter(author_id = id).count()
+    context ={
+        'id':id,
+        'events': events,
+        'news': news,
+        'adverts': adverts,
+        'polls': polls,
+        'requested_user': requested_user
+    }
+    return render(request, 'statistics-user.html', context)
