@@ -4,9 +4,11 @@
 {% endblock %}
 
 {% block body %}
-<div class="row">
+<div class="row mb-2">
+    {% if user.is_authenticated and perms.events.event_can_create %}
     <div class="col">
         <a class="btn btn-primary " href="{% url 'adverts:create' %}">Kreiraj oglas</a>
+    {% endif %}
     </div>
 </div>
 <div class="row">
@@ -36,7 +38,11 @@
             {{ advert.expire_date}}
         </td>
         <td>
+            {% if advert.author.id == user.id %}
+            <a href="/adverts/{{advert.id}}/archive">Arhiviraj</a>
+            <a href="/adverts/{{advert.id}}/delete">Obrisi</a>
             <a class="btn btn-primary" href="{% url "adverts:edit" %}?id={{ advert.id }}">Izmeni oglas</a>
+            {% endif %}
         </td>
     </tr>
     {% endfor %}
