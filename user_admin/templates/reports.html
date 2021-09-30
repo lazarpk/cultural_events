@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+<title>Izvestaji</title>
+{% endblock %}
+
+{% block body %}
+<div class="row parent">
+    <div class="col-6 child">
+        <form action="{% url 'reports' %}" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="mb-3">
+                <label class="form-label" id="{{ field.auto_id }}">{{ field.label }}</label>
+                {{ field }}
+                {% if errors %}
+                <div class="text-danger">
+                    {{ field.errors }}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <input type="submit" value="Zatrazi izvestaj" class="btn btn-dark rounded-pill">
+        </form>
+        {% if form1 %}
+        <form action="#">
+            {% csrf_token %}
+            {% for field in form1 %}
+            <div class="mb-3">
+                <label class="form-label" id="{{ field.auto_id }}">{{ field.label }}</label>
+                {{ field }}
+                {% if errors %}
+                <div class="text-danger">
+                    {{ field.errors }}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

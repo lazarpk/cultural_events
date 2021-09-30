@@ -95,3 +95,11 @@ def searchOrg (request):
         'orgs': orgs
     }
     return render(request, 'search-organisations.html', context)
+
+def profileUser (request):
+    id = request.GET.get('id')
+    user = User.objects.get(id=id)
+    context = {
+        'user': user
+    }
+    return render(request, 'profile-user.html', context)

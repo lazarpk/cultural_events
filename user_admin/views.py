@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from django.contrib.auth.models import User
-from .forms import UserSearchForm, NewsCategorySearchForm, EventsCategorySearchForm
+from .forms import UserSearchForm, NewsCategorySearchForm, EventsCategorySearchForm, ReportsCreateForm, GetTheReport
 from user_profile.forms import UpdateUserForm, UpdateProfileForm
 from registration.models import Profile
 from news.models import Category
@@ -15,6 +15,9 @@ from adverts.models import Adverts
 from polls.models import Poll
 from home.forms import AboutUsForm
 from home.models import AboutUs
+import datetime
+from django.utils import timezone
+from .models import Reports
 # Create your views here.
 def index (request):
     curently_user = User.objects.get(id=request.user.id)
@@ -63,6 +66,25 @@ def editUsers (request):
 
         username = request.POST.get ('username')
         user = User.objects.get (username = username)
+        form1 = None
+        obj = None
+        try:
+            obj = Profile.objects.get(user_id=user.id)
+            form1 = UpdateProfileForm(instance=obj)
+            if form1.is_valid():
+                print('uso u if form1 is valid')
+                obj.address = form1.cleaned_data.get('address')
+                obj.number = form1.cleaned_data.get('number')
+                obj.city = form1.cleaned_data.get('city')
+                obj.contact_person = form1.cleaned_data.get('contact_person')
+                obj.phone = form1.cleaned_data.get('phone')
+                obj.description = form1.cleaned_data.get('description')
+                obj.work_area = form1.cleaned_data.get('work_area')
+                obj.web_site = form1.cleaned_data.get('web_site')
+                obj.save()
+        except Profile.DoesNotExist:
+            obj = False
+            form1 = False
 
         form = UpdateUserForm(request.POST, instance=user)
         if (form.is_valid()):
@@ -72,36 +94,24 @@ def editUsers (request):
             user.username = form.cleaned_data.get('username')
             user.email = form.cleaned_data.get('email')
             user.save()
-            try:
-                form1 = UpdateProfileForm(instance=Profile.objects.get(user_id = user.id))
-                if (form1.is_valid()):
-                    profile = Profile.objects.get(user_id=user.id)
-                    profile.address = form1.cleaned_data.get('address')
-                    profile.number = form1.cleaned_data.get('number')
-                    profile.city = form1.cleaned_data.get('city')
-                    profile.contact_person = form1.cleaned_data.get('contact_person')
-                    profile.phone = form1.cleaned_data.get('phone')
-                    profile.description = form1.cleaned_data.get('description')
-                    profile.work_area = form1.cleaned_data.get('work_area')
-                    profile.web_site = form1.cleaned_data.get('web_site')
-                    profile.save()
-            except:
-                return render(request, 'index-admin.html')
+
             return render(request, 'index-admin.html')
         else:
             form = UpdateUserForm(request.POST, instance=user)
             context = {
                 'form': form,
             }
-            print('greska')
+            print('greska 2')
             try:
                 form1 = UpdateProfileForm (instance=Profile.objects.get(user_id = user.id))
                 context = {
                     'form': form,
                     'form1': form1
                 }
-            except:
-                pass
+            except Profile.DoesNotExist:
+                context = {
+                    'form': form
+                }
             return render(request, 'edit-users.html', context)
 
 
@@ -242,3 +252,36 @@ def aboutUsEdit (request):
                 'form':form
             }
             return render(request, 'about-us-edit.html', context)
+
+def reports (request):
+    if (request.method == "GET"):
+        form = ReportsCreateForm(request.GET)
+        context = {
+            'form': form
+        }
+        return render(request, 'reports.html', context)
+    elif (request.method == "POST"):
+        form = ReportsCreateForm (request.POST)
+        if (form.is_valid()):
+            title = form.cleaned_data.get ('title')
+            dateStart = form.cleaned_data.get('date_from')
+            dateEnd = form.cleaned_data.get('date_to')
+            num_users = User.objects.filter(date_joined__range=(dateStart, dateEnd)).count()
+            num_events = Events.objects.filter(date_published__range=(dateStart, dateEnd)).count()
+            num_adverts = Adverts.objects.filter(load_date__range=(dateStart, dateEnd)).count()
+            num_articles = Article.objects.filter(CreationDate__range=(dateStart, dateEnd)).count()
+            report = Reports()
+            report.title = title
+            report.date_from = dateStart
+            report.date_to = dateEnd
+            report.num_users = num_users
+            report.num_events = num_events
+            report.num_adverts = num_adverts
+            report.num_articles = num_articles
+            report.save()
+            form1 = GetTheReport(instance=report)
+        context = {
+            'form': form,
+            'form1': form1
+        }
+        return render(request, 'reports.html', context)
