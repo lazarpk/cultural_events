@@ -13,10 +13,13 @@
 </head>
 <!-- style="background-image: url({% static 'home/media/newyork.jpg' %});" -->
 <body>
+<div class="naslovna">
+    <h1>DOBRODOŠAO NA PORTAL ZA KULTURNE DOGAĐAJE</h1>
+</div>
 <!-- <img src="/media/stars.jpg" style="width:100%; height: 160px;" class="img-fluid rounded" alt="Naslovna slika"> -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'index' %}">Naslovna</a>
+        <a class="navbar-brand " href="{% url 'index' %}">NASLOVNA</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -25,43 +28,43 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'events' %}">Događaji</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'events' %}">DOGAĐAJI</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'Novosti' %}">Vesti</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'Novosti' %}">VESTI</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'adverts:index' %}">Oglasi</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'adverts:index' %}">OGLASI</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'polls:index' %}">Ankete</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'polls:index' %}">ANKETE</a>
                 </li>
                 <li class="nav-item">
                     {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'about-us' %}">O nama</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'about-us' %}">O NAMA</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'contact' %}">Kontakt</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'contact' %}">KONTAKT</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'guide' %}">Uputstvo</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'guide' %}">UPUTSTVO</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 {% if user.profile.city %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'profile' %}">Profil</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'profile' %}">PROFIL</a>
                 </li>
                 {% endif %}
                 {% if user.is_superuser %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'index-admin' %}">Admin</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'index-admin' %}">ADMIN</a>
                 </li>
                 {% endif %}
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Log out</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">LOG OUT</a>
                 </li>
                 {% endif %}
             </ul>

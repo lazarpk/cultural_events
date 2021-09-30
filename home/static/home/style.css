@@ -13,12 +13,20 @@
     right: 0;
     margin: auto;
 }
+.naslovna {
+	padding: 40px;
+	background-color: lightsalmon;
+	background-image: url(stars.jpg);
+	background-size: cover;
+	color: white;
+	text-align: center;
+}
 body {
     background-color: #FFFAF0;
     background-repeat-y: no-repeat;
     color: black;
 }
 
-body * {
-    font-family: Ubuntu;
+body *{
+    font-family: Stick, New Century Schoolbook, TeX Gyre Schola, serif;
 }
