@@ -1,12 +1,13 @@
-{% extends 'base.html' %}
+{% extends 'index-admin.html' %}
 
 {% block title %}
 <title>Kategorije za vesti</title>
 {% endblock %}
 
-{% block body %}
+{% block second_body %}
 <div class="row parent mt-3">
     <div class="col-6 child">
+        <h1>Azuriraj kategorije za dogadjaje</h1>
             <form action="{% url 'categories-events' %}">
                 {% for field in form %}
                 <div class="mb-3">
@@ -21,8 +22,8 @@
     </div>
 </div>
 <div class="row">
-    <div class="col">
-        <table class="table">
+    <div class="col" >
+        <table id="tabela" class="table">
             <thead>
             <th>ID</th>
             <th>Ime</th>

@@ -1,12 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'index-admin.html' %}
 
 
 {% block title %}
 <title>Izvestaji</title>
 {% endblock %}
 
-{% block body %}
-<div class="row parent">
+{% block second_body %}
+<div class="row parent mt-3">
     <div class="col-6 child">
         <form action="{% url 'reports' %}" method="POST">
             {% csrf_token %}

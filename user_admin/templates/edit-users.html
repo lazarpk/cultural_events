@@ -1,10 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'index-admin.html' %}
 
 {% block title %}
 <title>Izmeni informacije o korisniku</title>
 {% endblock %}
 
-{% block body %}
+{% block second_body %}
 <div class="row parent">
     <div class="col-5 child">
         <form action="{% url 'edit-users' %}" method="POST">

@@ -1,10 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'index-admin.html' %}
 
 {% block title %}
 <title>Azuriraj kategoriju</title>
 {% endblock %}
 
-{% block body %}
+{% block second_body %}
 <div class="row parent mt-3">
     <div class="col-6 child">
             <form action="{% url 'categories-events-edit' %}" method="post">
