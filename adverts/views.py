@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
+from django.shortcuts import render, redirect, HttpResponse, HttpResponseRedirect
 from django.utils import timezone
 
 from django.contrib.auth.models import User
@@ -121,7 +121,7 @@ def delete_advert(request, id):
     obj2 = Adverts.objects.get(pk=id)
     obj.delete()
     obj2.delete()
-    message = 'Oglas je obrisan.'
+    next = request.POST.get('next', '/')
+    return HttpResponseRedirect(next)
 
-    return render(request, 'adverts/request_success.html', {'success_message': message})
 

@@ -16,6 +16,6 @@ urlpatterns = [
     path ('edit/', edit, name = 'edit'),
     path ('<int:id>/archive', archive_advert, name = 'advert'),
     path ('<int:id>/delete', delete_advert_request, name = 'advert'),
-    path ('delete_request/', delete_request_admin, name = 'delete_request_admin'),
+    path ('administration/delete_request/', delete_request_admin, name = 'delete_request_admin'),
     path ('delete_request/<int:id>', delete_advert, name = 'delete_advert')
     ]
