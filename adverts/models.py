@@ -4,10 +4,10 @@ from django.contrib.auth.admin import User
 
 # Create your models here.
 class Adverts ( models.Model):
-    title = models.CharField( max_length=32);
-    description = models.TextField();
-    load_date = models.DateField();
-    expire_date = models.DateField();
+    title = models.CharField( max_length=32, verbose_name='Naslov');
+    description = models.TextField(verbose_name="Opis oglasa");
+    load_date = models.DateField(verbose_name="Datum postavljanja oglasa");
+    expire_date = models.DateField(verbose_name='Datum isticanja oglasa');
     author = models.ForeignKey(User, on_delete=models.CASCADE, )
     date_archived = models.DateTimeField(null=True, blank=True);
 

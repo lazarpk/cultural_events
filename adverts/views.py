@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect, HttpResponse, HttpResponseRedirect, Http404
 from django.utils import timezone
 
 from django.contrib.auth.models import User
@@ -78,6 +78,15 @@ def edit(request):
             };
             return render ( request, "adverts/edit.html", context );
 
+def detail (request, *args, **kwargs):
+    id = kwargs['id']
+    advert = Adverts.objects.get (pk = id)
+
+    if advert is None:
+        raise Http404
+    else:
+        return render (request, 'adverts/detail.html', {'advert': advert})
+
 def archive_advert (request, *args, **kwargs):
     id = kwargs ['id']
     advert = Adverts.objects.get (pk = id)
@@ -104,7 +113,8 @@ def delete_advert_request (request, *args, **kwargs):
 
         return render (request, 'adverts/request_success.html', {'success_message' : message})
     else:
-        return HttpResponse (status = 400)
+        message = 'Zahtev za brisanje oglasa je već prosleđen administratoru!'
+        return render (request, 'adverts/request_success.html', {'success_message' : message})
 
 def delete_request_admin(request ):
     queryset = AdvertDeleteRequest.objects.all();

@@ -33,12 +33,12 @@ class AdvertsCreateForm (forms.ModelForm):
         ),
         };
 
-class AdvertsSearchForm ( forms.Form):
+class AdvertsSearchForm (forms.Form):
     title = forms.CharField (
         required= False,
         widget= forms.TextInput (
             attrs={
-                'class':'form-control'
+                'class':'form-control',
             }
         )
     );

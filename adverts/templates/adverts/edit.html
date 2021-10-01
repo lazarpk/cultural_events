@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
-
 {% block title %}
-Adverts edit
+<title>Izmeni oglas</title>
 {% endblock %}
 
 {% block body %}
@@ -11,13 +10,14 @@ Adverts edit
       {% csrf_token %}
       <input type="hidden" name="id" value="{{ id }}"/>
       {% for field in form %}
-      <label class="form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
+      <label class="form-label pt-2" for="{{ field.auto_id }}">{{ field.label }}</label>
       {{ field }}
       <div class="text-danger">
         {{ field.errors }}
       </div>
       {% endfor %}
-      <input type="submit" class="btn btn-primary" value="Save"/>
+      <br>
+      <input type="submit" class="btn btn-warning" value="Save"/>
     </form>
   </div>
 </div>

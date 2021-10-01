@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block title %}
+<title>Kreiraj oglask</title>
+{% endblock %}
 
 {% block body %}
 <form method="POST">
@@ -17,7 +20,7 @@
                     {% endfor %}
                 </div>
                 <div class="col-lg-4">
-                    <button type="submit" class="btn btn-info mt-4">Sačuvaj</button>
+                    <button type="submit" class="btn btn-warning mt-4">Sačuvaj</button>
                 </div>
             </div>
         </div>
