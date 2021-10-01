@@ -17,7 +17,18 @@
             {{ obj.Advert.expire_date}}
         </td>
         <td>
-            <a href="{% url "adverts:delete_advert" %}?id={{ obj.Advert.id }}">Obrisi oglas</a>
+            <form action="{% url "adverts:delete_advert" obj.Advert_id %}"
+                  method="post" style="display: inline;" onsubmit="window.mytest()">
+                {% csrf_token %}
+                <input type="hidden" name="obj_id" value="{{ obj.Advert_id }}"/>
+                <button type="submit" class="btn btn-default btn-sm" value="Delete">
+                    <span class="glyphicon glyphicon-trash">Obrisi</span>
+                </button>
+            </form>
+            <script type="text/javascript">
+                window.mytest = function() { var isValid = confirm('Da li si siguran ?');if (!isValid) { event.preventDefault();  alert("Oglas nije obrisan!");}}
+            </script>
+
         </td>
     </tr>
     {% endfor %}

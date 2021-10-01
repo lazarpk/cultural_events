@@ -106,7 +106,7 @@ def delete_advert_request (request, *args, **kwargs):
     else:
         return HttpResponse (status = 400)
 
-def delete_request_admin(request):
+def delete_request_admin(request ):
     queryset = AdvertDeleteRequest.objects.all();
 
     context = {
@@ -115,12 +115,13 @@ def delete_request_admin(request):
 
     return render(request, 'adverts/delete_request.html',context);
 
+
 def delete_advert(request, id):
-    advert = AdvertDeleteRequest.objects.filter(pk=id);
-    advert.delete()
-    adverts = AdvertDeleteRequest.objects.all();
-    context = {
-        'adverts':adverts
-    }
-    return render(request, 'adverts/delete_request.html', context)
+    obj = AdvertDeleteRequest.objects.get(Advert_id = id)
+    obj2 = Adverts.objects.get(pk=id)
+    obj.delete()
+    obj2.delete()
+    message = 'Oglas je obrisan.'
+
+    return render(request, 'adverts/request_success.html', {'success_message': message})
 
