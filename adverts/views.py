@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.utils import timezone
 
 from django.contrib.auth.models import User
@@ -105,3 +105,22 @@ def delete_advert_request (request, *args, **kwargs):
         return render (request, 'adverts/request_success.html', {'success_message' : message})
     else:
         return HttpResponse (status = 400)
+
+def delete_request_admin(request):
+    queryset = AdvertDeleteRequest.objects.all();
+
+    context = {
+        'object_list':queryset
+    }
+
+    return render(request, 'adverts/delete_request.html',context);
+
+def delete_advert(request, id):
+    advert = AdvertDeleteRequest.objects.filter(pk=id);
+    advert.delete()
+    adverts = AdvertDeleteRequest.objects.all();
+    context = {
+        'adverts':adverts
+    }
+    return render(request, 'adverts/delete_request.html', context)
+

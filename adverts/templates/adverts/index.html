@@ -38,8 +38,10 @@
             {{ advert.expire_date}}
         </td>
         <td>
-            {% if advert.author.id == user.id %}
+            {% if advert.author.id == user.id and advert.date_archived is None %}
             <a href="/adverts/{{advert.id}}/archive">Arhiviraj</a>
+            {% endif %}
+            {% if advert.author.id == user.id %}
             <a href="/adverts/{{advert.id}}/delete">Obrisi</a>
             <a class="btn btn-primary" href="{% url "adverts:edit" %}?id={{ advert.id }}">Izmeni oglas</a>
             {% endif %}

@@ -8,7 +8,7 @@ class Adverts ( models.Model):
     description = models.TextField();
     load_date = models.DateField();
     expire_date = models.DateField();
-    author = models.ForeignKey(User, on_delete=models.CASCADE )
+    author = models.ForeignKey(User, on_delete=models.CASCADE, )
     date_archived = models.DateTimeField(null=True, blank=True);
 
     class Meta:
@@ -18,11 +18,12 @@ class Adverts ( models.Model):
             ('advert_can_archive', 'Can archive advert'),
             ('advert_can_delete', 'Can delete advert'),
         ]
-
+    def __str__(self):
+        return self.title
 
 class AdvertDeleteRequest(models.Model):
-    User = models.ForeignKey(User, on_delete=models.CASCADE)
-    Advert = models.ForeignKey(Adverts, on_delete=models.CASCADE)
+    User = models.ForeignKey(User, on_delete=models.CASCADE,)
+    Advert = models.ForeignKey(Adverts, on_delete=models.CASCADE,)
     Date = models.DateTimeField(auto_now_add=True, blank=True)
 
     @staticmethod
@@ -32,3 +33,6 @@ class AdvertDeleteRequest(models.Model):
             return request
         except ObjectDoesNotExist:
             return None
+
+    def __str__(self):
+        return self.Advert.title

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<table class="table table-striped">
+    <thead class="text-center">
+    <th>Naslov</th>
+    <th>Opis oglasa</th>
+    <th>Datum objave i isteka oglasa</th>
+    <th></th>
+    </thead>
+    <tbody>
+    {% for obj in object_list %}
+    <tr class="text-center">
+        <td> {{ obj.Advert.title }}</td>
+        <td> {{ obj.Advert.description }}</td>
+        <td>{{ obj.Advert.load_date }}<br>
+            {{ obj.Advert.expire_date}}
+        </td>
+        <td>
+            <a href="{% url "adverts:delete_advert" %}?id={{ obj.Advert.id }}">Obrisi oglas</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}
