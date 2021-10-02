@@ -70,7 +70,7 @@ def editUsers (request):
         obj = None
         try:
             obj = Profile.objects.get(user_id=user.id)
-            form1 = UpdateProfileForm(instance=obj)
+            form1 = UpdateProfileForm(request.POST, instance=obj)
             if form1.is_valid():
                 print('uso u if form1 is valid')
                 obj.address = form1.cleaned_data.get('address')
