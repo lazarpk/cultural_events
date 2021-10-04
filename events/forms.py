@@ -49,12 +49,12 @@ class EventsForm (forms.ModelForm):
                      "class": "form-control rounded-pill"
                  }
             ),
-            'age' : forms.NumberInput (
+            'age' : forms.SelectMultiple (
                  attrs = {
                      "class": "form-control rounded-pill"
                  }
             ),
-            'space_characteristics' : forms.TextInput (
+            'space_characteristics' : forms.SelectMultiple (
                  attrs = {
                      "class": "form-control rounded-pill"
                  }
