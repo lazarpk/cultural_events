@@ -25,10 +25,10 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'events' %}">Događaji</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'events:index' %}">Događaji</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'Novosti' %}">Vesti</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'news:articles' %}">Vesti</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'adverts:index' %}">Oglasi</a>
@@ -88,5 +88,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
+<script>$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})</script>
 </body>
 </html>

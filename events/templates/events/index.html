@@ -10,7 +10,7 @@
         {% if user.is_authenticated and perms.events.event_can_create %}
         <div class="col-md-12">
             <div class="form-group">
-                <a class="btn btn-warning form-control" href = "{% url 'create' %}">Dodaj novi dogadjaj</a>
+                <a class="btn btn-warning form-control" href = "{% url 'events:create' %}">Dodaj novi dogadjaj</a>
             </div>
         </div>
         {% endif %}

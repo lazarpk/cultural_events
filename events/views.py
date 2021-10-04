@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse, HttpResponseRedirect
 from django.utils import timezone
 
 from django.http import Http404
@@ -10,9 +10,9 @@ from .models import Events, EventDeleteRequest
 from .forms import EventsForm
 
 
-def events (request):
+def index (request):
     events = Events.objects.filter (date_archived__isnull = True).order_by('time')[:10]
-    return render (request, 'events/events.html', {'events' : events})
+    return render (request, 'events/index.html', {'events' : events})
 
 
 @permission_required('events.event_can_create', '/login')
@@ -30,7 +30,7 @@ def create (request):
             event.author = current_user
             event.save()
 
-            return redirect ('events')
+            return redirect ('index')
         else:
 
             return render (request, 'events/create.html', {'form' : form})
@@ -71,3 +71,24 @@ def delete_event_request (request, *args, **kwargs):
         return render (request, 'events/request_success.html', {'success_message' : message})
     else:
         return HttpResponse (status = 400)
+
+def delete_request_admin(request):
+    queryset = EventDeleteRequest.objects.all();
+    if not queryset:
+        message = 'Nema novih zahteva za brisanje.'
+        return render (request, 'events/request_success.html', {'success_message' : message})
+    else:
+        context = {
+            'object_list':queryset
+        }
+
+        return render(request, 'events/delete_request.html',context);
+
+
+def delete_event(request, id):
+    obj = EventDeleteRequest.objects.get(Event_id = id)
+    obj2 = Events.objects.get(pk=id)
+    obj.delete()
+    obj2.delete()
+    next = request.POST.get('next', '/')
+    return HttpResponseRedirect(next)
