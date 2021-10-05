@@ -52,7 +52,7 @@
                 <input type="hidden" name="next" value="{{ next }}">
                 <div class="mb-3">
                     <label for="username" class="form-label">{{ form.username.label_tag }}</label>
-                    <input id="username" type="text" name="username" class="rounded-pill form-control"/>
+                    <input id="username" type="text" name="username" class="rounded-pill form-control" data-toggle=tooltip title='Unesite svoje username!' />
 
                     <div class="text-danger">
                         {% if form.errors %}
@@ -62,7 +62,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="password" class="from-label">{{ form.password.label_tag }}</label>
-                    <input id="password" type="password" name="password" class="rounded-pill form-control"/>
+                    <input id="password" type="password" name="password" class="rounded-pill form-control" data-toggle=tooltip title='Unesite svoj password!'/>
                 </div>
                 <input type="submit" value="Login" class="btn btn-dark rounded-pill">
             </form><br>

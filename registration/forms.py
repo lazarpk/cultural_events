@@ -11,7 +11,9 @@ class RegisterForm(UserCreationForm):
         widget=forms.PasswordInput(
             attrs={
                 'autocomplete': 'new-password',
-                'class': 'form-control rounded-pill'
+                'class': 'form-control rounded-pill',
+                'data-toggle': 'tooltip',
+                'title': 'Šifra mora da sadrži 8 karaktera, veliko slovo i specijalni znak!'
             }
         ),
         help_text=password_validation.password_validators_help_text_html(),
@@ -21,7 +23,9 @@ class RegisterForm(UserCreationForm):
         widget=forms.PasswordInput(
             attrs={
                 'autocomplete': 'new-password',
-                'class': 'form-control rounded-pill'
+                'class': 'form-control rounded-pill',
+                'data-toggle': 'tooltip',
+                'title': 'Ponovite istu šifru!'
             }
         ),
         strip=False,
@@ -34,22 +38,30 @@ class RegisterForm(UserCreationForm):
         widgets = {
             "first_name": forms.TextInput(
                 attrs={
-                    "class": "form-control rounded-pill"
+                    "class": "form-control rounded-pill",
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite svoje ime, tako da početno slovo bude veliko!'
                 }
             ),
             "last_name": forms.TextInput(
                 attrs={
-                    'class': 'form-control rounded-pill'
+                    'class': 'form-control rounded-pill',
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite svoje prezime!'
                 }
             ),
             "email": forms.EmailInput(
                 attrs={
-                    'class': 'form-control rounded-pill'
+                    'class': 'form-control rounded-pill',
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite email u formatu example@example.com !'
                 }
             ),
             "username": forms.TextInput(
                 attrs={
-                    'class': 'form-control rounded-pill'
+                    'class': 'form-control rounded-pill',
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite svoje korisničko ime !'
                 }
             )
         }
