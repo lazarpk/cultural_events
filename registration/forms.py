@@ -108,11 +108,11 @@ class RegisterFormOrg(UserCreationForm):
         strip=False,
         help_text="Enter the same password as before, for verification.",
     )
-    address = forms.CharField(
+    address = forms.MultipleChoiceField(
         label="Address",
-        widget=forms.TextInput(
+        widget=forms.SelectMultiple(
             attrs={
-                'class': 'form-control rounded-pill'
+                'class': 'form-control'
             }
         ),
         help_text='Enter your address.',

@@ -7,6 +7,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 #SIFARNICI:
 
+
 class CategoryEvents (models.Model):
     name = models.CharField(max_length=100)
     valid_from = models.DateField(null = True, blank = False)
@@ -24,7 +25,7 @@ class CategoryEvents (models.Model):
 
 
 class Age (models.Model):
-    name = models.IntegerField(default = False) #da li treba value ili name kao kod ostalih?
+    name = models.CharField(max_length=20)
     valid_from = models.DateField(null=True, blank=False)
     valid_to = models.DateField(null=True, blank=False)
     approved = models.BooleanField(default=False)
