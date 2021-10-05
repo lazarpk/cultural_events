@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-5">
             <h1>Nova Vest</h1>
-            <form method="post" action="{% url 'new_article' %}">
+            <form method="post" action="{% url 'news:article_new' %}">
                 {% csrf_token %}
                 {% for field in form %}
                 <div class="mb-3">

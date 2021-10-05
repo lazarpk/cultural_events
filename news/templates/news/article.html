@@ -16,8 +16,8 @@
               <div class="mb-1 text-muted">{{ article.CreationDate }} &nbsp&nbsp&nbsp{{ article.Author.username }}</div>
               <p class="card-text mb-auto">{{ article.Content }}</p>
                 {% if article.Author.id == user.id %}
-                    <a href="/articles/{{article.id}}/archive">Arhiviraj</a>
-                    <a href="/articles/{{article.id}}/delete">Obrisi</a>
+                    <a href="/news/{{article.id}}/archive">Arhiviraj</a>
+                    <a href="/news/{{article.id}}/delete">Obrisi</a>
                 {% endif %}
             </div>
           </div>

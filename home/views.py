@@ -28,3 +28,4 @@ def contact(request):
 
 def guide(request):
     return render(request, 'guide.html')
+    #return render(request, "index.html")

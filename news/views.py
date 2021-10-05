@@ -3,7 +3,7 @@ from django.utils import timezone
 
 from django.http import Http404
 from django.shortcuts import render, redirect
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse,HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import permission_required
 
@@ -14,18 +14,18 @@ from .forms import ArticleForm
 
 # Create your views here.
 
-def news(request):
+def articles(request):
     articles = Article.objects.filter(ArchivedDate__isnull=True).order_by('-id')[:10]
 
-    return render(request, "articles.html", {'articles': articles})
+    return render(request, "news/articles.html", {'articles': articles})
 
 
-@permission_required('news.article_can_create', '/login')
+@permission_required('article_can_create', '/login')
 def article_new(request):
     if (request.method == "GET"):
         form = ArticleForm()
 
-        return render(request, "create_article.html", {'form': form})
+        return render(request, "news/create_article.html", {'form': form})
     elif (request.method == "POST"):
         form = ArticleForm(request.POST)
 
@@ -37,9 +37,11 @@ def article_new(request):
             article.Category.set(category)
 
 
-            return redirect('/news')
+            #return redirect('/news')
+            # return redirect('/articles/{}'.format(article.id))
+            return redirect('news:articles')
         else:
-            return render(request, "create_article.html", {'form': form})
+            return render(request, "news/create_article.html", {'form': form})
 
 
 def article(request, *args, **kwargs):
@@ -49,7 +51,7 @@ def article(request, *args, **kwargs):
     if article is None:
         raise Http404
     else:
-        return render(request, "article.html", {'article': article})
+        return render(request, "news/article.html", {'article': article})
 
 
 def article_archive(request, *args, **kwargs):
@@ -61,7 +63,7 @@ def article_archive(request, *args, **kwargs):
         article.save()
         message = "Uspesno ste arhivirali vest."
 
-        return render(request, "request_success.html", {'success_message': message})
+        return render(request, "news/request_success.html", {'success_message': message})
     else:
         return HttpResponse(status=400)
 
@@ -79,10 +81,32 @@ def article_create_delete_request(request, *args, **kwargs):
         article_delete_request.save()
         message = "Uspesno poslat zahtev za brisanje vesti."
 
-        return render(request, "request_success.html", {'success_message': message})
+        return render(request, "news/request_success.html", {'success_message': message})
     else:
         return HttpResponse(status=400)
 
-
 def index(request):
-    return render(request, "index.html")
+    return render(request, "news/index.html")
+
+def delete_request_admin(request ):
+    queryset = ArticleDeletionRequest.objects.all();
+    if not queryset:
+        message = 'Nema zahteva za brisanje vesti'
+        return render(request, "news/request_success.html", {'success_message': message})
+    else:
+        context = {
+            'object_list':queryset
+    }
+
+    return render(request, 'news/delete_request.html',context);
+
+
+def delete_news(request, id):
+    obj = ArticleDeletionRequest.objects.get(Article_id = id)
+    obj2 = Article.objects.get(pk=id)
+    obj.delete()
+    obj2.delete()
+    next = request.POST.get('next', '/')
+    return HttpResponseRedirect(next)
+
+

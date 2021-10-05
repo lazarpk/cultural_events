@@ -5,9 +5,10 @@ Adverts create
 {% endblock %}
 
 {% block body %}
+
 <div class="row">
   <div class="col">
-    <form method="post" action="{%url 'adverts:create' %}">
+    <form method="post" action="{% url 'adverts:create' %}">
       {% csrf_token %}
       {% for field in form %}
       <label class="form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
@@ -20,5 +21,4 @@ Adverts create
     </form>
   </div>
 </div>
-
 {% endblock %}

@@ -28,7 +28,7 @@ urlpatterns = [
     path('registration/', include('registration.urls')),
     path('profile/', include('user_profile.urls')),
     path('login_success/', login_success, name="login_success"),
-    path('', include('news.urls')),
+    path('news/', include(('news.urls', 'news'), namespace='news')),
     path('administration/', include('user_admin.urls')),
     path('adverts/', include(('adverts.urls', 'adverts'), namespace='adverts')),
     path('polls', include(('polls.urls', 'polls'), namespace='polls')),
@@ -53,5 +53,6 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(
         template_name='password_reset/password_reset_complete.html'),
         name='password_reset_complete'),
+    path('events/', include(('events.urls', 'events'), namespace='events')),
 ] + static ( settings.MEDIA_URL, document_root = settings.MEDIA_ROOT );
 
