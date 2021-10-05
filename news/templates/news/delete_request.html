@@ -1,12 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'index-admin.html' %}
 
 {% block title %}
 <title>Kulturni dogadjaji</title>
 {% endblock %}
 
-{% block body %}
+{% block second_body %}
 
-
+<div class="col-9 mt-3">
 <div class="row mb-2">
     <!-- and perms.home.article_can_create -->
     {% for obj in object_list %}
@@ -39,5 +39,5 @@
     </div>
     {% endfor %}
     </div>
-
+</div>
 {% endblock %}

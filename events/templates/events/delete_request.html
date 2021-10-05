@@ -1,11 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'index-admin.html' %}
 
 {% block title %}
 <title>Dogadjaji - zahtevi za brisanje</title>
 {% endblock %}
 
-{% block body %}
-
+{% block second_body %}
+<div class="col-9 mt-3">
     <div class="row mb-2">
     {% for obj in object_list %}
         <div class="col-md-12">
@@ -38,5 +38,5 @@
         </div>
     {% endfor %}
     </div>
-
+</div>
 {% endblock %}
