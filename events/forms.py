@@ -51,12 +51,12 @@ class EventsForm (forms.ModelForm):
             ),
             'age' : forms.SelectMultiple (
                  attrs = {
-                     "class": "form-control rounded-pill"
+                     "class": "form-control"
                  }
             ),
             'space_characteristics' : forms.SelectMultiple (
                  attrs = {
-                     "class": "form-control rounded-pill"
+                     "class": "form-control"
                  }
             ),
             'expiration_date' : forms.DateTimeInput (

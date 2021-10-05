@@ -20,6 +20,9 @@ class StreetAddress (models.Model):
         data = StreetAddress.objects.filter(status=True, approved=True).all()
         return data
 
+    def __str__(self):
+        return self.name
+
 
 class City (models.Model):
     name = models.CharField(max_length=30)
@@ -33,6 +36,9 @@ class City (models.Model):
         data = City.objects.filter(status=True, approved=True).all()
         return data
 
+    def __str__(self):
+        return self.name
+
 
 class WorkArea (models.Model):
     name = models.CharField(max_length=55)
@@ -45,6 +51,9 @@ class WorkArea (models.Model):
     def get_active():
         data = WorkArea.objects.filter(status=True, approved=True).all()
         return data
+
+    def __str__(self):
+        return self.name
 
 
 class Profile(models.Model):

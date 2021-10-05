@@ -6,7 +6,7 @@ from .models import Profile
 
 class RegisterForm(UserCreationForm):
     password1 = forms.CharField(
-        label="Password",
+        label="Lozinka",
         strip=False,
         widget=forms.PasswordInput(
             attrs={
@@ -17,7 +17,7 @@ class RegisterForm(UserCreationForm):
         help_text=password_validation.password_validators_help_text_html(),
     )
     password2 = forms.CharField(
-        label="Password confirmation",
+        label="Potvrda Lozinke",
         widget=forms.PasswordInput(
             attrs={
                 'autocomplete': 'new-password',
@@ -68,6 +68,7 @@ class RegisterFormOrg(UserCreationForm):
     class Meta:
         model = User
         fields = ["first_name", "email", "username"]
+        labels = {"first_name": "Ime", "email": "Email adresa", "username": "Korisnicko ime"}
         widgets = {
             "username": forms.TextInput(
                 attrs={
@@ -87,7 +88,7 @@ class RegisterFormOrg(UserCreationForm):
         }
 
     password1 = forms.CharField(
-        label="Password",
+        label="Lozinka",
         strip=False,
         widget=forms.PasswordInput(
             attrs={
@@ -98,7 +99,7 @@ class RegisterFormOrg(UserCreationForm):
         help_text=password_validation.password_validators_help_text_html(),
     )
     password2 = forms.CharField(
-        label="Password confirmation",
+        label="Potvrda Lozinke",
         widget=forms.PasswordInput(
             attrs={
                 'autocomplete': 'new-password',
@@ -106,81 +107,81 @@ class RegisterFormOrg(UserCreationForm):
             }
         ),
         strip=False,
-        help_text="Enter the same password as before, for verification.",
+        help_text="Unesite prethodnu lozinku, zbog verifikacije.",
     )
     address = forms.MultipleChoiceField(
-        label="Address",
+        label="Adresa",
         widget=forms.SelectMultiple(
             attrs={
                 'class': 'form-control'
             }
         ),
-        help_text='Enter your address.',
+        help_text='Unesite Vasu adresu.',
     )
     number = forms.IntegerField(
-        label='Number',
+        label='Broj',
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control rounded-pill'
             }
         ),
-        help_text='Address number.',
+        help_text='Broj (adresa).',
     )
-    city = forms.CharField(
-        label="City.",
-        widget=forms.TextInput(
+    city = forms.MultipleChoiceField(
+        label="Grad.",
+        widget=forms.SelectMultiple(
             attrs={
-                'class': 'form-control rounded-pill'
+                'class': 'form-control'
             }
         ),
-        help_text='City.',
+        help_text='Grad.',
     )
     contact_person = forms.CharField(
-        label="Contact person.",
+        label="Kontakt osoba.",
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control rounded-pill'
             }
         ),
-        help_text='Contact person.',
+        help_text='Kontakt osoba.',
     )
 
     phone = forms.CharField(
-        label="Phone.",
+        label="Telefon.",
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control rounded-pill'
             }
         ),
-        help_text='Phone',
+        help_text='Telefon',
     )
     description = forms.CharField(
-        label="Description.",
+        label="Opis.",
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control rounded-pill'
             }
         ),
-        help_text='Description',
+        help_text='Opis',
     )
 
-    work_area = forms.CharField(
-        label="The area of work.",
-        widget=forms.TextInput(
+    work_area = forms.MultipleChoiceField(
+        label="Oblast delovanja.",
+        widget=forms.SelectMultiple(
             attrs={
-                'class': 'form-control rounded-pill'
+                'class': 'form-control'
             }
         ),
-        help_text='The area of work.',
+        help_text='Oblast delovanja.',
     )
     web_site = forms.CharField(
-        label="Web site.",
+        label="Web stranica.",
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control rounded-pill'
             }
         ),
-        help_text='Web site.',
+        help_text='Web stranica.',
     )
 
 

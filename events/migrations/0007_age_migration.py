@@ -5,13 +5,13 @@ from django.db import migrations
 
 def load_age (apps, schema_editor):
     Age = apps.get_model ('events', 'Age')
-    age_nd = Age(name='Nije definisano', valid_from='2021-10-01', valid_to='2022-10-01', approved=True, status=True)
+    age_nd = Age(name = 'Nije definisano', valid_from='2021-10-01', valid_to='2022-10-01', approved=True, status=True)
     age_nd.save()
     age_12 = Age (name = '12+', valid_from='2021-10-01', valid_to='2022-10-01', approved=True, status=True )
     age_12.save()
-    age_16 = Age(name='16+', valid_from='2021-10-01', valid_to='2022-10-01', approved=True, status=True)
+    age_16 = Age(name = '16+', valid_from='2021-10-01', valid_to='2022-10-01', approved=True, status=True)
     age_16.save()
-    age_18 = Age(name='18+', valid_from='2021-10-01', valid_to='2022-10-01', approved=True, status=True)
+    age_18 = Age(name = '18+', valid_from='2021-10-01', valid_to='2022-10-01', approved=True, status=True)
     age_18.save()
 
 

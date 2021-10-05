@@ -36,6 +36,8 @@ class Age (models.Model):
         data = Age.objects.filter(status=True, approved=True).all()
         return data
 
+    def __str__(self):
+        return self.name
 
 class SpaceCharacteristics(models.Model):
     name = models.CharField(max_length = 150, default = '')
@@ -49,8 +51,9 @@ class SpaceCharacteristics(models.Model):
         data = SpaceCharacteristics.objects.filter(status=True, approved=True).all()
         return data
 
+    def __str__(self):
+        return self.name
 
-#TODO: dodati ovako i za ostale sifarnike vezane za dogadjaje
 
 
 
