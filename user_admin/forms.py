@@ -6,7 +6,8 @@ class UserSearchForm ( forms.Form ):
         required= False,
         widget= forms.TextInput (
             attrs= {
-                'class': 'form-control rounded-pill'
+                'class': 'form-control rounded-pill',
+                'placeholder': 'Pretražite korsnike po username'
             }
         )
     )
@@ -14,9 +15,11 @@ class UserSearchForm ( forms.Form ):
 class NewsCategorySearchForm ( forms.Form ):
     name = forms.CharField (
         required= False,
+        label = 'Naziv kategorije:',
         widget= forms.TextInput (
             attrs= {
-                'class': 'form-control rounded-pill'
+                'class': 'form-control rounded-pill',
+                'placeholder': 'Pretraži kategorije'
             }
         )
     )
@@ -24,19 +27,23 @@ class NewsCategorySearchForm ( forms.Form ):
 class EventsCategorySearchForm ( forms.Form ):
     name = forms.CharField (
         required= False,
+        label='Naziv kategorije:',
         widget= forms.TextInput (
             attrs= {
-                'class': 'form-control rounded-pill'
+                'class': 'form-control rounded-pill',
+                'placeholder': 'Pretraži kategorije'
             }
         )
     )
 
 class ReportsCreateForm (forms.Form):
     title = forms.CharField(
-        label="Naslov izvestaja",
+        label="Naslov izveštaja",
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control rounded-pill'
+                'class': 'form-control rounded-pill',
+                'data-toggle': 'tooltip',
+                'title': 'Unesite naziv izveštaja !'
             }
         )
     )
@@ -46,7 +53,9 @@ class ReportsCreateForm (forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control rounded-pill',
-                "type": "date"
+                "type": "date",
+                'data-toggle': 'tooltip',
+                'title': 'Unesite datum za željeni period (od) !'
             }
         )
     )
@@ -56,7 +65,9 @@ class ReportsCreateForm (forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control rounded-pill',
-                "type": "date"
+                "type": "date",
+                'data-toggle': 'tooltip',
+                'title': 'Unesite datum za željeni period (do) !'
             }
         )
     )

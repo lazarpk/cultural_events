@@ -7,7 +7,7 @@
 {% block second_body %}
 <div class="row parent mt-3">
     <div class="col-6 child">
-        <h1>Azuriraj kategorije za dogadjaje</h1>
+        <h1>Ažuriraj kategorije za događaje</h1>
             <form action="{% url 'categories-events' %}">
                 {% for field in form %}
                 <div class="mb-3">
@@ -15,7 +15,7 @@
                     {{ field }}
                 </div>
                 <div>
-                    <input type="submit" class="btn btn-dark rounded-pill" value="Search"/>
+                    <input type="submit" class="btn btn-dark rounded-pill" value="Pretraži"/>
                 </div>
                 {% endfor %}
             </form>

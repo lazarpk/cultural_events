@@ -5,13 +5,9 @@
 {% endblock %}
 
 {% block second_body %}
-<div class="row">
-    <div class="col">
-        <h1>Zatrazi statistiku za korisnika:</h1>
-    </div>
-</div>
 <div class="row parent mt-3">
     <div class="col-6 child">
+        <h1>Zatraži statistiku za korisnika:</h1>
             <form action="{% url 'statistics' %}">
                 {% csrf_token %}
                 {% for field in form %}
@@ -20,7 +16,7 @@
                     {{ field }}
                 </div>
                 <div>
-                    <input type="submit" class="btn btn-dark rounded-pill" value="Search"/>
+                    <input type="submit" class="btn btn-dark rounded-pill" value="Pretraži"/>
                 </div>
                 {% endfor %}
             </form>
