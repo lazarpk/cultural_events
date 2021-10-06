@@ -83,17 +83,23 @@ class RegisterFormOrg(UserCreationForm):
         widgets = {
             "username": forms.TextInput(
                 attrs={
-                    "class": "form-control rounded-pill"
+                    "class": "form-control rounded-pill",
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite korisničko ime!'
                 }
             ),
             "email": forms.EmailInput(
                 attrs={
-                    'class': 'form-control rounded-pill'
+                    'class': 'form-control rounded-pill',
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite email u formatu example@example.com !'
                 }
             ),
             "first_name": forms.TextInput(
                 attrs={
-                    'class': 'form-control rounded-pill'
+                    'class': 'form-control rounded-pill',
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite naziv organizacije !'
                 }
             )
         }
@@ -104,7 +110,9 @@ class RegisterFormOrg(UserCreationForm):
         widget=forms.PasswordInput(
             attrs={
                 'autocomplete': 'new-password',
-                'class': 'form-control rounded-pill'
+                'class': 'form-control rounded-pill',
+                'data-toggle': 'tooltip',
+                'title': 'Šifra mora da sadrži 8 karaktera, veliko slovo i specijalni znak!'
             }
         ),
         help_text=password_validation.password_validators_help_text_html(),
@@ -114,7 +122,9 @@ class RegisterFormOrg(UserCreationForm):
         widget=forms.PasswordInput(
             attrs={
                 'autocomplete': 'new-password',
-                'class': 'form-control rounded-pill'
+                'class': 'form-control rounded-pill',
+                'data-toggle': 'tooltip',
+                'title': 'Ponovite istu šifru!'
             }
         ),
         strip=False,
@@ -124,7 +134,9 @@ class RegisterFormOrg(UserCreationForm):
         label="Address",
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control rounded-pill'
+                'class': 'form-control rounded-pill',
+                'data-toggle': 'tooltip',
+                'title': 'Unesite adresu organizacije !'
             }
         ),
         help_text='Enter your address.',
@@ -133,7 +145,9 @@ class RegisterFormOrg(UserCreationForm):
         label='Number',
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control rounded-pill'
+                'class': 'form-control rounded-pill',
+                'data-toggle': 'tooltip',
+                'title': 'Unesite ulični broj !'
             }
         ),
         help_text='Address number.',
@@ -142,7 +156,9 @@ class RegisterFormOrg(UserCreationForm):
         label="City.",
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control rounded-pill'
+                'class': 'form-control rounded-pill',
+                'data-toggle': 'tooltip',
+                'title': 'Unesite naziv mesta !'
             }
         ),
         help_text='City.',
@@ -151,7 +167,9 @@ class RegisterFormOrg(UserCreationForm):
         label="Contact person.",
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control rounded-pill'
+                'class': 'form-control rounded-pill',
+                'data-toggle': 'tooltip',
+                'title': 'Unesite ime kontakt osobe !'
             }
         ),
         help_text='Contact person.',
@@ -161,7 +179,9 @@ class RegisterFormOrg(UserCreationForm):
         label="Phone.",
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control rounded-pill'
+                'class': 'form-control rounded-pill',
+                'data-toggle': 'tooltip',
+                'title': 'Unesite broj telefona kontakt osobe !'
             }
         ),
         help_text='Phone',
@@ -170,7 +190,9 @@ class RegisterFormOrg(UserCreationForm):
         label="Description.",
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control rounded-pill'
+                'class': 'form-control rounded-pill',
+                'data-toggle': 'tooltip',
+                'title': 'Unesite čime se Vaša organizacija bavi !'
             }
         ),
         help_text='Description',
@@ -180,7 +202,9 @@ class RegisterFormOrg(UserCreationForm):
         label="The area of work.",
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control rounded-pill'
+                'class': 'form-control rounded-pill',
+                'data-toggle': 'tooltip',
+                'title': 'Unesite oblast delovanja Vaše organizacije !'
             }
         ),
         help_text='The area of work.',
@@ -189,7 +213,9 @@ class RegisterFormOrg(UserCreationForm):
         label="Web site.",
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control rounded-pill'
+                'class': 'form-control rounded-pill',
+                'data-toggle': 'tooltip',
+                'title': 'Unesite web sajt Vaše organizacije !'
             }
         ),
         help_text='Web site.',
