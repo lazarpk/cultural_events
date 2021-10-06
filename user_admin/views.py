@@ -175,3 +175,11 @@ def eventsCategoriesEdit (request):
                 'id': id
             }
             return render(request, 'categories-events-edit.html', context)
+
+
+def codebooksEdit (request):
+    curently_user = User.objects.get(id=request.user.id)
+    if curently_user.is_superuser:
+        return render(request, 'codebooks-edit.html')
+    else:
+        raise Http404

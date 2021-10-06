@@ -2,7 +2,8 @@ from django.contrib.auth import password_validation
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import Profile
+from .models import Profile, StreetAddress , City, WorkArea
+
 
 class RegisterForm(UserCreationForm):
     password1 = forms.CharField(
@@ -116,6 +117,7 @@ class RegisterFormOrg(UserCreationForm):
                 'class': 'form-control'
             }
         ),
+        choices=[(street.id, street.name) for street in StreetAddress.objects.all()],
         help_text='Unesite Vasu adresu.',
     )
     number = forms.IntegerField(
@@ -134,6 +136,7 @@ class RegisterFormOrg(UserCreationForm):
                 'class': 'form-control'
             }
         ),
+        choices=[(place.id, place.name) for place in City.objects.all()],
         help_text='Grad.',
     )
     contact_person = forms.CharField(
@@ -172,6 +175,7 @@ class RegisterFormOrg(UserCreationForm):
                 'class': 'form-control'
             }
         ),
+        choices=[(area.id, area.name) for area in WorkArea.objects.all()],
         help_text='Oblast delovanja.',
     )
     web_site = forms.CharField(

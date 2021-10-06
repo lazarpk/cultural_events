@@ -10,4 +10,5 @@ urlpatterns = [
     path('categories-news-edit/', views.newsCategoriesEdit, name='categories-news-edit'),
     path('categories-events', views.eventsCategories, name='categories-events'),
     path('categories-events-edit/', views.eventsCategoriesEdit, name='categories-events-edit'),
+    path('codebooks-edit/', views.codebooksEdit, name='codebooks-edit'),
 ]
