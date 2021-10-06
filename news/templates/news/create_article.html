@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block body %}
-    <div class="row">
-        <div class="col-5">
+    <div class="row parent">
+        <div class="col-5 child">
             <h1>Nova Vest</h1>
             <form method="post" action="{% url 'news:article_new' %}">
                 {% csrf_token %}
@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 {% endfor %}
-                <input type="submit" class="btn btn-primary" value="Postavi vest"/>
+                <input type="submit" class="btn btn-dark rounded-pill" value="Postavi vest"/>
             </form>
         </div>
     </div>

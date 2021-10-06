@@ -35,7 +35,7 @@
             {% if user.profile.city or user.is_superuser %}
             <div class="row">
                 <div class="col">
-                    <a class="btn btn-primary" href="{% url 'polls:create' %}">Kreiraj anketu</a>
+                    <a class="btn btn-dark rounded-pill" href="{% url 'polls:create' %}">Kreiraj anketu</a>
                 </div>
             </div>
             {% endif %}

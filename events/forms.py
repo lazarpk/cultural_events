@@ -17,28 +17,36 @@ class EventsForm (forms.ModelForm):
             'time':'Vreme',
             'age':'Uzrast',
             'space_characteristics':'Karakteristike prostora',
-            'expiration_date':'Vazi do',
+            'expiration_date':'Važi do',
         }
 
         widgets = {
             'event_name' : forms.TextInput (
                 attrs = {
-                    "class" : "form-control rounded-pill"
+                    "class" : "form-control rounded-pill",
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite naziv događaja !'
                 }
             ),
             'text' : forms.TextInput (
                  attrs = {
-                     "class" : "form-control rounded-pill"
+                     "class" : "form-control rounded-pill",
+                     'data-toggle': 'tooltip',
+                     'title': 'Unesite opis događaja !'
                  }
             ),
             'category' : forms.SelectMultiple (
                  attrs = {
-                     "class" : "form-control"
+                     "class" : "form-control",
+                     'data-toggle': 'tooltip',
+                     'title': 'Unesite kategoriju događaja !'
                 }
             ),
             'place' : forms.TextInput (
                  attrs = {
-                     "class": "form-control rounded-pill"
+                     "class": "form-control rounded-pill",
+                     'data-toggle': 'tooltip',
+                     'title': 'Unesite mesto gde se događaj održava !'
                  }
             ),
             'time' : forms.DateTimeInput (
@@ -46,24 +54,32 @@ class EventsForm (forms.ModelForm):
                  attrs = {
                      #"type": "datetime",
                      "type": "datetime-local",
-                     "class": "form-control rounded-pill"
+                     "class": "form-control rounded-pill",
+                     'data-toggle': 'tooltip',
+                     'title': 'Unesite vreme održavanja događaja !'
                  }
             ),
             'age' : forms.NumberInput (
                  attrs = {
-                     "class": "form-control rounded-pill"
+                     "class": "form-control rounded-pill",
+                     'data-toggle': 'tooltip',
+                     'title': 'Unesite uzrast koji važi za ovaj događaj !'
                  }
             ),
             'space_characteristics' : forms.TextInput (
                  attrs = {
-                     "class": "form-control rounded-pill"
+                     "class": "form-control rounded-pill",
+                     'data-toggle': 'tooltip',
+                     'title': 'Unesite karakteristike prostora !'
                  }
             ),
             'expiration_date' : forms.DateTimeInput (
                  # format='%d%m%Y %H%M',
                  attrs = {
                      'type': 'datetime-local',
-                     "class": "form-control rounded-pill"
+                     "class": "form-control rounded-pill",
+                     'data-toggle': 'tooltip',
+                     'title': 'Unesite datum do kada događaj važi !'
                  }
             ),
         }

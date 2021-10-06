@@ -11,17 +11,23 @@ class ArticleForm(ModelForm):
         widgets = {
             "Title": forms.TextInput(
                 attrs={
-                    "class": "form-control"
+                    "class": "form-control rounded-pill",
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite naslov vesti !'
                 }
             ),
             "Content": forms.Textarea(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite opis vesti !'
                 }
             ),
             "Category": forms.SelectMultiple(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'data-toggle': 'tooltip',
+                    'title': 'Izaberite kategoriju vesti !'
                 },
                 #choices = [(item.id, item.Name) for item in Category.objects.all()],
             )
