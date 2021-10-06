@@ -59,15 +59,15 @@ def register_org (request):
 
         if (form.is_valid()):
             info = Profile()
-            info.city = form.cleaned_data.get('city')
-            info.address = form.cleaned_data.get('address')
+            info.city.set (form.cleaned_data.get('city'))
+            info.address.set(form.cleaned_data.get('address'))
             info.number = form.cleaned_data.get('number')
             info.contact_person = form.cleaned_data.get("contact_person")
             info.phone = form.cleaned_data.get('phone')
             info.description = form.cleaned_data.get ('description')
-            info.work_area = form.cleaned_data.get('work_area')
+            info.work_area.set(form.cleaned_data.get('work_area'))
             info.web_site = form.cleaned_data.get("web_site")
-            form.save()
+            #form.save()
             info.user = User.objects.last()
             info.save()
 
@@ -76,6 +76,12 @@ def register_org (request):
 
             user = authenticate(username=username, password=password)
             permission = Permission.objects.get(codename='article_can_create')
+            user.user_permissions.add(permission)
+            permission = Permission.objects.get(codename='advert_can_create')
+            user.user_permissions.add(permission)
+            permission = Permission.objects.get(codename='poll_can_create')
+            user.user_permissions.add(permission)
+            permission = Permission.objects.get(codename='event_can_create')
             user.user_permissions.add(permission)
             login(request, user)
             return redirect('index')
