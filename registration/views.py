@@ -75,7 +75,7 @@ def register_org (request):
             password = form.cleaned_data.get("password1")
 
             user = authenticate(username=username, password=password)
-            permission = Permission.objects.get(codename='article_can_create')
+            permission = Permission.objects.get('article_can_create')
             user.user_permissions.add(permission)
             login(request, user)
             return redirect('index')

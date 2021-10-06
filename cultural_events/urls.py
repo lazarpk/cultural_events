@@ -30,7 +30,7 @@ urlpatterns = [
     path('news/', include(('news.urls', 'news'), namespace='news')),
     path('administration/', include('user_admin.urls')),
     path('adverts/', include(('adverts.urls', 'adverts'), namespace='adverts')),
-    path('polls', include(('polls.urls', 'polls'), namespace='polls')),
+    path('polls/', include(('polls.urls', 'polls'), namespace='polls')),
     path('events/', include(('events.urls', 'events'), namespace='events')),
 ] + static ( settings.MEDIA_URL, document_root = settings.MEDIA_ROOT );
 
