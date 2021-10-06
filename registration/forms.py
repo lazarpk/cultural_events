@@ -193,3 +193,5 @@ class RegisterFormOrg(UserCreationForm):
             raise forms.ValidationError("Email already taken!")
 
         return email
+
+
