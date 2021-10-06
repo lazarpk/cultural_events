@@ -17,11 +17,15 @@
             <a href="#" class="list-group-item list-group-item-action list-group-item-warning ">Napravi
                 šifarnik</a>
 
-            <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Ažuriraj
+            <a href="{% url 'codebooks-edit' %}" class="list-group-item list-group-item-action list-group-item-warning">Ažuriraj
                 šifarnik</a>
 
             <a href="{% url 'statistics' %}" class="list-group-item list-group-item-action list-group-item-warning">Kreiraj
                 statistiku</a>
+                
+            <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Zahtevi za dodavanje
+                šifarnika</a>
+
 
             <a href="{% url "news:delete_request_admin" %}" class="list-group-item list-group-item-action list-group-item-warning">Zahtevi za
                 brisanje vesti</a>

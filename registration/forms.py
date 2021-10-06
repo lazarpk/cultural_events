@@ -2,11 +2,12 @@ from django.contrib.auth import password_validation
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import Profile
+from .models import Profile, StreetAddress , City, WorkArea
+
 
 class RegisterForm(UserCreationForm):
     password1 = forms.CharField(
-        label="Password",
+        label="Lozinka",
         strip=False,
         widget=forms.PasswordInput(
             attrs={
@@ -19,7 +20,7 @@ class RegisterForm(UserCreationForm):
         help_text=password_validation.password_validators_help_text_html(),
     )
     password2 = forms.CharField(
-        label="Password confirmation",
+        label="Potvrda Lozinke",
         widget=forms.PasswordInput(
             attrs={
                 'autocomplete': 'new-password',
@@ -80,6 +81,7 @@ class RegisterFormOrg(UserCreationForm):
     class Meta:
         model = User
         fields = ["first_name", "email", "username"]
+        labels = {"first_name": "Ime", "email": "Email adresa", "username": "Korisnicko ime"}
         widgets = {
             "username": forms.TextInput(
                 attrs={
@@ -105,7 +107,7 @@ class RegisterFormOrg(UserCreationForm):
         }
 
     password1 = forms.CharField(
-        label="Password",
+        label="Lozinka",
         strip=False,
         widget=forms.PasswordInput(
             attrs={
@@ -118,7 +120,7 @@ class RegisterFormOrg(UserCreationForm):
         help_text=password_validation.password_validators_help_text_html(),
     )
     password2 = forms.CharField(
-        label="Password confirmation",
+        label="Potvrda Lozinke",
         widget=forms.PasswordInput(
             attrs={
                 'autocomplete': 'new-password',
@@ -128,21 +130,22 @@ class RegisterFormOrg(UserCreationForm):
             }
         ),
         strip=False,
-        help_text="Enter the same password as before, for verification.",
+        help_text="Unesite prethodnu lozinku, zbog verifikacije.",
     )
-    address = forms.CharField(
-        label="Address",
-        widget=forms.TextInput(
+    address = forms.MultipleChoiceField(
+        label="Adresa",
+        widget=forms.SelectMultiple(
             attrs={
                 'class': 'form-control rounded-pill',
                 'data-toggle': 'tooltip',
                 'title': 'Unesite adresu organizacije !'
             }
         ),
-        help_text='Enter your address.',
+        choices=[(street.id, street.name) for street in StreetAddress.objects.all()],
+        help_text='Unesite Vasu adresu.',
     )
     number = forms.IntegerField(
-        label='Number',
+        label='Broj',
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control rounded-pill',
@@ -150,21 +153,22 @@ class RegisterFormOrg(UserCreationForm):
                 'title': 'Unesite ulični broj !'
             }
         ),
-        help_text='Address number.',
+        help_text='Broj (adresa).',
     )
-    city = forms.CharField(
-        label="City.",
-        widget=forms.TextInput(
+    city = forms.MultipleChoiceField(
+        label="Grad.",
+        widget=forms.SelectMultiple(
             attrs={
                 'class': 'form-control rounded-pill',
                 'data-toggle': 'tooltip',
                 'title': 'Unesite naziv mesta !'
             }
         ),
-        help_text='City.',
+        choices=[(place.id, place.name) for place in City.objects.all()],
+        help_text='Grad.',
     )
     contact_person = forms.CharField(
-        label="Contact person.",
+        label="Kontakt osoba.",
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control rounded-pill',
@@ -172,11 +176,11 @@ class RegisterFormOrg(UserCreationForm):
                 'title': 'Unesite ime kontakt osobe !'
             }
         ),
-        help_text='Contact person.',
+        help_text='Kontakt osoba.',
     )
 
     phone = forms.CharField(
-        label="Phone.",
+        label="Telefon.",
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control rounded-pill',
@@ -184,10 +188,10 @@ class RegisterFormOrg(UserCreationForm):
                 'title': 'Unesite broj telefona kontakt osobe !'
             }
         ),
-        help_text='Phone',
+        help_text='Telefon',
     )
     description = forms.CharField(
-        label="Description.",
+        label="Opis.",
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control rounded-pill',
@@ -195,22 +199,23 @@ class RegisterFormOrg(UserCreationForm):
                 'title': 'Unesite čime se Vaša organizacija bavi !'
             }
         ),
-        help_text='Description',
+        help_text='Opis',
     )
 
-    work_area = forms.CharField(
-        label="The area of work.",
-        widget=forms.TextInput(
+    work_area = forms.MultipleChoiceField(
+        label="Oblast delovanja.",
+        widget=forms.SelectMultiple(
             attrs={
                 'class': 'form-control rounded-pill',
                 'data-toggle': 'tooltip',
                 'title': 'Unesite oblast delovanja Vaše organizacije !'
             }
         ),
-        help_text='The area of work.',
+        choices=[(area.id, area.name) for area in WorkArea.objects.all()],
+        help_text='Oblast delovanja.',
     )
     web_site = forms.CharField(
-        label="Web site.",
+        label="Web stranica.",
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control rounded-pill',
@@ -218,7 +223,7 @@ class RegisterFormOrg(UserCreationForm):
                 'title': 'Unesite web sajt Vaše organizacije !'
             }
         ),
-        help_text='Web site.',
+        help_text='Web stranica.',
     )
 
 
@@ -230,3 +235,5 @@ class RegisterFormOrg(UserCreationForm):
             raise forms.ValidationError("Email already taken!")
 
         return email
+
+

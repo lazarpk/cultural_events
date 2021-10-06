@@ -59,14 +59,15 @@ class EventsForm (forms.ModelForm):
                      'title': 'Unesite vreme održavanja događaja !'
                  }
             ),
-            'age' : forms.NumberInput (
+            'age' : forms.SelectMultiple (
                  attrs = {
                      "class": "form-control rounded-pill",
                      'data-toggle': 'tooltip',
                      'title': 'Unesite uzrast koji važi za ovaj događaj !'
+                     
                  }
             ),
-            'space_characteristics' : forms.TextInput (
+            'space_characteristics' : forms.SelectMultiple (
                  attrs = {
                      "class": "form-control rounded-pill",
                      'data-toggle': 'tooltip',
