@@ -10,25 +10,33 @@ class AdvertsCreateForm (forms.ModelForm):
         widgets = {
             'title': forms.TextInput (
                 attrs = {
-                    'class': "form-control"
+                    'class': "form-control",
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite naziv oglasa !'
                 }
             ),
             'description': forms.Textarea (
                 attrs={
                     'class': "form-control",
-                    'rows': "5"
+                    'rows': "5",
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite tekst oglasa !'
                 }
             ),
             'load_date': forms.DateInput(
                 format=('%m/%d/%Y'),
                 attrs={
-                    'class': 'form-control', 'placeholder': 'Izaberite datum', 'type': 'date'
+                    'class': 'form-control', 'placeholder': 'Izaberite datum', 'type': 'date',
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite datum od kad oglas važi !'
                 }
             ),
             'expire_date': forms.DateInput(
                 format=('%m/%d/%Y'),
                 attrs={
-                    'class': 'form-control', 'placeholder': 'Izaberite datum', 'type': 'date'
+                    'class': 'form-control', 'placeholder': 'Izaberite datum', 'type': 'date',
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite datum do kad oglas važi !'
                 }
         ),
         };

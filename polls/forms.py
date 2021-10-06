@@ -10,25 +10,33 @@ class CreatePollForm(ModelForm):
             'question': forms.Textarea(
                 attrs={
                     'class': "form-control",
-                    'rows':'2'
+                    'rows':'2',
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite naziv pitanja !'
                 }
             ),
             'option_one': forms.Textarea(
                 attrs={
                     'class': "form-control",
-                    'rows': "1"
+                    'rows': "1",
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite prvi odgovor !'
                 }
             ),
             'option_two': forms.Textarea(
                 attrs={
                     'class': "form-control",
-                    'rows': "1"
+                    'rows': "1",
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite drugi odgovor !'
                 }
             ),
             'option_three': forms.Textarea(
                 attrs={
                     'class': "form-control",
-                    'rows': "1"
+                    'rows': "1",
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite treći odgovor !'
                 }
             ),
         };

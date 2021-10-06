@@ -31,7 +31,7 @@ urlpatterns = [
     path('news/', include(('news.urls', 'news'), namespace='news')),
     path('administration/', include('user_admin.urls')),
     path('adverts/', include(('adverts.urls', 'adverts'), namespace='adverts')),
-    path('polls', include(('polls.urls', 'polls'), namespace='polls')),
+    path('polls/', include(('polls.urls', 'polls'), namespace='polls')),
     path('', include('events.urls')),
     # Password reset links
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(
