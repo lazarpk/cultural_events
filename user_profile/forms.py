@@ -105,7 +105,8 @@ class OrgSearchForm ( forms.Form ):
         required= False,
         widget= forms.TextInput (
             attrs= {
-                'class': 'form-control rounded-pill'
+                'class': 'form-control rounded-pill',
+                'placeholder': 'Pretražite organizacije po username'
             }
         )
     )

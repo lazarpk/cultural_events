@@ -15,7 +15,7 @@
                 {{ field }}
             </div>
             <div>
-                <input type="submit" class="btn btn-dark rounded-pill" value="Search"/>
+                <input type="submit" class="btn btn-dark rounded-pill" value="Pretraži"/>
             </div>
             {% endfor %}
         </form>
@@ -50,7 +50,7 @@
                 <td>{{ org.user.first_name }}</td>
                 <td>{{ org.user.last_name }}</td>
                 <td>
-                    <a class="btn btn-dark rounded-pill" href="{% url 'profileUser'%}?id={{ org.user.id }}">Edit</a>
+                    <a class="btn btn-dark rounded-pill" href="{% url 'profileUser'%}?id={{ org.user.id }}">Pogledaj profil</a>
                 </td>
             </tr>
             {% endfor %}

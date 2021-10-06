@@ -12,7 +12,7 @@
     <div class="col">
         <a class="btn btn-dark rounded-pill" href="{% url 'create' %}">Dodaj događaj</a>
         <a class="btn btn-dark rounded-pill" href="{% url 'adverts:create' %}">Dodaj oglas</a>
-        <a class="btn btn-dark rounded-pill" href="{% url 'new_article' %}">Dodaj vest</a>
+        <a class="btn btn-dark rounded-pill" href="{% url 'news:article_new' %}">Dodaj vest</a>
         <a class="btn btn-dark rounded-pill" href="{% url 'edit' %}?id={{ user.id }}">Uredi profil</a>
         <a class="btn btn-dark rounded-pill" href="{% url 'search-org' %}">Pretrazi organizacije</a>
     </div>
