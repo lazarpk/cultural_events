@@ -88,14 +88,32 @@ class EventsForm (forms.ModelForm):
 class AddEventCategoryForm(ModelForm):
     class Meta:
         model = CategoryEvents
-        fields = ['name']
+        fields = ['name', 'valid_from', 'valid_to']
+        labels = {'name': 'Naziv', 'valid_from': 'Vazi od', 'valid_to': 'Vazi do'}
         widgets = {
             'name': forms.TextInput(
                 attrs={
                     'class': 'form-control'
                 }
             ),
+            'valid_from': forms.DateTimeInput(
+                attrs={
+                    'type': 'datetime-local',
+                    'class': 'form-control rounded-pill',
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite datum!'
+                }
+            ),
+            'valid_to': forms.DateTimeInput(
+                attrs={
+                    'type': 'datetime-local',
+                    'class': 'form-control rounded-pill',
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite datum!'
+                }
+            )
         }
+
 
 
 class AddSpaceCharacteristicsForm(ModelForm):

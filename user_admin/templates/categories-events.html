@@ -20,15 +20,15 @@
             <th></th>
             </thead>
             <tbody>
-            {% for category in categories %}
+            {% for categoryevents in categoryevents %}
             <tr>
-                <td>{{ category.id }}</td>
-                <td>{{ category.name }}</td>
-                <td>{{ category.valid_from }}</td>
-                <td>{{ category.valid_to }}</td>
+                <td>{{ categoryevents.id }}</td>
+                <td>{{ categoryevents.name }}</td>
+                <td>{{ categoryevents.valid_from }}</td>
+                <td>{{ categoryevents.valid_to }}</td>
                 <td>
-                    <a class="btn btn-dark rounded-pill" href="{% url 'categories-news-edit' %}?id={{ category.id }}">Ažuriraj</a>
-                    <a class="btn btn-dark rounded-pill" href="{% url 'categories-news-edit' %}?id={{ category.id }}">Obriši</a>
+                    <a class="btn btn-dark rounded-pill" href="{% url 'categories-events-edit' %}?id={{ category.id }}">Ažuriraj</a>
+                    <a class="btn btn-dark rounded-pill" href="{% url '#' %}?id={{ category.id }}">Obriši</a>
                     <!-- jos nije namestena opcija delete -->
                 </td>
             </tr>

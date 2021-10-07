@@ -7,7 +7,7 @@
 {% block second_body %}
  <h2 class="mt-3">Ažuriraj kategorije za karakteristike prostora</h2>
 <div class="row mt-3 mb-3">
-    <a class="btn btn-dark rounded-pill" href="{% url 'categories-spacecharacteristics-new' %}">Dodaj novu stavku</a>
+    <a class="btn btn-dark rounded-pill" href="{% url 'spacecharacteristics-new' %}">Dodaj novu stavku</a>
 </div>
 <div class="row">
     <div class="col" style = "height: 300px;overflow: auto;">
@@ -20,12 +20,12 @@
             <th></th>
             </thead>
             <tbody>
-            {% for category in categories %}
+            {% for spacecharacteristics in spacecharacteristics %}
             <tr>
-                <td>{{ category.id }}</td>
-                <td>{{ category.name }}</td>
-                <td>{{ category.valid_from }}</td>
-                <td>{{ category.valid_to }}</td>
+                <td>{{ spacecharacteristics.id }}</td>
+                <td>{{ spacecharacteristics.name }}</td>
+                <td>{{ spacecharacteristics.valid_from }}</td>
+                <td>{{ spacecharacteristics.valid_to }}</td>
                 <td>
                     <a class="btn btn-dark rounded-pill" href="{% url 'categories-news-edit' %}?id={{ category.id }}">Ažuriraj</a>
                     <a class="btn btn-dark rounded-pill" href="{% url 'categories-news-edit' %}?id={{ category.id }}">Obriši</a>

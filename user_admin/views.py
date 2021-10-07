@@ -304,7 +304,7 @@ def workArea (request):
     form = WorkAreaSearchForm(request.GET)
     if (form.is_valid()):
         name = form.cleaned_data.get('name')
-        workareas = workareas.filter(name__icontaints = name)
+        workareas = workareas.filter(name__icontains = name)
     context = {
         'form':form,
         'workareas': workareas
@@ -344,7 +344,7 @@ def spaceCharacteristic (request):
     form = SpaceCharacteristicsSearchForm(request.GET)
     if (form.is_valid()):
         name = form.cleaned_data.get('name')
-        spacecharacteristics = spacecharacteristics.filter(name__icontaints = name)
+        spacecharacteristics = spacecharacteristics.filter(name__icontains = name)
     context = {
         'form':form,
         'spacecharacteristics': spacecharacteristics

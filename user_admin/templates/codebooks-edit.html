@@ -6,10 +6,10 @@
 
 {% block body %}
 <div class="row mt-3">
-    <div class="col-6">
+    <div class="col-12">
         <a class="btn btn-dark rounded-pill" href="{% url 'categories-events' %}?id={{ category.id }}">Šifarnik kategorija događaja</a>
         <a class="btn btn-dark rounded-pill" href="{% url 'categories-news' %}?id={{ category.id }}">Šifarnik kategorija vesti</a>
-        <a class="btn btn-dark rounded-pill" href="{% url 'workarea' %}?id={{ work_area.id }}">Šifarnik oblasti delovanja</a>
+        <a class="btn btn-dark rounded-pill" href="{% url 'workareas' %}?id={{ work_area.id }}">Šifarnik oblasti delovanja</a>
         <a class="btn btn-dark rounded-pill" href="{% url 'spacecharacteristics' %}?id={{ space_characteristics.id }}">Šifarnik karakteristika prostora</a>
 
     </div>

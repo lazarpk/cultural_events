@@ -106,45 +106,45 @@ def login_success (request):
 def AddEventsCategory (request):
     if request.method == "GET":
         form = AddEventCategoryForm()
-        return render(request, 'registration/categories-events.html', {'form': form})
+        return render(request, 'categories-events-new.html', {'form': form})
     elif request.method == "POST":
         form = AddEventCategoryForm(request.POST)
 
         if (form.is_valid()):
-            Category_Events = form.save(commit=False)
+            CategoryEvents = form.save(commit=False)
             name = form.cleaned_data.get('name')
             valid_from = form.cleaned_data.get('valid_from')
             valid_to = form.cleaned_data.get('name')
             CategoryEvents.save()
 
-            return redirect('index')
+            return redirect('categories-events.html')
         else:
-            return render(request, 'registration/categories-events-new.html', {'form': form})
+            return render(request, 'categories-events-new.html', {'form': form})
 
 
 def AddNewsCategory (request):
     if request.method == "GET":
         form = AddCategoryForm()
-        return render(request, 'registration/categories-new.html', {'form': form})
+        return render(request, 'categories-news-new.html', {'form': form})
     elif request.method == "POST":
         form = AddEventCategoryForm(request.POST)
 
         if (form.is_valid()):
             Category = form.save(commit=False)
             Name = form.cleaned_data.get('name')
-            valid_from = form.cleaned_data.get('valid_from')
-            valid_to = form.cleaned_data.get('name')
+            Valid_from = form.cleaned_data.get('valid_from')
+            Valid_to = form.cleaned_data.get('name')
             CategoryEvents.save()
 
-            return redirect('index')
+            return redirect('categories-news.html')
         else:
-            return render(request, 'registration/categories-news-new.html', {'form': form})
+            return render(request, 'categories-news-new.html', {'form': form})
 
 
 def AddWorkArea (request):
     if request.method == "GET":
         form = AddWorkAreaForm()
-        return render(request, 'registration/workareas-new.html', {'form': form})
+        return render(request, 'workareas-new.html', {'form': form})
     elif request.method == "POST":
         form = AddWorkAreaForm(request.POST)
 
@@ -155,15 +155,15 @@ def AddWorkArea (request):
             valid_to = form.cleaned_data.get('name')
             CategoryEvents.save()
 
-            return redirect('index')
+            return redirect('workareas')
         else:
-            return render(request, 'registration/workareas-new.html', {'form': form})
+            return render(request, 'workareas-new.html', {'form': form})
 
 
 def AddSpaceCharacteristic (request):
     if request.method == "GET":
         form = AddSpaceCharacteristicsForm()
-        return render(request, 'registration/spacecharacteristics-new.html', {'form': form})
+        return render(request, 'spacecharacteristics-new.html', {'form': form})
     elif request.method == "POST":
         form = AddSpaceCharacteristicsForm(request.POST)
 
@@ -174,6 +174,6 @@ def AddSpaceCharacteristic (request):
             valid_to = form.cleaned_data.get('name')
             CategoryEvents.save()
 
-            return redirect('index')
+            return redirect('spacecharacteristics.html')
         else:
-            return render(request, 'registration/spacecharacteristics-new.html', {'form': form})
+            return render(request, 'spacecharacteristics-new.html', {'form': form})
