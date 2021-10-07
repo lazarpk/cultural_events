@@ -15,4 +15,8 @@ urlpatterns = [
     path('about-us-edit/', views.aboutUsEdit, name='about-us-edit'),
     path('reports', views.reports, name='reports'),
     path('codebooks-edit/', views.codebooksEdit, name='codebooks-edit'),
+    path('workareas/', views.workArea, name='workareas'),
+    path('workareas-edit', views.workAreaEdit, name='workareas-edit'),
+    path('spacecharacteristics', views.spaceCharacteristic, name='spacecharacteristics'),
+    path('spacecharacteristics-edit', views.spaceCharacteristicsEdit, name='spacecharacteristics-edit'),
 ]

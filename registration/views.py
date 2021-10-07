@@ -1,10 +1,13 @@
 from django.contrib.auth.models import Permission
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
-from .forms import RegisterForm, RegisterFormOrg, User
+from .forms import RegisterForm, RegisterFormOrg, User, AddWorkAreaForm
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
 from .models import Profile
+from events.forms import AddEventCategoryForm, AddSpaceCharacteristicsForm
+from news.forms import AddCategoryForm
+from events.models import CategoryEvents
 
 # Create your views here.
 def registration (request):
@@ -95,3 +98,82 @@ def login_success (request):
         return redirect('/')
     else:
         return redirect('/profile')
+
+
+
+#TODO: ***POGLEDATI ZASTO NE PREPOZNAJE NAVEDENE VARIJABLE (SIVE)***
+
+def AddEventsCategory (request):
+    if request.method == "GET":
+        form = AddEventCategoryForm()
+        return render(request, 'registration/categories-events.html', {'form': form})
+    elif request.method == "POST":
+        form = AddEventCategoryForm(request.POST)
+
+        if (form.is_valid()):
+            Category_Events = form.save(commit=False)
+            name = form.cleaned_data.get('name')
+            valid_from = form.cleaned_data.get('valid_from')
+            valid_to = form.cleaned_data.get('name')
+            CategoryEvents.save()
+
+            return redirect('index')
+        else:
+            return render(request, 'registration/categories-events-new.html', {'form': form})
+
+
+def AddNewsCategory (request):
+    if request.method == "GET":
+        form = AddCategoryForm()
+        return render(request, 'registration/categories-new.html', {'form': form})
+    elif request.method == "POST":
+        form = AddEventCategoryForm(request.POST)
+
+        if (form.is_valid()):
+            Category = form.save(commit=False)
+            Name = form.cleaned_data.get('name')
+            valid_from = form.cleaned_data.get('valid_from')
+            valid_to = form.cleaned_data.get('name')
+            CategoryEvents.save()
+
+            return redirect('index')
+        else:
+            return render(request, 'registration/categories-news-new.html', {'form': form})
+
+
+def AddWorkArea (request):
+    if request.method == "GET":
+        form = AddWorkAreaForm()
+        return render(request, 'registration/workareas-new.html', {'form': form})
+    elif request.method == "POST":
+        form = AddWorkAreaForm(request.POST)
+
+        if (form.is_valid()):
+            WorkArea = form.save(commit=False)
+            Name = form.cleaned_data.get('name')
+            valid_from = form.cleaned_data.get('valid_from')
+            valid_to = form.cleaned_data.get('name')
+            CategoryEvents.save()
+
+            return redirect('index')
+        else:
+            return render(request, 'registration/workareas-new.html', {'form': form})
+
+
+def AddSpaceCharacteristic (request):
+    if request.method == "GET":
+        form = AddSpaceCharacteristicsForm()
+        return render(request, 'registration/spacecharacteristics-new.html', {'form': form})
+    elif request.method == "POST":
+        form = AddSpaceCharacteristicsForm(request.POST)
+
+        if (form.is_valid()):
+            SpaceCharacteristics = form.save(commit=False)
+            Name = form.cleaned_data.get('name')
+            valid_from = form.cleaned_data.get('valid_from')
+            valid_to = form.cleaned_data.get('name')
+            CategoryEvents.save()
+
+            return redirect('index')
+        else:
+            return render(request, 'registration/spacecharacteristics-new.html', {'form': form})

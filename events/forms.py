@@ -1,7 +1,7 @@
 from django import forms
 from .models import Events
 from django.forms import ModelForm
-from .models import CategoryEvents
+from .models import CategoryEvents, SpaceCharacteristics
 # from django.contrib.auth.forms import forms
 
 class EventsForm (forms.ModelForm):
@@ -96,6 +96,39 @@ class AddEventCategoryForm(ModelForm):
                 }
             ),
         }
+
+
+class AddSpaceCharacteristicsForm(ModelForm):
+    class Meta:
+        model = SpaceCharacteristics
+        fields = ['name', 'valid_from', 'valid_to']
+        labels = {'name': 'Naziv', 'valid_from': 'Vazi od', 'valid_to': 'Vazi do'}
+        widgets = {
+            'name': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'title': 'Unesite naziv stavke!'
+                }
+            ),
+            'valid_from': forms.DateTimeInput(
+                attrs={
+                    'type': 'datetime-local',
+                    'class': 'form-control rounded-pill',
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite datum!'
+                }
+            ),
+            'valid_to': forms.DateTimeInput(
+                attrs={
+                    'type': 'datetime-local',
+                    'class': 'form-control rounded-pill',
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite datum!'
+                }
+            )
+        }
+
+
 
     # event_name = forms.CharField (
     #     label = 'Naziv',

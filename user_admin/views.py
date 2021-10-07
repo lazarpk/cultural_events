@@ -1,24 +1,28 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from django.contrib.auth.models import User
-from .forms import UserSearchForm, NewsCategorySearchForm, EventsCategorySearchForm, ReportsCreateForm, GetTheReport
+from .forms import UserSearchForm, NewsCategorySearchForm, EventsCategorySearchForm, ReportsCreateForm, GetTheReport, WorkAreaSearchForm, SpaceCharacteristicsSearchForm
 from user_profile.forms import UpdateUserForm, UpdateProfileForm
 from registration.models import Profile
 from news.models import Category
 from news.forms import AddCategoryForm
 from django.shortcuts import redirect
-from events.models import CategoryEvents
-from events.forms import AddEventCategoryForm
+from events.models import CategoryEvents, SpaceCharacteristics
+from events.forms import AddEventCategoryForm, AddSpaceCharacteristicsForm
 from events.models import Events
 from news.models import Article
 from adverts.models import Adverts
 from polls.models import Poll
 from home.forms import AboutUsForm
 from home.models import AboutUs
+from registration.models import WorkArea
+from registration.forms import AddWorkAreaForm
 import datetime
 from django.utils import timezone
 from .models import Reports
 # Create your views here.
+
+
 def index (request):
     curently_user = User.objects.get(id=request.user.id)
     if curently_user.is_superuser:
@@ -286,9 +290,90 @@ def reports (request):
         }
         return render(request, 'reports.html', context)
 
+
 def codebooksEdit (request):
     curently_user = User.objects.get(id=request.user.id)
     if curently_user.is_superuser:
         return render(request, 'codebooks-edit.html')
     else:
         raise Http404
+
+
+def workArea (request):
+    workareas = WorkArea.objects.all()
+    form = WorkAreaSearchForm(request.GET)
+    if (form.is_valid()):
+        name = form.cleaned_data.get('name')
+        workareas = workareas.filter(name__icontaints = name)
+    context = {
+        'form':form,
+        'workareas': workareas
+    }
+    return render (request, 'workarea.html', context)
+
+
+def workAreaEdit (request):
+    if (request.method == "GET"):
+        id = request.GET.get('id')
+        work_area = WorkArea.objects.get(id=id)
+        form = AddWorkAreaForm(instance=work_area)
+        context = {
+            'form': form,
+            'id': id
+        }
+        return render(request, 'workarea-edit.html', context)
+    elif (request.method == "POST"):
+        id = request.POST.get("id")
+        form = AddWorkAreaForm(request.POST)
+        if (form.is_valid()):
+            work_area = WorkArea.objects.get(id=id)
+            name = form.cleaned_data.get('name')
+            work_area.name = name
+            work_area.save()
+            return redirect('/administration/workarea')
+        else:
+            context = {
+                'form': form,
+                'id': id
+            }
+            return render(request, 'workarea-edit.html', context)
+
+
+def spaceCharacteristic (request):
+    spacecharacteristics = SpaceCharacteristics.objects.all()
+    form = SpaceCharacteristicsSearchForm(request.GET)
+    if (form.is_valid()):
+        name = form.cleaned_data.get('name')
+        spacecharacteristics = spacecharacteristics.filter(name__icontaints = name)
+    context = {
+        'form':form,
+        'spacecharacteristics': spacecharacteristics
+    }
+    return render (request, 'spacecharacteristics.html', context)
+
+
+def spaceCharacteristicsEdit (request):
+    if (request.method == "GET"):
+        id = request.GET.get('id')
+        space_characteristics = SpaceCharacteristics.objects.get(id=id)
+        form = AddSpaceCharacteristicsForm(instance=space_characteristics)
+        context = {
+            'form': form,
+            'id': id
+        }
+        return render(request, 'workarea-edit.html', context)
+    elif (request.method == "POST"):
+        id = request.POST.get("id")
+        form = AddWorkAreaForm(request.POST)
+        if (form.is_valid()):
+            space_characteristics = SpaceCharacteristics.objects.get(id=id)
+            name = form.cleaned_data.get('name')
+            space_characteristics.name = name
+            space_characteristics.save()
+            return redirect('/administration/spacecharacteristics')
+        else:
+            context = {
+                'form': form,
+                'id': id
+            }
+            return render(request, 'spacecharacteristics-edit.html', context)

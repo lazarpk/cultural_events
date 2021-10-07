@@ -1,17 +1,17 @@
 {% extends 'index-admin.html' %}
 
 {% block title %}
-<title>Kategorije za vesti</title>
+<title>Kategorije za karakteristike prostora</title>
 {% endblock %}
 
 {% block second_body %}
-<h2 class="mt-3">Ažuriraj kategorije za vesti</h2>
+ <h2 class="mt-3">Ažuriraj kategorije za karakteristike prostora</h2>
 <div class="row mt-3 mb-3">
-    <a class="btn btn-dark rounded-pill" href="{% url 'categories-news-new' %}">Dodaj novu stavku</a>
+    <a class="btn btn-dark rounded-pill" href="{% url 'categories-spacecharacteristics-new' %}">Dodaj novu stavku</a>
 </div>
 <div class="row">
     <div class="col" style = "height: 300px;overflow: auto;">
-        <table class="table">
+        <table id="tabela" class="table">
             <thead>
             <th>ID</th>
             <th>Ime</th>
@@ -23,13 +23,13 @@
             {% for category in categories %}
             <tr>
                 <td>{{ category.id }}</td>
-                <td>{{ category.Name }}</td>
+                <td>{{ category.name }}</td>
                 <td>{{ category.valid_from }}</td>
                 <td>{{ category.valid_to }}</td>
                 <td>
                     <a class="btn btn-dark rounded-pill" href="{% url 'categories-news-edit' %}?id={{ category.id }}">Ažuriraj</a>
                     <a class="btn btn-dark rounded-pill" href="{% url 'categories-news-edit' %}?id={{ category.id }}">Obriši</a>
-                    <!-- opcija delete nije namestena -->
+                    <!-- jos nije namestena opcija delete -->
                 </td>
             </tr>
             {% endfor %}
