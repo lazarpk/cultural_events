@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-
+from django.contrib.auth.decorators import permission_required
 from .forms import CreatePollForm
 from .models import Poll
 
@@ -11,11 +11,16 @@ def index(request):
     }
     return render(request, 'polls/index.html', context)
 
+@permission_required('poll_can_create', '/login')
 def create(request):
     if request.method == 'POST':
         form = CreatePollForm(request.POST)
         if form.is_valid():
-            form.save()
+            poll = form.save(commit=False);
+            current_user = request.user
+
+            poll.author = current_user
+            poll.save()
             return redirect('polls:index')
     else:
         form = CreatePollForm()

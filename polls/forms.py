@@ -5,7 +5,7 @@ from django.forms import ModelForm
 class CreatePollForm(ModelForm):
     class Meta:
         model = Poll
-        fields = ['question', 'option_one', 'option_two', 'option_three']
+        fields = ['question', 'option_one', 'option_two', 'option_three', 'public']
         widgets = {
             'question': forms.Textarea(
                 attrs={
@@ -31,4 +31,9 @@ class CreatePollForm(ModelForm):
                     'rows': "1"
                 }
             ),
+            'public':forms.CheckboxInput(
+                attrs={
+                    'class': "form-control",
+                }
+            )
         };
