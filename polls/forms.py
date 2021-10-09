@@ -28,12 +28,14 @@ class CreatePollForm(ModelForm):
             'option_three': forms.Textarea(
                 attrs={
                     'class': "form-control",
-                    'rows': "1"
-                }
+                    'rows': "1",
+
+
+        }
             ),
             'public':forms.CheckboxInput(
                 attrs={
-                    'class': "form-control",
+                    'class': "form-check-label mt-3",
                 }
             )
         };

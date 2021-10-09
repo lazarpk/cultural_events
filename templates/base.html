@@ -39,13 +39,13 @@
                 <li class="nav-item">
                     {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">O nama</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'home:about_us' %}">O nama</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Kontakt</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'home:sendMail' %}">Kontakt</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Uputstvo</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'home:guide' %}">Uputstvo</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">

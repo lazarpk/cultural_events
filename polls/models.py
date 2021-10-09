@@ -10,7 +10,7 @@ class Poll(models.Model):
     option_one_count = models.IntegerField(default=0)
     option_two_count = models.IntegerField(default=0)
     option_three_count = models.IntegerField(default=0)
-    public= models.BooleanField(default=True)
+    public= models.BooleanField('Rezultati ankete su javni', default=True)
 
     class Meta:
         permissions = [
