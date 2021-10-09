@@ -72,14 +72,14 @@ def editUsers (request):
             obj = Profile.objects.get(user_id=user.id)
             form1 = UpdateProfileForm(request.POST, instance=obj)
             if form1.is_valid():
-                print('uso u if form1 is valid')
-                obj.address = form1.cleaned_data.get('address')
+                obj.address.set(form1.cleaned_data.get('address'))
                 obj.number = form1.cleaned_data.get('number')
-                obj.city = form1.cleaned_data.get('city')
+                #obj.city = form1.cleaned_data.get('city')
+                obj.city.set(form1.cleaned_data.get('city'))
                 obj.contact_person = form1.cleaned_data.get('contact_person')
                 obj.phone = form1.cleaned_data.get('phone')
                 obj.description = form1.cleaned_data.get('description')
-                obj.work_area = form1.cleaned_data.get('work_area')
+                obj.work_area.set(form1.cleaned_data.get('work_area'))
                 obj.web_site = form1.cleaned_data.get('web_site')
                 obj.save()
         except Profile.DoesNotExist:
