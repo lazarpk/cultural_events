@@ -136,7 +136,7 @@ class RegisterFormOrg(UserCreationForm):
         label="Adresa",
         widget=forms.SelectMultiple(
             attrs={
-                'class': 'form-control rounded-pill',
+                'class': 'form-control',
                 'data-toggle': 'tooltip',
                 'title': 'Unesite adresu organizacije !'
             }
@@ -159,7 +159,7 @@ class RegisterFormOrg(UserCreationForm):
         label="Grad.",
         widget=forms.SelectMultiple(
             attrs={
-                'class': 'form-control rounded-pill',
+                'class': 'form-control',
                 'data-toggle': 'tooltip',
                 'title': 'Unesite naziv mesta !'
             }
@@ -206,7 +206,7 @@ class RegisterFormOrg(UserCreationForm):
         label="Oblast delovanja.",
         widget=forms.SelectMultiple(
             attrs={
-                'class': 'form-control rounded-pill',
+                'class': 'form-control',
                 'data-toggle': 'tooltip',
                 'title': 'Unesite oblast delovanja Vaše organizacije !'
             }
