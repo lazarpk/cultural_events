@@ -37,7 +37,7 @@ class UpdateProfileForm (forms.ModelForm):
         model = Profile
         fields = ['address', 'number', 'city', 'contact_person', 'phone', 'description', 'work_area', 'web_site']
         widgets = {
-            'address': forms.Select(
+            'address': forms.SelectMultiple(
                 attrs={
                     'class': 'form-control'
                 }
@@ -47,7 +47,7 @@ class UpdateProfileForm (forms.ModelForm):
                     'class': 'form-control'
                 }
             ),
-            'city': forms.Select(
+            'city': forms.SelectMultiple(
                 attrs={
                     'class': 'form-control'
                 }
@@ -67,7 +67,7 @@ class UpdateProfileForm (forms.ModelForm):
                     'class': 'form-control'
                 }
             ),
-            'work_area': forms.Select(
+            'work_area': forms.SelectMultiple(
                 attrs={
                     'class': 'form-control'
                 }

@@ -7,7 +7,7 @@
 {% block body %}
 <div class="row parent">
     <div class="col-5 child">
-        <form action="#" method="POST">
+        <form action="{% url 'edit' %}" method="POST">
             {% csrf_token %}
             {% for field in form %}
             <div class="col">
