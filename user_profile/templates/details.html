@@ -130,7 +130,7 @@
             <div class="card-body d-flex flex-column align-items-start">
                 <strong class="d-inline-block mb-2 text-primary">{{ article.Category.Name }}</strong>
                 <h3 class="mb-0">
-                    <a class="text-dark" href="/articles/{{ article.id }}">{{ article.Title }}</a>
+                    <a class="text-dark" href="/news/{{ article.id }}">{{ article.Title }}</a>
                 </h3>
                 <div class="mb-1 text-muted">{{ article.CreationDate }} &nbsp&nbsp&nbsp{{ article.Author.username }}
                 </div>
@@ -138,8 +138,8 @@
                 <!-- <a href="/users/{{article.Author.username}}">{{ article.Author.username }}</a> -->
                 <!-- <a href="{% url 'profile' %}">{{ article.Author.username }}</a> -->
                 {% if article.Author.id == user.id %}
-                <a href="/articles/{{article.id}}/archive">Arhiviraj</a>
-                <a href="/articles/{{article.id}}/delete">Obrisi</a>
+                <a href="/news/{{article.id}}/archive">Arhiviraj</a>
+                <a href="{{article.id}}/delete">Obrisi</a>
                 {% endif %}
             </div>
         </div>

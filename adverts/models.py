@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.admin import User
+from django.utils import timezone
 
 # Create your models here.
 class Adverts ( models.Model):

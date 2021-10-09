@@ -11,4 +11,42 @@
         <h4>Kontakt strana</h4>
     </div>
 </div>
+    <title>Send Email</title>
+{% endblock %}
+
+{% block body %}
+ {% if messageSent %}
+    <div class="container">
+      <h3><strong>Email je poslat!</strong></h3>
+      <p>Vaša poruka je uspešno poslata administratorima stranice!</p>
+    </div>
+    {% else %}
+    <div class="container">
+      <h2 class="h1-responsive font-weight-bold text-center my-4">Kontaktirajte nas</h2>
+
+        <div class="row">
+  <div class="col">
+        <form method="post" class="form-group">
+        {% csrf_token %}
+            {% for field in form %}
+      <label class="form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
+      {{ field }}
+      <div class="text-danger">
+        {{ field.errors }}
+      </div>
+      {% endfor %}
+
+        <div class="text-center">
+          <input
+            type="submit"
+            class="btn btn-secondary"
+            style="width: 100%"
+            value="Send e-mail"
+          />
+        </div>
+      </form>
+      </div>
+</div>
+    </div>
+    {% endif %}
 {% endblock %}

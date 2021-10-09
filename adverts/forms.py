@@ -23,7 +23,7 @@ class AdvertsCreateForm (forms.ModelForm):
                     'title': 'Unesite tekst oglasa !'
                 }
             ),
-            'load_date': forms.DateInput(
+            'load_date': forms.DateTimeInput(
                 format=('%m/%d/%Y'),
                 attrs={
                     'class': 'form-control', 'placeholder': 'Izaberite datum', 'type': 'date',
@@ -31,7 +31,7 @@ class AdvertsCreateForm (forms.ModelForm):
                     'title': 'Unesite datum od kad oglas važi !'
                 }
             ),
-            'expire_date': forms.DateInput(
+            'expire_date': forms.DateTimeInput(
                 format=('%m/%d/%Y'),
                 attrs={
                     'class': 'form-control', 'placeholder': 'Izaberite datum', 'type': 'date',

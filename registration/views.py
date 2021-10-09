@@ -86,9 +86,12 @@ def register_org (request):
             user.user_permissions.add(permission)
             #permission = Permission.objects.get(codename='poll_can_create')
             #user.user_permissions.add(permission)
+            #permission = Permission.objects.get(codename='poll_can_create')
+            #user.user_permissions.add(permission)
             permission = Permission.objects.get(codename='event_can_create')
             user.user_permissions.add(permission)
             login(request, user)
+
             return redirect('index')
         else:
             context = {

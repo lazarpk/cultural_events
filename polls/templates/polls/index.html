@@ -4,12 +4,13 @@
 {% endblock %}
 
 {% block body %}
-
+                {% if user.is_authenticated and perms.polls.poll_can_create %}
                 <div class="col-md-12">
                     <div class="form-group">
                     <a class="btn btn-warning form-control" href="{% url 'polls:create' %}">Kreiraj anketu</a>
                 </div>
             </div>
+{% endif %}
 <div class="row-mg-2">
     <div class="col-md-8 offset-md-2">
         <div class="panel panel-default">
@@ -21,14 +22,15 @@
                 {% for poll in polls %}
                 <li class="list-group-item">
                     <strong class='nav justify-content-left'>{{ poll.question }}</strong>
-
                     <span class="nav justify-content-end">
                         <a href="{% url 'polls:vote' poll.id %}" class="btn btn-warning btn-info btn-xs">Glasaj</a> &nbsp;
                     </span>
+                    {% if poll.author.id == user.id or poll.public == 1 %}
                     <span class="nav justify-content-end fs-2">
                     <a href="{% url 'polls:results' poll.id %}" class="link-primary text-secondary">Vidi rezultate</a> &nbsp;
                     </span>
-                </li><br>
+                    {% endif %}
+                </li>
                 {% endfor %}
             </ul>
             <br>
