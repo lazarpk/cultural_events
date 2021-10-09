@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponse, Http404
-from registration.models import Profile
+from registration.models import Profile, StreetAddress
 from .forms import UpdateUserForm, UpdateProfileForm
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
@@ -29,9 +29,25 @@ def details (request):
     else:
         articles = Article.objects.filter(ArchivedDate__isnull=True, Author=request.user).order_by('-id')[:10]
         polls = Poll.objects.filter (author=request.user)
+        profile = Profile.objects.get(user_id = request.user)
+        addresses = profile.address.all()
+        cities = profile.city.all()
+        work_areas = profile.work_area.all()
+        profile_work_area = ''
+        profile_city = ''
+        profile_adress = ''
+        for address in addresses:
+            profile_adress = address.name
+        for city in cities:
+            profile_city = city.name
+        for work_area in work_areas:
+            profile_work_area = work_area
         context = {
             'articles': articles,
-            'polls': polls
+            'polls': polls,
+            'profile_adress': profile_adress,
+            'profile_city': profile_city,
+            'profile_work_area': profile_work_area
         }
         return render(request, 'details.html', context)
 
@@ -99,7 +115,23 @@ def searchOrg (request):
 def profileUser (request):
     id = request.GET.get('id')
     user = User.objects.get(id=id)
+    profile = Profile.objects.get(user_id=id)
+    addresses = profile.address.all()
+    cities = profile.city.all()
+    work_areas = profile.work_area.all()
+    profile_work_area = ''
+    profile_city = ''
+    profile_adress = ''
+    for address in addresses:
+        profile_adress = address.name
+    for city in cities:
+        profile_city = city.name
+    for work_area in work_areas:
+        profile_work_area = work_area
     context = {
-        'user': user
+        'user': user,
+        'profile_adress': profile_adress,
+        'profile_city': profile_city,
+        'profile_work_area': profile_work_area
     }
     return render(request, 'profile-user.html', context)
