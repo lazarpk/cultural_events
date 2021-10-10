@@ -155,7 +155,7 @@ def AddWorkArea (request):
             WorkArea.valid_to = form.cleaned_data.get('valid_to')
             WorkArea.save()
 
-            return redirect('/administration/codebooks-edit')
+            return redirect('/administration/workareas/')
         else:
             return render(request, 'workareas-new.html', {'form': form})
 
@@ -174,6 +174,6 @@ def AddSpaceCharacteristic (request):
             SpaceCharacteristics.valid_to = form.cleaned_data.get('valid_to')
             SpaceCharacteristics.save()
 
-            return redirect('/administration/codebooks-edit')
+            return redirect('/administration/spacecharacteristics')
         else:
             return render(request, 'spacecharacteristics-new.html', {'form': form})

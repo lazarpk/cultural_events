@@ -333,6 +333,8 @@ def workAreaEdit (request):
             work_area = WorkArea.objects.get(id=id)
             name = form.cleaned_data.get('name')
             work_area.name = name
+            work_area.valid_from = form.cleaned_data.get('valid_from')
+            work_area.valid_to = form.cleaned_data.get('valid_to')
             work_area.save()
             return redirect('/administration/workarea')
         else:
