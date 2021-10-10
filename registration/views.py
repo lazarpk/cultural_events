@@ -117,7 +117,7 @@ def AddEventsCategory (request):
             CategoryEvents.valid_to = form.cleaned_data.get('valid_to')
             CategoryEvents.save()
 
-            return redirect('/administration/codebooks-edit')
+            return redirect('/administration/categories-events')
         else:
             return render(request, 'categories-events-new.html', {'form': form})
 
@@ -136,7 +136,7 @@ def AddNewsCategory (request):
             Category.Valid_to = form.cleaned_data.get('valid_to')
             Category.save()
 
-            return redirect('/administration/codebooks-edit')
+            return redirect('/administration/categories-news')
         else:
             return render(request, 'categories-news-new.html', {'form': form})
 

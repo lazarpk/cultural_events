@@ -189,6 +189,8 @@ def eventsCategoriesEdit (request):
             category = CategoryEvents.objects.get(id=id)
             name = form.cleaned_data.get ('name')
             category.name = name
+            category.valid_from = form.cleaned_data.get ('valid_from')
+            category.valid_to = form.cleaned_data.get('valid_to')
             category.save()
             return redirect ('/administration/categories-events')
         else:
