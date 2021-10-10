@@ -115,6 +115,7 @@ def AddEventsCategory (request):
             CategoryEvents.name = form.cleaned_data.get('name')
             CategoryEvents.valid_from = form.cleaned_data.get('valid_from')
             CategoryEvents.valid_to = form.cleaned_data.get('valid_to')
+            CategoryEvents.approved = 1
             CategoryEvents.save()
 
             return redirect('/administration/categories-events')
@@ -134,6 +135,7 @@ def AddNewsCategory (request):
             Category.Name = form.cleaned_data.get('Name')
             Category.Valid_from = form.cleaned_data.get('valid_from')
             Category.Valid_to = form.cleaned_data.get('valid_to')
+            Category.approved = 1
             Category.save()
 
             return redirect('/administration/categories-news')
@@ -153,6 +155,7 @@ def AddWorkArea (request):
             WorkArea.name = form.cleaned_data.get('name')
             WorkArea.valid_from = form.cleaned_data.get('valid_from')
             WorkArea.valid_to = form.cleaned_data.get('valid_to')
+            WorkArea.approved = 1
             WorkArea.save()
 
             return redirect('/administration/workareas/')
@@ -172,6 +175,7 @@ def AddSpaceCharacteristic (request):
             SpaceCharacteristics.name = form.cleaned_data.get('name')
             SpaceCharacteristics.valid_from = form.cleaned_data.get('valid_from')
             SpaceCharacteristics.valid_to = form.cleaned_data.get('valid_to')
+            SpaceCharacteristics.approved = 1
             SpaceCharacteristics.save()
 
             return redirect('/administration/spacecharacteristics')
