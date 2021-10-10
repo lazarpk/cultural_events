@@ -362,12 +362,13 @@ def spaceCharacteristicsEdit (request):
     if (request.method == "GET"):
         id = request.GET.get('id')
         space_characteristics = SpaceCharacteristics.objects.get(id=id)
+        print(space_characteristics)
         form = AddSpaceCharacteristicsForm(instance=space_characteristics)
         context = {
             'form': form,
             'id': id
         }
-        return render(request, 'workarea-edit.html', context)
+        return render(request, 'spacecharacteristics-edit.html', context)
     elif (request.method == "POST"):
         id = request.POST.get("id")
         form = AddWorkAreaForm(request.POST)
@@ -375,6 +376,8 @@ def spaceCharacteristicsEdit (request):
             space_characteristics = SpaceCharacteristics.objects.get(id=id)
             name = form.cleaned_data.get('name')
             space_characteristics.name = name
+            space_characteristics.valid_from = form.cleaned_data.get('valid_from')
+            space_characteristics.valid_to = form.cleaned_data.get('valid_to')
             space_characteristics.save()
             return redirect('/administration/spacecharacteristics')
         else:
