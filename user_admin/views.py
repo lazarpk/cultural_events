@@ -148,6 +148,8 @@ def newsCategoriesEdit (request):
             category = Category.objects.get(id=id)
             name = form.cleaned_data.get ('Name')
             category.Name = name
+            category.valid_from = form.cleaned_data.get('valid_from')
+            category.valid_to = form.cleaned_data.get('valid_to')
             category.save()
             #return render(request, 'index-admin.html')
             return redirect ('/administration/categories-news')
