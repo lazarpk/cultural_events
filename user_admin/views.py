@@ -402,3 +402,8 @@ def workAreaDelete (request):
     category = WorkArea.objects.get(id=id)
     category.delete()
     return redirect('/administration/workareas')
+def spaceCharacteristicsDelete(request):
+    id = request.GET.get('id')
+    category = SpaceCharacteristics.objects.get(id=id)
+    category.delete()
+    return redirect('/administration/spacecharacteristics')
