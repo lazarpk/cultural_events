@@ -112,12 +112,12 @@ def AddEventsCategory (request):
 
         if (form.is_valid()):
             CategoryEvents = form.save(commit=False)
-            name = form.cleaned_data.get('name')
-            valid_from = form.cleaned_data.get('valid_from')
-            valid_to = form.cleaned_data.get('name')
+            CategoryEvents.name = form.cleaned_data.get('name')
+            CategoryEvents.valid_from = form.cleaned_data.get('valid_from')
+            CategoryEvents.valid_to = form.cleaned_data.get('valid_to')
             CategoryEvents.save()
 
-            return redirect('categories-events.html')
+            return redirect('/administration/codebooks-edit')
         else:
             return render(request, 'categories-events-new.html', {'form': form})
 
@@ -127,16 +127,16 @@ def AddNewsCategory (request):
         form = AddCategoryForm()
         return render(request, 'categories-news-new.html', {'form': form})
     elif request.method == "POST":
-        form = AddEventCategoryForm(request.POST)
+        form = AddCategoryForm(request.POST)
 
         if (form.is_valid()):
             Category = form.save(commit=False)
-            Name = form.cleaned_data.get('name')
-            Valid_from = form.cleaned_data.get('valid_from')
-            Valid_to = form.cleaned_data.get('name')
-            CategoryEvents.save()
+            Category.Name = form.cleaned_data.get('Name')
+            Category.Valid_from = form.cleaned_data.get('valid_from')
+            Category.Valid_to = form.cleaned_data.get('valid_to')
+            Category.save()
 
-            return redirect('categories-news.html')
+            return redirect('/administration/codebooks-edit')
         else:
             return render(request, 'categories-news-new.html', {'form': form})
 
@@ -150,12 +150,12 @@ def AddWorkArea (request):
 
         if (form.is_valid()):
             WorkArea = form.save(commit=False)
-            Name = form.cleaned_data.get('name')
-            valid_from = form.cleaned_data.get('valid_from')
-            valid_to = form.cleaned_data.get('name')
-            CategoryEvents.save()
+            WorkArea.name = form.cleaned_data.get('name')
+            WorkArea.valid_from = form.cleaned_data.get('valid_from')
+            WorkArea.valid_to = form.cleaned_data.get('valid_to')
+            WorkArea.save()
 
-            return redirect('workareas')
+            return redirect('/administration/codebooks-edit')
         else:
             return render(request, 'workareas-new.html', {'form': form})
 
@@ -169,11 +169,11 @@ def AddSpaceCharacteristic (request):
 
         if (form.is_valid()):
             SpaceCharacteristics = form.save(commit=False)
-            Name = form.cleaned_data.get('name')
-            valid_from = form.cleaned_data.get('valid_from')
-            valid_to = form.cleaned_data.get('name')
-            CategoryEvents.save()
+            SpaceCharacteristics.name = form.cleaned_data.get('name')
+            SpaceCharacteristics.valid_from = form.cleaned_data.get('valid_from')
+            SpaceCharacteristics.valid_to = form.cleaned_data.get('valid_to')
+            SpaceCharacteristics.save()
 
-            return redirect('spacecharacteristics.html')
+            return redirect('/administration/codebooks-edit')
         else:
             return render(request, 'spacecharacteristics-new.html', {'form': form})

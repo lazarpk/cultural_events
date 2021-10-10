@@ -252,7 +252,7 @@ class AddWorkAreaForm(ModelForm):
             ),
             'valid_from' : forms.DateTimeInput (
                 attrs = {
-                    'type': 'datetime-local',
+                    'type': 'date',
                     'class': 'form-control rounded-pill',
                     'data-toggle': 'tooltip',
                     'title': 'Unesite datum!'
@@ -260,7 +260,7 @@ class AddWorkAreaForm(ModelForm):
             ),
             'valid_to': forms.DateTimeInput (
                 attrs = {
-                    'type': 'datetime-local',
+                    'type': 'date',
                     'class': 'form-control rounded-pill',
                     'data-toggle': 'tooltip',
                     'title': 'Unesite datum!'
