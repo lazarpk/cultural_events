@@ -386,3 +386,14 @@ def spaceCharacteristicsEdit (request):
                 'id': id
             }
             return render(request, 'spacecharacteristics-edit.html', context)
+
+def eventsCategoriesDelete (request):
+    id = request.GET.get ('id')
+    category = CategoryEvents.objects.get(id=id)
+    category.delete()
+    return redirect('/administration/categories-events')
+def newsCategoriesDelete (request):
+    id = request.GET.get('id')
+    category = Category.objects.get(id=id)
+    category.delete()
+    return redirect('/administration/categories-news')

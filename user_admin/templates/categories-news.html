@@ -43,7 +43,7 @@
                 <td>{{ category.valid_to }}</td>
                 <td>
                     <a class="btn btn-dark rounded-pill" href="{% url 'categories-news-edit' %}?id={{ category.id }}">Ažuriraj</a>
-                    <a class="btn btn-dark rounded-pill" href="{% url 'categories-news-edit' %}?id={{ category.id }}">Obriši</a>
+                    <a class="btn btn-dark rounded-pill" href="{% url 'categories-news-delete' %}?id={{ category.id }}">Obriši</a>
                     <!-- opcija delete nije namestena -->
                 </td>
             </tr>

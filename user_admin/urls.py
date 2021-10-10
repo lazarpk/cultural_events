@@ -19,4 +19,6 @@ urlpatterns = [
     path('workareas-edit', views.workAreaEdit, name='workareas-edit'),
     path('spacecharacteristics', views.spaceCharacteristic, name='spacecharacteristics'),
     path('spacecharacteristics-edit', views.spaceCharacteristicsEdit, name='spacecharacteristics-edit'),
+    path('categories-events-delete/', views.eventsCategoriesDelete, name='categories-events-delete'),
+    path('categories-news-delete/', views.newsCategoriesDelete, name='categories-news-delete'),
 ]
