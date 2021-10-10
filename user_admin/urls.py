@@ -21,4 +21,5 @@ urlpatterns = [
     path('spacecharacteristics-edit', views.spaceCharacteristicsEdit, name='spacecharacteristics-edit'),
     path('categories-events-delete/', views.eventsCategoriesDelete, name='categories-events-delete'),
     path('categories-news-delete/', views.newsCategoriesDelete, name='categories-news-delete'),
+    path('workareas-delete', views.workAreaDelete, name='workareas-delete'),
 ]

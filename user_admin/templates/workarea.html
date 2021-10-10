@@ -43,7 +43,7 @@
                 <td>{{ workarea.valid_to }}</td>
                 <td>
                     <a class="btn btn-dark rounded-pill" href="{% url 'workareas-edit' %}?id={{ workarea.id }}">Ažuriraj</a>
-                    <a class="btn btn-dark rounded-pill" href="{% url 'workareas-edit' %}?id={{ workarea.id }}">Obriši</a>
+                    <a class="btn btn-dark rounded-pill" href="{% url 'workareas-delete' %}?id={{ workarea.id }}">Obriši</a>
                     <!-- jos nije namestena opcija delete -->
                 </td>
             </tr>

@@ -397,3 +397,8 @@ def newsCategoriesDelete (request):
     category = Category.objects.get(id=id)
     category.delete()
     return redirect('/administration/categories-news')
+def workAreaDelete (request):
+    id = request.GET.get('id')
+    category = WorkArea.objects.get(id=id)
+    category.delete()
+    return redirect('/administration/workareas')
