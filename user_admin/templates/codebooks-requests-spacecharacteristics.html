@@ -1,0 +1,34 @@
+{% extends 'index-admin.html' %}
+
+{% block title %}
+<title>Kategorije za karakteristike prostora</title>
+{% endblock %}
+
+{% block second_body %}
+<div class="row">
+    <div class="col" style = "height: 300px;overflow: auto;">
+        <table id="tabela" class="table">
+            <thead>
+            <th>ID</th>
+            <th>Ime</th>
+            <th>Važi od</th>
+            <th>Važi do</th>
+            <th></th>
+            </thead>
+            <tbody>
+            {% for spacecharacteristic in categories %}
+            <tr>
+                <td>{{ spacecharacteristic.id }}</td>
+                <td>{{ spacecharacteristic.name }}</td>
+                <td>{{ spacecharacteristic.valid_from }}</td>
+                <td>{{ spacecharacteristic.valid_to }}</td>
+                <td>
+                    <a class="btn btn-dark rounded-pill" href="{% url 'codebooks-requests-workareas-approve' %}?id={{ spacecharacteristic.id }}">Potvrdi</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

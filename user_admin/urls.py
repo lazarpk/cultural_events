@@ -30,4 +30,6 @@ urlpatterns = [
     path('codebooks-requests/news/approve/', views.codebooksRequestsNewsApprove ,name='codebooks-requests-news-approve'),
     path('codebooks-requests/workareas', views.codebooksRequestsWorkareas ,name='codebooks-requests-workareas'),
     path('codebooks-requests/workareas/approve/', views.codebooksRequestsWorkareasApprove ,name='codebooks-requests-workareas-approve'),
+    path('codebooks-requests/spacecharacteristics', views.codebooksRequestsSpacecharacteristics ,name='codebooks-requests-spacecharacteristics'),
+    path('codebooks-requests/spacecharacteristics/approve/', views.codebooksRequestsSpacecharacteristicsApprove ,name='codebooks-requests-workareas-approve')
 ]

@@ -452,3 +452,17 @@ def codebooksRequestsWorkareasApprove (request):
     category.approved = 1
     category.save()
     return redirect('/administration/codebooks-requests/workareas')
+
+def codebooksRequestsSpacecharacteristics (request):
+    categories = SpaceCharacteristics.objects.all().filter(approved=0)
+    context = {
+        'categories': categories
+    }
+    return render(request, 'codebooks-requests-spacecharacteristics.html', context)
+
+def codebooksRequestsSpacecharacteristicsApprove (request):
+    id = request.GET.get('id')
+    category = SpaceCharacteristics.objects.get(id=id)
+    category.approved = 1
+    category.save()
+    return redirect('/administration/codebooks-requests/spacecharacteristics')
