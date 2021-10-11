@@ -8,7 +8,7 @@
     <div class="row parent">
         <div class="col-5 child">
             <h1>Dodaj novu stavku</h1>
-            <form method="post" action="{% url 'reg_org' %}">
+            <form method="post" action="{% url 'categories-news-new' %}">
                 {% csrf_token %}
                 {% for field in form %}
                 <div class="mb-3">

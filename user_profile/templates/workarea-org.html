@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Kategorije za oblasti delovanja</title>
+{% endblock %}
+
+{% block body %}
+<div class="row parent mt-3">
+    <div class="col-6 child">
+        <h1>Ažuriraj kategorije za oblasti delovanja</h1>
+            <form action="{% url 'workareas-org' %}">
+                {% for field in form %}
+                <div class="mb-3">
+                    <label class="form-label" id="{{ field.auto_id }}">{{ field.label }}</label>
+                    {{ field }}
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-dark rounded-pill" value="Pretraži"/>
+                </div>
+                {% endfor %}
+            </form>
+    </div>
+</div>
+<div class="row mt-3 mb-3">
+    <a class="btn btn-dark rounded-pill" href="{% url 'workareas-new' %}">Dodaj novu stavku</a>
+</div>
+<div class="row">
+    <div class="col" style = "height: 300px;overflow: auto;">
+        <table id="tabela" class="table">
+            <thead>
+            <th>ID</th>
+            <th>Ime</th>
+            <th>Važi od</th>
+            <th>Važi do</th>
+            <th></th>
+            </thead>
+            <tbody>
+            {% for workarea in workareas %}
+            <tr>
+                <td>{{ workarea.id }}</td>
+                <td>{{ workarea.name }}</td>
+                <td>{{ workarea.valid_from }}</td>
+                <td>{{ workarea.valid_to }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -115,10 +115,15 @@ def AddEventsCategory (request):
             CategoryEvents.name = form.cleaned_data.get('name')
             CategoryEvents.valid_from = form.cleaned_data.get('valid_from')
             CategoryEvents.valid_to = form.cleaned_data.get('valid_to')
-            CategoryEvents.approved = 1
+            if request.user.is_superuser:
+                CategoryEvents.approved = 1
+            else:
+                CategoryEvents.approved = 0
             CategoryEvents.save()
-
-            return redirect('/administration/categories-events')
+            if request.user.is_superuser:
+                return redirect('/administration/categories-events')
+            else:
+                return redirect('/profile/categories-events')
         else:
             return render(request, 'categories-events-new.html', {'form': form})
 
@@ -135,10 +140,15 @@ def AddNewsCategory (request):
             Category.Name = form.cleaned_data.get('Name')
             Category.Valid_from = form.cleaned_data.get('valid_from')
             Category.Valid_to = form.cleaned_data.get('valid_to')
-            Category.approved = 1
+            if request.user.is_superuser:
+                Category.approved = 1
+            else:
+                Category.approved = 0
             Category.save()
-
-            return redirect('/administration/categories-news')
+            if request.user.is_superuser:
+                return redirect('/administration/categories-news')
+            else:
+                return redirect('/profile/categories-news')
         else:
             return render(request, 'categories-news-new.html', {'form': form})
 
@@ -155,10 +165,15 @@ def AddWorkArea (request):
             WorkArea.name = form.cleaned_data.get('name')
             WorkArea.valid_from = form.cleaned_data.get('valid_from')
             WorkArea.valid_to = form.cleaned_data.get('valid_to')
-            WorkArea.approved = 1
+            if request.user.is_superuser:
+                WorkArea.approved = 1
+            else:
+                WorkArea.approved = 0
             WorkArea.save()
-
-            return redirect('/administration/workareas/')
+            if request.user.is_superuser:
+                return redirect('/administration/workareas/')
+            else:
+                return redirect('/profile/workareas')
         else:
             return render(request, 'workareas-new.html', {'form': form})
 
@@ -175,9 +190,14 @@ def AddSpaceCharacteristic (request):
             SpaceCharacteristics.name = form.cleaned_data.get('name')
             SpaceCharacteristics.valid_from = form.cleaned_data.get('valid_from')
             SpaceCharacteristics.valid_to = form.cleaned_data.get('valid_to')
-            SpaceCharacteristics.approved = 1
+            if request.user.is_superuser:
+                SpaceCharacteristics.approved = 1
+            else:
+                SpaceCharacteristics.approved = 0
             SpaceCharacteristics.save()
-
-            return redirect('/administration/spacecharacteristics')
+            if request.user.is_superuser:
+                return redirect('/administration/spacecharacteristics')
+            else:
+                return redirect('/profile/spacecharacteristics')
         else:
             return render(request, 'spacecharacteristics-new.html', {'form': form})
