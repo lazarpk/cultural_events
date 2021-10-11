@@ -111,7 +111,7 @@ def codebooksEdit (request):
     return render(request, 'codebooks-edit-org.html')
 
 def eventsCategoriesOrg (request):
-    categories = CategoryEvents.objects.all()
+    categories = CategoryEvents.objects.all().filter(approved=1)
     form = EventsCategorySearchForm(request.GET)
     if (form.is_valid()):
         name = form.cleaned_data.get('name')
@@ -123,7 +123,7 @@ def eventsCategoriesOrg (request):
     return render(request, 'categories-events-org.html', context)
 
 def newsCategoriesOrg (request):
-    categories = Category.objects.all()
+    categories = Category.objects.all().filter(approved=1)
     form = NewsCategorySearchForm(request.GET)
     if (form.is_valid()):
         name = form.cleaned_data.get('name')
@@ -135,7 +135,7 @@ def newsCategoriesOrg (request):
     return render(request, 'categories-news-org.html', context)
 
 def workAreaOrg(request):
-    workareas = WorkArea.objects.all()
+    workareas = WorkArea.objects.all().filter(approved=1)
     form = WorkAreaSearchForm(request.GET)
     if (form.is_valid()):
         name = form.cleaned_data.get('name')
@@ -147,7 +147,7 @@ def workAreaOrg(request):
     return render (request, 'workarea-org.html', context)
 
 def spaceCharacteristicOrg(request):
-    spacecharacteristics = SpaceCharacteristics.objects.all()
+    spacecharacteristics = SpaceCharacteristics.objects.all().filter(approved=1)
     form = SpaceCharacteristicsSearchForm(request.GET)
     if (form.is_valid()):
         name = form.cleaned_data.get('name')
