@@ -424,3 +424,17 @@ def codebooksRequestsEventsApprove(request):
     category.approved = 1
     category.save()
     return redirect('/administration/codebooks-requests/events')
+
+def codebooksRequestsNews(request):
+    categories = Category.objects.all().filter(approved=0)
+    context = {
+        'categories': categories
+    }
+    return render(request, 'codebooks-requests-news.html', context)
+
+def codebooksRequestsNewsApprove (request):
+    id = request.GET.get ('id')
+    category = Category.objects.get(id=id)
+    category.approved = 1
+    category.save()
+    return redirect('/administration/codebooks-requests/news')

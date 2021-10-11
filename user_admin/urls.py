@@ -25,5 +25,7 @@ urlpatterns = [
     path('spacecharacteristics-delete', views.spaceCharacteristicsDelete, name='spacecharacteristics-delete'),
     path('codebooks-requests/', views.codebooksRequests, name='codebooks-requests'),
     path('codebooks-requests/events', views.codebooksRequestsEvents, name='codebooks-requests-events'),
-    path('codebooks-requests/events/approve/', views.codebooksRequestsEventsApprove ,name='codebooks-requests-events-approve')
+    path('codebooks-requests/events/approve/', views.codebooksRequestsEventsApprove ,name='codebooks-requests-events-approve'),
+    path('codebooks-requests/news', views.codebooksRequestsNews, name='codebooks-requests-news'),
+    path('codebooks-requests/news/approve/', views.codebooksRequestsNewsApprove ,name='codebooks-requests-news-approve'),
 ]
