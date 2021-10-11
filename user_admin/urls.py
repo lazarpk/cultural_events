@@ -28,4 +28,6 @@ urlpatterns = [
     path('codebooks-requests/events/approve/', views.codebooksRequestsEventsApprove ,name='codebooks-requests-events-approve'),
     path('codebooks-requests/news', views.codebooksRequestsNews, name='codebooks-requests-news'),
     path('codebooks-requests/news/approve/', views.codebooksRequestsNewsApprove ,name='codebooks-requests-news-approve'),
+    path('codebooks-requests/workareas', views.codebooksRequestsWorkareas ,name='codebooks-requests-workareas'),
+    path('codebooks-requests/workareas/approve/', views.codebooksRequestsWorkareasApprove ,name='codebooks-requests-workareas-approve'),
 ]

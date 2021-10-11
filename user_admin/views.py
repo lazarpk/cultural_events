@@ -438,3 +438,17 @@ def codebooksRequestsNewsApprove (request):
     category.approved = 1
     category.save()
     return redirect('/administration/codebooks-requests/news')
+
+def codebooksRequestsWorkareas (request):
+    categories = WorkArea.objects.all().filter(approved=0)
+    context = {
+        'categories': categories
+    }
+    return render(request, 'codebooks-requests-workareas.html', context)
+
+def codebooksRequestsWorkareasApprove (request):
+    id = request.GET.get ('id')
+    category = WorkArea.objects.get(id=id)
+    category.approved = 1
+    category.save()
+    return redirect('/administration/codebooks-requests/workareas')
