@@ -1,0 +1,18 @@
+{% extends 'index-admin.html' %}
+
+{% block title %}
+<title>Zahtevi za izmenu šifarnika</title>
+{% endblock %}
+
+{% block second_body %}
+<div class="row mt-3">
+    <div class="col-12">
+        <a class="btn btn-dark mt-2 rounded-pill" href="{% url 'codebooks-requests-events' %}">Zahtevi za šifarnik događaja</a><br>
+        <a class="btn btn-dark mt-2 rounded-pill" href="#">Zahtevi za šifarnik vesti</a><br>
+        <a class="btn btn-dark mt-2 rounded-pill" href="#">Zahtevi za šifarnik oblasti delovanja</a><br>
+        <a class="btn btn-dark mt-2 rounded-pill" href="#">Zahtevi za šifarnik karakteristika prostora</a>
+
+    </div>
+</div>
+{% endblock %}
+

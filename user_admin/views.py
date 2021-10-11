@@ -407,3 +407,20 @@ def spaceCharacteristicsDelete(request):
     category = SpaceCharacteristics.objects.get(id=id)
     category.delete()
     return redirect('/administration/spacecharacteristics')
+
+def codebooksRequests(request):
+    return render(request, 'codebooks-requests.html')
+
+def codebooksRequestsEvents(request):
+    categories = CategoryEvents.objects.all().filter(approved=0)
+    context = {
+        'categories': categories
+    }
+    return render(request, 'codebooks-requests-events.html', context)
+
+def codebooksRequestsEventsApprove(request):
+    id = request.GET.get('id')
+    category = CategoryEvents.objects.get(id=id)
+    category.approved = 1
+    category.save()
+    return redirect('/administration/codebooks-requests/events')
