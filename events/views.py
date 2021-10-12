@@ -52,11 +52,13 @@ def event (request, *args, **kwargs):
     id = kwargs['id']
     event = Events.objects.get (pk = id)
     categories = event.category.all()
+    age = event.age.all()
+    spacecharacteristics = event.space_characteristics.all()
 
     if event is None:
         raise Http404
     else:
-        return render (request, 'events/event.html', {'event': event, 'categories': categories})
+        return render (request, 'events/event.html', {'event': event, 'categories': categories, 'age':age, 'spacecharacteristics':spacecharacteristics})
 
 def archive_event (request, *args, **kwargs):
     id = kwargs ['id']
