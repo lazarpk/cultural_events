@@ -38,11 +38,29 @@ class ArticleForm(ModelForm):
 class AddCategoryForm (ModelForm):
     class Meta:
         model = Category
-        fields = ['Name']
+        fields = ['Name', 'valid_from', 'valid_to']
+        labels = {'Name': 'Naziv', 'valid_from': 'Vazi od', 'valid_to': 'Vazi do'}
         widgets = {
-            'Name':forms.TextInput (
+            'Name': forms.TextInput (
                 attrs = {
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'title': 'Unesite naziv stavke!'
                 }
             ),
+            'valid_from' : forms.DateTimeInput (
+                attrs = {
+                    'type': 'date',
+                    'class': 'form-control rounded-pill',
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite datum!'
+                }
+            ),
+            'valid_to': forms.DateTimeInput (
+                attrs = {
+                    'type': 'date',
+                    'class': 'form-control rounded-pill',
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite datum!'
+                }
+            )
         }

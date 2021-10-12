@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
 from .models import Profile, StreetAddress , City, WorkArea
+from django.forms import ModelForm
 
 
 class RegisterForm(UserCreationForm):
@@ -235,5 +236,36 @@ class RegisterFormOrg(UserCreationForm):
             raise forms.ValidationError("Email already taken!")
 
         return email
+
+
+class AddWorkAreaForm(ModelForm):
+    class Meta:
+        model = WorkArea
+        fields = ['name', 'valid_from', 'valid_to']
+        labels = {'name': 'Naziv', 'valid_from': 'Vazi od', 'valid_to': 'Vazi do'}
+        widgets = {
+            'name': forms.TextInput (
+                attrs = {
+                    'class': 'form-control',
+                    'title': 'Unesite naziv stavke!'
+                }
+            ),
+            'valid_from' : forms.DateTimeInput (
+                attrs = {
+                    'type': 'date',
+                    'class': 'form-control rounded-pill',
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite datum!'
+                }
+            ),
+            'valid_to': forms.DateTimeInput (
+                attrs = {
+                    'type': 'date',
+                    'class': 'form-control rounded-pill',
+                    'data-toggle': 'tooltip',
+                    'title': 'Unesite datum!'
+                }
+            )
+        }
 
 

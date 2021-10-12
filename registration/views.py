@@ -1,10 +1,13 @@
 from django.contrib.auth.models import Permission
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
-from .forms import RegisterForm, RegisterFormOrg, User
+from .forms import RegisterForm, RegisterFormOrg, User, AddWorkAreaForm
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
 from .models import Profile
+from events.forms import AddEventCategoryForm, AddSpaceCharacteristicsForm
+from news.forms import AddCategoryForm
+from events.models import CategoryEvents
 
 # Create your views here.
 def registration (request):
@@ -107,3 +110,106 @@ def login_success (request):
         return redirect('/')
     else:
         return redirect('/profile')
+
+
+
+#TODO: ***POGLEDATI ZASTO NE PREPOZNAJE NAVEDENE VARIJABLE (SIVE)***
+
+def AddEventsCategory (request):
+    if request.method == "GET":
+        form = AddEventCategoryForm()
+        return render(request, 'categories-events-new.html', {'form': form})
+    elif request.method == "POST":
+        form = AddEventCategoryForm(request.POST)
+
+        if (form.is_valid()):
+            CategoryEvents = form.save(commit=False)
+            CategoryEvents.name = form.cleaned_data.get('name')
+            CategoryEvents.valid_from = form.cleaned_data.get('valid_from')
+            CategoryEvents.valid_to = form.cleaned_data.get('valid_to')
+            if request.user.is_superuser:
+                CategoryEvents.approved = 1
+            else:
+                CategoryEvents.approved = 0
+            CategoryEvents.save()
+            if request.user.is_superuser:
+                return redirect('/administration/categories-events')
+            else:
+                return redirect('/profile/categories-events')
+        else:
+            return render(request, 'categories-events-new.html', {'form': form})
+
+
+def AddNewsCategory (request):
+    if request.method == "GET":
+        form = AddCategoryForm()
+        return render(request, 'categories-news-new.html', {'form': form})
+    elif request.method == "POST":
+        form = AddCategoryForm(request.POST)
+
+        if (form.is_valid()):
+            Category = form.save(commit=False)
+            Category.Name = form.cleaned_data.get('Name')
+            Category.Valid_from = form.cleaned_data.get('valid_from')
+            Category.Valid_to = form.cleaned_data.get('valid_to')
+            if request.user.is_superuser:
+                Category.approved = 1
+            else:
+                Category.approved = 0
+            Category.save()
+            if request.user.is_superuser:
+                return redirect('/administration/categories-news')
+            else:
+                return redirect('/profile/categories-news')
+        else:
+            return render(request, 'categories-news-new.html', {'form': form})
+
+
+def AddWorkArea (request):
+    if request.method == "GET":
+        form = AddWorkAreaForm()
+        return render(request, 'workareas-new.html', {'form': form})
+    elif request.method == "POST":
+        form = AddWorkAreaForm(request.POST)
+
+        if (form.is_valid()):
+            WorkArea = form.save(commit=False)
+            WorkArea.name = form.cleaned_data.get('name')
+            WorkArea.valid_from = form.cleaned_data.get('valid_from')
+            WorkArea.valid_to = form.cleaned_data.get('valid_to')
+            if request.user.is_superuser:
+                WorkArea.approved = 1
+            else:
+                WorkArea.approved = 0
+            WorkArea.save()
+            if request.user.is_superuser:
+                return redirect('/administration/workareas/')
+            else:
+                return redirect('/profile/workareas')
+        else:
+            return render(request, 'workareas-new.html', {'form': form})
+
+
+def AddSpaceCharacteristic (request):
+    if request.method == "GET":
+        form = AddSpaceCharacteristicsForm()
+        return render(request, 'spacecharacteristics-new.html', {'form': form})
+    elif request.method == "POST":
+        form = AddSpaceCharacteristicsForm(request.POST)
+
+        if (form.is_valid()):
+            SpaceCharacteristics = form.save(commit=False)
+            SpaceCharacteristics.name = form.cleaned_data.get('name')
+            SpaceCharacteristics.valid_from = form.cleaned_data.get('valid_from')
+            SpaceCharacteristics.valid_to = form.cleaned_data.get('valid_to')
+            if request.user.is_superuser:
+                SpaceCharacteristics.approved = 1
+            else:
+                SpaceCharacteristics.approved = 0
+            SpaceCharacteristics.save()
+            if request.user.is_superuser:
+                return redirect('/administration/spacecharacteristics')
+            else:
+                return redirect('/profile/spacecharacteristics')
+        else:
+            return render(request, 'spacecharacteristics-new.html', {'form': form})

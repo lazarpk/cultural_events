@@ -1,24 +1,28 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from django.contrib.auth.models import User
-from .forms import UserSearchForm, NewsCategorySearchForm, EventsCategorySearchForm, ReportsCreateForm, GetTheReport
+from .forms import UserSearchForm, NewsCategorySearchForm, EventsCategorySearchForm, ReportsCreateForm, GetTheReport, WorkAreaSearchForm, SpaceCharacteristicsSearchForm
 from user_profile.forms import UpdateUserForm, UpdateProfileForm
 from registration.models import Profile
 from news.models import Category
 from news.forms import AddCategoryForm
 from django.shortcuts import redirect
-from events.models import CategoryEvents
-from events.forms import AddEventCategoryForm
+from events.models import CategoryEvents, SpaceCharacteristics
+from events.forms import AddEventCategoryForm, AddSpaceCharacteristicsForm
 from events.models import Events
 from news.models import Article
 from adverts.models import Adverts
 from polls.models import Poll
 from home.forms import AboutUsForm
 from home.models import AboutUs
+from registration.models import WorkArea
+from registration.forms import AddWorkAreaForm
 import datetime
 from django.utils import timezone
 from .models import Reports
 # Create your views here.
+
+
 def index (request):
     curently_user = User.objects.get(id=request.user.id)
     if curently_user.is_superuser:
@@ -144,6 +148,8 @@ def newsCategoriesEdit (request):
             category = Category.objects.get(id=id)
             name = form.cleaned_data.get ('Name')
             category.Name = name
+            category.valid_from = form.cleaned_data.get('valid_from')
+            category.valid_to = form.cleaned_data.get('valid_to')
             category.save()
             #return render(request, 'index-admin.html')
             return redirect ('/administration/categories-news')
@@ -183,6 +189,8 @@ def eventsCategoriesEdit (request):
             category = CategoryEvents.objects.get(id=id)
             name = form.cleaned_data.get ('name')
             category.name = name
+            category.valid_from = form.cleaned_data.get ('valid_from')
+            category.valid_to = form.cleaned_data.get('valid_to')
             category.save()
             return redirect ('/administration/categories-events')
         else:
@@ -286,9 +294,175 @@ def reports (request):
         }
         return render(request, 'reports.html', context)
 
+
 def codebooksEdit (request):
     curently_user = User.objects.get(id=request.user.id)
     if curently_user.is_superuser:
         return render(request, 'codebooks-edit.html')
     else:
         raise Http404
+
+
+def workArea (request):
+    workareas = WorkArea.objects.all()
+    form = WorkAreaSearchForm(request.GET)
+    if (form.is_valid()):
+        name = form.cleaned_data.get('name')
+        workareas = workareas.filter(name__icontains = name)
+    context = {
+        'form':form,
+        'workareas': workareas
+    }
+    return render (request, 'workarea.html', context)
+
+
+def workAreaEdit (request):
+    if (request.method == "GET"):
+        id = request.GET.get('id')
+        work_area = WorkArea.objects.get(id=id)
+        form = AddWorkAreaForm(instance=work_area)
+        context = {
+            'form': form,
+            'id': id
+        }
+        return render(request, 'workarea-edit.html', context)
+    elif (request.method == "POST"):
+        id = request.POST.get("id")
+        form = AddWorkAreaForm(request.POST)
+        if (form.is_valid()):
+            work_area = WorkArea.objects.get(id=id)
+            name = form.cleaned_data.get('name')
+            work_area.name = name
+            work_area.valid_from = form.cleaned_data.get('valid_from')
+            work_area.valid_to = form.cleaned_data.get('valid_to')
+            work_area.save()
+            return redirect('/administration/workareas')
+        else:
+            context = {
+                'form': form,
+                'id': id
+            }
+            return render(request, 'workarea-edit.html', context)
+
+
+def spaceCharacteristic (request):
+    spacecharacteristics = SpaceCharacteristics.objects.all()
+    form = SpaceCharacteristicsSearchForm(request.GET)
+    if (form.is_valid()):
+        name = form.cleaned_data.get('name')
+        spacecharacteristics = spacecharacteristics.filter(name__icontains = name)
+    context = {
+        'form':form,
+        'spacecharacteristics': spacecharacteristics
+    }
+    return render (request, 'spacecharacteristics.html', context)
+
+
+def spaceCharacteristicsEdit (request):
+    if (request.method == "GET"):
+        id = request.GET.get('id')
+        space_characteristics = SpaceCharacteristics.objects.get(id=id)
+        print(space_characteristics)
+        form = AddSpaceCharacteristicsForm(instance=space_characteristics)
+        context = {
+            'form': form,
+            'id': id
+        }
+        return render(request, 'spacecharacteristics-edit.html', context)
+    elif (request.method == "POST"):
+        id = request.POST.get("id")
+        form = AddWorkAreaForm(request.POST)
+        if (form.is_valid()):
+            space_characteristics = SpaceCharacteristics.objects.get(id=id)
+            name = form.cleaned_data.get('name')
+            space_characteristics.name = name
+            space_characteristics.valid_from = form.cleaned_data.get('valid_from')
+            space_characteristics.valid_to = form.cleaned_data.get('valid_to')
+            space_characteristics.save()
+            return redirect('/administration/spacecharacteristics')
+        else:
+            context = {
+                'form': form,
+                'id': id
+            }
+            return render(request, 'spacecharacteristics-edit.html', context)
+
+def eventsCategoriesDelete (request):
+    id = request.GET.get ('id')
+    category = CategoryEvents.objects.get(id=id)
+    category.delete()
+    return redirect('/administration/categories-events')
+def newsCategoriesDelete (request):
+    id = request.GET.get('id')
+    category = Category.objects.get(id=id)
+    category.delete()
+    return redirect('/administration/categories-news')
+def workAreaDelete (request):
+    id = request.GET.get('id')
+    category = WorkArea.objects.get(id=id)
+    category.delete()
+    return redirect('/administration/workareas')
+def spaceCharacteristicsDelete(request):
+    id = request.GET.get('id')
+    category = SpaceCharacteristics.objects.get(id=id)
+    category.delete()
+    return redirect('/administration/spacecharacteristics')
+
+def codebooksRequests(request):
+    return render(request, 'codebooks-requests.html')
+
+def codebooksRequestsEvents(request):
+    categories = CategoryEvents.objects.all().filter(approved=0)
+    context = {
+        'categories': categories
+    }
+    return render(request, 'codebooks-requests-events.html', context)
+
+def codebooksRequestsEventsApprove(request):
+    id = request.GET.get('id')
+    category = CategoryEvents.objects.get(id=id)
+    category.approved = 1
+    category.save()
+    return redirect('/administration/codebooks-requests/events')
+
+def codebooksRequestsNews(request):
+    categories = Category.objects.all().filter(approved=0)
+    context = {
+        'categories': categories
+    }
+    return render(request, 'codebooks-requests-news.html', context)
+
+def codebooksRequestsNewsApprove (request):
+    id = request.GET.get ('id')
+    category = Category.objects.get(id=id)
+    category.approved = 1
+    category.save()
+    return redirect('/administration/codebooks-requests/news')
+
+def codebooksRequestsWorkareas (request):
+    categories = WorkArea.objects.all().filter(approved=0)
+    context = {
+        'categories': categories
+    }
+    return render(request, 'codebooks-requests-workareas.html', context)
+
+def codebooksRequestsWorkareasApprove (request):
+    id = request.GET.get ('id')
+    category = WorkArea.objects.get(id=id)
+    category.approved = 1
+    category.save()
+    return redirect('/administration/codebooks-requests/workareas')
+
+def codebooksRequestsSpacecharacteristics (request):
+    categories = SpaceCharacteristics.objects.all().filter(approved=0)
+    context = {
+        'categories': categories
+    }
+    return render(request, 'codebooks-requests-spacecharacteristics.html', context)
+
+def codebooksRequestsSpacecharacteristicsApprove (request):
+    id = request.GET.get('id')
+    category = SpaceCharacteristics.objects.get(id=id)
+    category.approved = 1
+    category.save()
+    return redirect('/administration/codebooks-requests/spacecharacteristics')

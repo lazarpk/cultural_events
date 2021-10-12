@@ -131,3 +131,29 @@ class GetTheReport (forms.ModelForm):
                 }
             )
         }
+
+
+class WorkAreaSearchForm ( forms.Form ):
+    name = forms.CharField (
+        required= False,
+        label='Naziv oblasti delovanja:',
+        widget= forms.TextInput (
+            attrs= {
+                'class': 'form-control rounded-pill',
+                'placeholder': 'Pretraži oblasti delovanja'
+            }
+        )
+    )
+
+
+class SpaceCharacteristicsSearchForm ( forms.Form ):
+    name = forms.CharField (
+        required= False,
+        label='Karakteristike prostora:',
+        widget= forms.TextInput (
+            attrs= {
+                'class': 'form-control rounded-pill',
+                'placeholder': 'Pretraži karakteristike prostora'
+            }
+        )
+    )

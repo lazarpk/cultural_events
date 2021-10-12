@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Ažuriraj šifarnik</title>
+{% endblock %}
+
+{% block body %}
+<div class="row mt-3">
+    <div class="col-12">
+        <a class="btn btn-dark mt-2 rounded-pill" href="{% url 'categories-events-org' %}">Šifarnik kategorija događaja</a>
+        <a class="btn btn-dark mt-2 rounded-pill" href="{% url 'categories-news-org' %}">Šifarnik kategorija vesti</a>
+        <a class="btn btn-dark mt-2 rounded-pill" href="{% url 'workareas-org' %}">Šifarnik oblasti delovanja</a>
+        <a class="btn btn-dark mt-2 rounded-pill" href="{% url 'spacecharacteristics-org' %}">Šifarnik karakteristika prostora</a>
+
+    </div>
+</div>
+{% endblock %}
+

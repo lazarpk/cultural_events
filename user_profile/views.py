@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import HttpResponse, Http404
-from registration.models import Profile, StreetAddress
+from registration.models import Profile, StreetAddress, WorkArea
 from .forms import UpdateUserForm, UpdateProfileForm
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from news.models import Article
 from .forms import OrgSearchForm
 from polls.models import Poll
+from events.models import CategoryEvents, SpaceCharacteristics
+from user_admin.forms import EventsCategorySearchForm, NewsCategorySearchForm, WorkAreaSearchForm, SpaceCharacteristicsSearchForm
+from news.models import Category
 # Create your views here.
 def details (request):
 
@@ -146,3 +149,54 @@ def profileUser (request):
         'profile_work_area': profile_work_area
     }
     return render(request, 'profile-user.html', context)
+
+def codebooksEdit (request):
+    return render(request, 'codebooks-edit-org.html')
+
+def eventsCategoriesOrg (request):
+    categories = CategoryEvents.objects.all().filter(approved=1)
+    form = EventsCategorySearchForm(request.GET)
+    if (form.is_valid()):
+        name = form.cleaned_data.get('name')
+        categories = categories.filter(name__icontains=name)
+    context = {
+        'form': form,
+        'categories': categories
+    }
+    return render(request, 'categories-events-org.html', context)
+
+def newsCategoriesOrg (request):
+    categories = Category.objects.all().filter(approved=1)
+    form = NewsCategorySearchForm(request.GET)
+    if (form.is_valid()):
+        name = form.cleaned_data.get('name')
+        categories = categories.filter(Name__icontains=name)
+    context = {
+        'form': form,
+        'categories': categories
+    }
+    return render(request, 'categories-news-org.html', context)
+
+def workAreaOrg(request):
+    workareas = WorkArea.objects.all().filter(approved=1)
+    form = WorkAreaSearchForm(request.GET)
+    if (form.is_valid()):
+        name = form.cleaned_data.get('name')
+        workareas = workareas.filter(name__icontains = name)
+    context = {
+        'form':form,
+        'workareas': workareas
+    }
+    return render (request, 'workarea-org.html', context)
+
+def spaceCharacteristicOrg(request):
+    spacecharacteristics = SpaceCharacteristics.objects.all().filter(approved=1)
+    form = SpaceCharacteristicsSearchForm(request.GET)
+    if (form.is_valid()):
+        name = form.cleaned_data.get('name')
+        spacecharacteristics = spacecharacteristics.filter(name__icontains=name)
+    context = {
+        'form': form,
+        'spacecharacteristics': spacecharacteristics
+    }
+    return render(request, 'spacecharacteristics-org.html', context)

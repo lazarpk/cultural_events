@@ -1,17 +1,18 @@
-{% extends 'base.html' %}
+{% extends 'index-admin.html' %}
 
 {% block title %}
 <title>Ažuriraj šifarnik</title>
 {% endblock %}
 
-{% block body %}
+{% block second_body %}
 <div class="row mt-3">
-    <div class="col-6">
-        <a class="btn btn-dark rounded-pill" href="{% url 'categories-events' %}?id={{ categoryevents.id }}">Šifarnik kategorija događaja</a>
-        <a class="btn btn-dark rounded-pill" href="{% url 'categories-news' %}?id={{ category.id }}">Šifarnik kategorija vesti</a>
-<!--        <a class="btn btn-dark rounded-pill" href="{% url '#' %}?id={{ #.id }}">Šifarnik oblasti delovanja</a>-->
-<!--        <a class="btn btn-dark rounded-pill" href="{% url '#' %}?id={{ #.id }}">Šifarnik karakteristika prostora</a>-->
+    <div class="col-12">
+        <a class="btn btn-dark mt-2 rounded-pill" href="{% url 'categories-events' %}">Šifarnik kategorija događaja</a><br>
+        <a class="btn btn-dark mt-2 rounded-pill" href="{% url 'categories-news' %}">Šifarnik kategorija vesti</a><br>
+        <a class="btn btn-dark mt-2 rounded-pill" href="{% url 'workareas' %}">Šifarnik oblasti delovanja</a><br>
+        <a class="btn btn-dark mt-2 rounded-pill" href="{% url 'spacecharacteristics' %}">Šifarnik karakteristika prostora</a>
 
     </div>
 </div>
 {% endblock %}
+

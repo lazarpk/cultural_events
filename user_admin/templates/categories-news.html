@@ -21,12 +21,17 @@
             </form>
     </div>
 </div>
+<div class="row mb-3">
+    <a class="btn btn-dark rounded-pill" href="{% url 'categories-news-new' %}">Dodaj novu stavku</a>
+</div>
 <div class="row">
     <div class="col" style = "height: 300px;overflow: auto;">
         <table class="table">
             <thead>
             <th>ID</th>
             <th>Ime</th>
+            <th>Važi od</th>
+            <th>Važi do</th>
             <th></th>
             </thead>
             <tbody>
@@ -34,8 +39,12 @@
             <tr>
                 <td>{{ category.id }}</td>
                 <td>{{ category.Name }}</td>
+                <td>{{ category.valid_from }}</td>
+                <td>{{ category.valid_to }}</td>
                 <td>
-                    <a class="btn btn-dark rounded-pill" href="{% url 'categories-news-edit' %}?id={{ category.id }}">Edit</a>
+                    <a class="btn btn-dark rounded-pill" href="{% url 'categories-news-edit' %}?id={{ category.id }}">Ažuriraj</a>
+                    <a class="btn btn-dark rounded-pill" href="{% url 'categories-news-delete' %}?id={{ category.id }}">Obriši</a>
+                    <!-- opcija delete nije namestena -->
                 </td>
             </tr>
             {% endfor %}
