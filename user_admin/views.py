@@ -105,7 +105,7 @@ def editUsers (request):
             context = {
                 'form': form,
             }
-            print('greska 2')
+
             try:
                 form1 = UpdateProfileForm (instance=Profile.objects.get(user_id = user.id))
                 context = {
