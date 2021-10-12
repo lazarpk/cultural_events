@@ -241,11 +241,11 @@ def aboutUsEdit (request):
 
         if (form.is_valid()):
             content1 = form.cleaned_data.get('content1')
-            content2 = form.cleaned_data.get('content2')
+            #content2 = form.cleaned_data.get('content2')
             obj.content1 = content1
-            obj.content2 = content2
+            #obj.content2 = content2
             obj.save()
-            return redirect('/about')
+            return redirect('/about-us')
 
         else:
             context = {

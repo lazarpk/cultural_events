@@ -16,15 +16,9 @@ class EmailForm(forms.Form):
 class AboutUsForm (ModelForm):
     class Meta:
         model = AboutUs
-        fields = ['content1', 'content2']
+        fields = ['content1']
         widgets = {
             'content1': forms.Textarea (
-                attrs= {
-                    'class': 'form-control',
-                    'rows': 16
-                }
-            ),
-            'content2': forms.Textarea (
                 attrs= {
                     'class': 'form-control',
                     'rows': 16
