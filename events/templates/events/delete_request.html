@@ -15,10 +15,10 @@
                         <a class="text-dark" href="/events/{{ obj.Event.id }}">{{ obj.Event.event_name }}</a>
                     </h3>
                     <p class="card-text mb-auto">{{ obj.Event.text }}</p>
-                    <p class="card-text mb-auto">Vrsta dogadjaja: {{ obj.Event.type }}</p>
+                    <p class="card-text mb-auto">Vrsta dogadjaja: {% for item in obj.Event.category.all %} {{ item.name }} {% endfor %}</p>
                     <p class="card-text mb-auto">Mesto i vreme odrzavanja: {{ obj.Event.place }}, &nbsp {{ obj.Event.time }} </p>
-                    <p class="card-text mb-auto">Uzrast: {{ obj.Event.age }}</p>
-                    <p class="card-text mb-auto">Karakteristike prostora: {{ obj.Event.space_characteristics }}</p>
+                    <p class="card-text mb-auto">Uzrast: {% for item in obj.Event.age.all %} {{ item.name }} {% endfor %}</p>
+                    <p class="card-text mb-auto">Karakteristike prostora: {% for item in obj.Event.space_characteristics.all %} {{ item.name }} {% endfor %}</p>
                     <p class="card-text mb-auto">Vazi do: {{ obj.Event.expiration_date }}</p>
                     <div class="mb-1 text-muted">{{ obj.Event.date_published }} &nbsp&nbsp{{ obj.Event.author.username }}</div>
                         <form action="{% url "events:delete_event" obj.Event_id %}"

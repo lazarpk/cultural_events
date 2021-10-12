@@ -90,6 +90,7 @@ def delete_event_request (request, *args, **kwargs):
 
 def delete_request_admin(request):
     queryset = EventDeleteRequest.objects.all();
+    print(queryset)
     if not queryset:
         message = 'Nema novih zahteva za brisanje.'
         return render (request, 'events/request_success.html', {'success_message' : message})
