@@ -12,6 +12,7 @@ class Poll(models.Model):
     option_three_count = models.IntegerField(default=0)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     public= models.BooleanField('Rezultati ankete su javni', default=True)
+    voter = models.ManyToManyField(User, related_name='voter')
 
     class Meta:
         permissions = [
