@@ -33,13 +33,17 @@ def create (request):
         if (form.is_valid()):
             event = form.save(commit = False)
             category = form.cleaned_data.get ('category')
+            age = form.cleaned_data.get('age')
+            spacecharacteristics = form.cleaned_data.get('space_characteristics')
             current_user = request.user
             event.author = current_user
             event.save()
             event.category.set(category)
+            event.age.set(age)
+            event.space_characteristics.set(spacecharacteristics)
             #return redirect ('events')
 
-            return redirect ('index')
+            return redirect ('/events/')
         else:
 
             return render (request, 'events/create.html', {'form' : form})

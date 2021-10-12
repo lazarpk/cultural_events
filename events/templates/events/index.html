@@ -24,8 +24,8 @@
                     <p class="card-text mb-auto">{{ event.text }}</p>
                     <!-- <p class="card-text mb-auto">Kategorija: </p> -->
                     <p class="card-text mb-auto">Mesto i vreme odrzavanja: {{ event.place }}, &nbsp {{ event.time }} </p>
-                    <p class="card-text mb-auto">Uzrast: {{ event.age }}</p>
-                    <p class="card-text mb-auto">Karakteristike prostora: {{ event.space_characteristics }}</p>
+                    <p class="card-text mb-auto">Uzrast: {% for item in event.age.all %} {{ item.name }} {% endfor %}</p>
+                    <p class="card-text mb-auto">Karakteristike prostora: {% for item in event.space_characteristics.all %} {{ item.name }} {% endfor %}</p>
                     <p class="card-text mb-auto">Vazi do: {{ event.expiration_date }}</p>
                     <div class="mb-1 text-muted">{{ event.date_published }} &nbsp&nbsp{{ event.author.username }}</div>
                         {% if event.author.id == user.id %}
