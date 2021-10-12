@@ -1,46 +1,61 @@
 {% extends 'base.html' %}
 
 {% block title %}
+<title>Oglasi</title>
 {% endblock %}
 
 {% block body %}
-<div class="row">
-    <div class="col">
-        <a class="btn btn-primary " href="{% url 'adverts:create' %}">Kreiraj oglas</a>
+
+
+<div class="row mb-2">
+    {% if user.is_authenticated and perms.adverts.advert_can_create %}
+    <div class="col-md-12">
+        <div class="form-group">
+            <a class="btn btn-warning form-control" href="{% url 'adverts:create' %}">Kreiraj oglas</a>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col">
-        <form action="{% url "adverts:index" %}">
-        {% for field in form %}
-        <label class="form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
-        {{ field }}
+    {% endif %}
+    <div class="col-md-12">
+            <div class="form-group">
+            <form action="{% url "adverts:index" %}">
+            {% for field in form %}
+            <label class="form-label mb-2" for="{{ field.auto_id }}"></label>
+            {{ field }}
+            {% endfor %}
+            <input type="submit" class="btn btn-dark rounded-pill form-control mt-2" , value="Pretraži"/>
+            </form>
+        </div>
+        </div>
+
+    <table class="table table-striped mt-3">
+        <thead class="text-center">
+        <th>Naslov</th>
+        <th>Opis oglasa</th>
+        <th>Datum objave i isteka oglasa</th>
+        <th></th>
+        </thead>
+        <tbody>
+        {% for advert in adverts %}
+        <tr class="text-center">
+            <td><a class="text-dark" href="/adverts/{{ advert.id }}">{{ advert.title }}</a></td>
+            <td> {{ advert.description }}</td>
+            <td>{{ advert.load_date }}<br>
+                {{ advert.expire_date}}
+            </td>
+            <td>
+                {% if advert.author.id == user.id %}
+                <a class="btn btn-warning" href="{% url "adverts:edit" %}?id={{ advert.id }}">Izmeni oglas</a>
+                <br>
+                <a class="pt-3 text-secondary" href="/adverts/{{advert.id}}/delete">Obrisi</a>&nbsp&nbsp&nbsp
+                {% endif %}
+                {% if advert.author.id == user.id and advert.date_archived is None %}
+                <a class="text-secondary" href="/adverts/{{advert.id}}/archive">Arhiviraj</a>
+                {% endif %}
+            </td>
+        </tr>
         {% endfor %}
-        <input type="submit" class="btn btn-primary" , value="Trazi"/>
-        </form>
-    </div>
 </div>
-<table class="table table-striped">
-    <thead class="text-center">
-    <th>Naslov</th>
-    <th>Opis oglasa</th>
-    <th>Datum objave i isteka oglasa</th>
-    <th></th>
-    </thead>
-    <tbody>
-    {% for advert in adverts %}
-    <tr class="text-center">
-        <td> {{ advert.title }}</td>
-        <td> {{ advert.description }}</td>
-        <td>{{ advert.load_date }}<br>
-            {{ advert.expire_date}}
-        </td>
-        <td>
-            <a class="btn btn-primary" href="{% url "adverts:edit" %}?id={{ advert.id }}">Izmeni oglas</a>
-        </td>
-    </tr>
-    {% endfor %}
-    </tbody>
+</tbody>
 </table>
 
 {% endblock %}

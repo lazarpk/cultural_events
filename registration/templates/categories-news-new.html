@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Dodaj kategoriju za vest</title>
+{% endblock %}
+
+{% block body %}
+    <div class="row parent">
+        <div class="col-5 child">
+            <h1>Dodaj novu stavku</h1>
+            <form method="post" action="{% url 'categories-news-new' %}">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="mb-3">
+                    <label class="form-label" id="{{ field.auto_id }}">{{ field.label }}</label>
+                    {{ field }}
+                    <div class="text-danger">
+                        {{ field.errors }}
+                    </div>
+                </div>
+                {% endfor %}
+                <input type="submit" class="btn btn-dark rounded-pill" value="Dodaj"/>
+            </form>
+        </div>
+    </div>
+{% endblock %}

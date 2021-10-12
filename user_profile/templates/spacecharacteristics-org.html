@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Kategorije za karakteristike prostora</title>
+{% endblock %}
+
+{% block body %}
+<div class="row parent mt-3">
+    <div class="col-6 child">
+        <h1>Ažuriraj kategorije za karakteristike prostora</h1>
+            <form action="{% url 'spacecharacteristics-org' %}">
+                {% for field in form %}
+                <div class="mb-3">
+                    <label class="form-label" id="{{ field.auto_id }}">{{ field.label }}</label>
+                    {{ field }}
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-dark rounded-pill" value="Pretraži"/>
+                </div>
+                {% endfor %}
+            </form>
+    </div>
+</div>
+<div class="row mt-3 mb-3">
+    <a class="btn btn-dark rounded-pill" href="{% url 'spacecharacteristics-new' %}">Dodaj novu stavku</a>
+</div>
+<div class="row">
+    <div class="col" style = "height: 300px;overflow: auto;">
+        <table id="tabela" class="table">
+            <thead>
+            <th>ID</th>
+            <th>Ime</th>
+            <th>Važi od</th>
+            <th>Važi do</th>
+            <th></th>
+            </thead>
+            <tbody>
+            {% for spacecharacteristic in spacecharacteristics %}
+            <tr>
+                <td>{{ spacecharacteristic.id }}</td>
+                <td>{{ spacecharacteristic.name }}</td>
+                <td>{{ spacecharacteristic.valid_from }}</td>
+                <td>{{ spacecharacteristic.valid_to }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

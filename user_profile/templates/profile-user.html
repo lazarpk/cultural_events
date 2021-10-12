@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Profil korisnika</title>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col"><h1>{{ user.first_name }}</h1></div>
+</div>
+<div class="row">
+    <div class="col-9">
+        <table class="table table-secondary">
+            <thead>
+            <tr>
+                <th>
+                    Naziv organizacije
+                </th>
+                <td>
+                    {{ user.first_name }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Email
+                </th>
+                <td>
+                    {{ user.email }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Adresa
+                </th>
+                <td>
+                    {{ profile_adress }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Broj
+                </th>
+                <td>
+                    {{ user.profile.number }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Mesto
+                </th>
+                <td>
+                    {{ profile_city }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Kontakt osoba:
+                </th>
+                <td>
+                    {{ user.profile.contact_person }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Broj telefona
+                </th>
+                <td>
+                    {{ user.profile.phone }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Oblast delovanja
+                </th>
+                <td>
+                    {{ profile_work_area }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Tekst o organizaciji
+                </th>
+                <td>
+                    {{ user.profile.description }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Veb sajt
+                </th>
+                <td>
+                    {{ user.profile.web_site }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Username
+                </th>
+                <td>
+                    {{ user.username }}
+                </td>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+{% endblock %}

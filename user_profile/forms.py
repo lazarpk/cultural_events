@@ -37,7 +37,7 @@ class UpdateProfileForm (forms.ModelForm):
         model = Profile
         fields = ['address', 'number', 'city', 'contact_person', 'phone', 'description', 'work_area', 'web_site']
         widgets = {
-            'address': forms.TextInput(
+            'address': forms.SelectMultiple(
                 attrs={
                     'class': 'form-control'
                 }
@@ -47,7 +47,7 @@ class UpdateProfileForm (forms.ModelForm):
                     'class': 'form-control'
                 }
             ),
-            'city': forms.TextInput(
+            'city': forms.SelectMultiple(
                 attrs={
                     'class': 'form-control'
                 }
@@ -67,7 +67,7 @@ class UpdateProfileForm (forms.ModelForm):
                     'class': 'form-control'
                 }
             ),
-            'work_area': forms.TextInput(
+            'work_area': forms.SelectMultiple(
                 attrs={
                     'class': 'form-control'
                 }
@@ -99,3 +99,14 @@ class UpdateProfileForm (forms.ModelForm):
 
         return user;
     '''
+
+class OrgSearchForm ( forms.Form ):
+    username = forms.CharField (
+        required= False,
+        widget= forms.TextInput (
+            attrs= {
+                'class': 'form-control rounded-pill',
+                'placeholder': 'Pretražite organizacije po username'
+            }
+        )
+    )

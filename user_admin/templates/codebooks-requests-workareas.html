@@ -1,0 +1,34 @@
+{% extends 'index-admin.html' %}
+
+{% block title %}
+<title>Kategorije za oblasti delovanja</title>
+{% endblock %}
+
+{% block second_body %}
+<div class="row">
+    <div class="col" style = "height: 300px;overflow: auto;">
+        <table id="tabela" class="table">
+            <thead>
+            <th>ID</th>
+            <th>Ime</th>
+            <th>Važi od</th>
+            <th>Važi do</th>
+            <th></th>
+            </thead>
+            <tbody>
+            {% for workarea in categories %}
+            <tr>
+                <td>{{ workarea.id }}</td>
+                <td>{{ workarea.name }}</td>
+                <td>{{ workarea.valid_from }}</td>
+                <td>{{ workarea.valid_to }}</td>
+                <td>
+                    <a class="btn btn-dark rounded-pill" href="{% url 'codebooks-requests-workareas-approve' %}?id={{ workarea.id }}">Potvrdi</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

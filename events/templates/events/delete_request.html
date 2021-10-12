@@ -1,0 +1,42 @@
+{% extends 'index-admin.html' %}
+
+{% block title %}
+<title>Dogadjaji - zahtevi za brisanje</title>
+{% endblock %}
+
+{% block second_body %}
+<div class="col-9 mt-3">
+    <div class="row mb-2">
+    {% for obj in object_list %}
+        <div class="col-md-12">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <h3 class="mb-2">
+                        <a class="text-dark" href="/events/{{ obj.Event.id }}">{{ obj.Event.event_name }}</a>
+                    </h3>
+                    <p class="card-text mb-auto">{{ obj.Event.text }}</p>
+                    <p class="card-text mb-auto">Vrsta dogadjaja: {% for item in obj.Event.category.all %} {{ item.name }} {% endfor %}</p>
+                    <p class="card-text mb-auto">Mesto i vreme odrzavanja: {{ obj.Event.place }}, &nbsp {{ obj.Event.time }} </p>
+                    <p class="card-text mb-auto">Uzrast: {% for item in obj.Event.age.all %} {{ item.name }} {% endfor %}</p>
+                    <p class="card-text mb-auto">Karakteristike prostora: {% for item in obj.Event.space_characteristics.all %} {{ item.name }} {% endfor %}</p>
+                    <p class="card-text mb-auto">Vazi do: {{ obj.Event.expiration_date }}</p>
+                    <div class="mb-1 text-muted">{{ obj.Event.date_published }} &nbsp&nbsp{{ obj.Event.author.username }}</div>
+                        <form action="{% url "events:delete_event" obj.Event_id %}"
+                  method="post" style="display: inline;" onsubmit="window.mytest()">
+                {% csrf_token %}
+                <input type="hidden" name="obj_id" value="{{ obj.Event_id }}"/>
+                <button type="submit" class="btn btn-default btn-sm" value="Delete">
+                    <span class="btn btn-warning">Obriši</span>
+                </button>
+             <input type="hidden" name="next" value="{{ request.path }}">
+            </form>
+            <script type="text/javascript">
+                window.mytest = function() { var isValid = confirm('Da li si siguran ?');if (!isValid) { event.preventDefault();  alert("Vest nije obrisana!");}}
+            </script>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

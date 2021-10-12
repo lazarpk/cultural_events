@@ -4,7 +4,23 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+class AboutUs (models.Model):
+    content1 = models.TextField()
+    content2 = models.TextField()
+from django.db import models
+
 '''
+class Contact(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    subject = models.CharField(max_length=255)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.email
+
+''''''
+
 class Category(models.Model):
     Name = models.CharField(max_length=100)
 

@@ -13,10 +13,13 @@
 </head>
 <!-- style="background-image: url({% static 'home/media/newyork.jpg' %});" -->
 <body>
+<div class="naslovna">
+    <h1>DOBRODOŠAO NA PORTAL ZA KULTURNE DOGAĐAJE</h1>
+</div>
 <!-- <img src="/media/stars.jpg" style="width:100%; height: 160px;" class="img-fluid rounded" alt="Naslovna slika"> -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="http://127.0.0.1:8000/">Naslovna</a>
+        <a class="navbar-brand " href="{% url 'index' %}">NASLOVNA</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -25,43 +28,43 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'events' %}">Događaji</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'events:index' %}">DOGAĐAJI</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'Novosti' %}">Vesti</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'news:articles' %}">VESTI</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'adverts:index' %}">Oglasi</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'adverts:index' %}">OGLASI</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'polls:index' %}">Ankete</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'polls:index' %}">ANKETE</a>
                 </li>
                 <li class="nav-item">
                     {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">O nama</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'home:about_us' %}">O NAMA</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Kontakt</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'home:sendMail' %}">KONTAKT</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Uputstvo</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'home:guide' %}">UPUTSTVO</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 {% if user.profile.city %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'profile' %}">Profil</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'profile' %}">PROFIL</a>
                 </li>
                 {% endif %}
                 {% if user.is_superuser %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'index-admin' %}">Admin</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'index-admin' %}">ADMIN</a>
                 </li>
                 {% endif %}
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Log out</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">LOG OUT</a>
                 </li>
                 {% endif %}
             </ul>
@@ -74,19 +77,23 @@
     {% block body %}
     {% endblock %}
 </div>
-<!--
-<div class="navbar fixed-bottom">
+<br>
+<!-- <div class="navbar fixed-bottom">
     <footer class="page-footer">
-        <div class="footer-copyright text-center py-3">© 2021 Copyright:
+        <div class="footer-copyright text-centered py-3">© 2021 Copyright:
             <a href="https://mdbootstrap.com/"> Lazar Stojanovic</a>
         </div>
     </footer>
 </div> -->
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
+<script>$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})</script>
 </body>
 </html>

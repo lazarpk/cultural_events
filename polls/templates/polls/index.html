@@ -1,35 +1,48 @@
 {% extends 'base.html' %}
-
+{% block title %}
+<title>Ankete</title>
+{% endblock %}
 
 {% block body %}
+                {% if user.is_authenticated and perms.polls.poll_can_create %}
+                <div class="col-md-12">
+                    <div class="form-group">
+                    <a class="btn btn-warning form-control" href="{% url 'polls:create' %}">Kreiraj anketu</a>
+                </div>
+            </div>
+{% endif %}
 <div class="row-mg-2">
-    <div class="col-lg-8 col-lg-offset-2">
+    <div class="col-md-8 offset-md-2">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Aktuelne ankete</h3>
+                <h3 class="panel-title mt-4 text-center">Aktuelne ankete</h3>
             </div>
             <br>
 
-            <ul class="list-group">
                 {% for poll in polls %}
                 <li class="list-group-item">
                     <strong class='nav justify-content-left'>{{ poll.question }}</strong>
-
+                    {% if request.user not in poll.voter.all  %}
                     <span class="nav justify-content-end">
-                        <a href="{% url 'polls:vote' poll.id %}" class="btn btn-info btn-xs">Glasaj</a> &nbsp;
+                        <a href="{% url 'polls:vote' poll.id %}" class="btn btn-warning btn-info btn-xs">Glasaj</a> &nbsp;
                     </span>
+                    {% endif %}
+                    {% if poll.author.id == user.id or poll.public == 1 %}
                     <span class="nav justify-content-end fs-2">
-                    <a href="{% url 'polls:results' poll.id %}" class="link-primary">Vidi rezultate</a> &nbsp;
+                    <a href="{% url 'polls:results' poll.id %}" class="link-primary text-secondary">Vidi rezultate</a> &nbsp;
                     </span>
+                    {% endif %}
                 </li>
                 {% endfor %}
             </ul>
             <br>
+            {% if user.profile.city or user.is_superuser %}
             <div class="row">
                 <div class="col">
-                    <a class="btn btn-primary" href="{% url 'polls:create' %}">Kreiraj anketu</a>
+                    <a class="btn btn-dark rounded-pill" href="{% url 'polls:create' %}">Kreiraj anketu</a>
                 </div>
             </div>
+            {% endif %}
 
         </div>
     </div>

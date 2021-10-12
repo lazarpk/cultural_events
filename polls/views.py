@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-
+from django.contrib.auth.decorators import permission_required
 from .forms import CreatePollForm
 from .models import Poll
+from django.contrib.auth.admin import User
 
 def index(request):
     polls = Poll.objects.all()
@@ -11,11 +12,16 @@ def index(request):
     }
     return render(request, 'polls/index.html', context)
 
+@permission_required('poll_can_create', '/login')
 def create(request):
     if request.method == 'POST':
         form = CreatePollForm(request.POST)
         if form.is_valid():
-            form.save()
+            poll = form.save(commit=False);
+            current_user = request.user
+
+            poll.author = current_user
+            poll.save()
             return redirect('polls:index')
     else:
         form = CreatePollForm()
@@ -28,8 +34,11 @@ def vote(request, id):
     poll = Poll.objects.get(pk=id)
 
     if request.method == 'POST':
-
         selected_option = request.POST['poll']
+        current_user = request.user
+
+        poll.voter.add(current_user)
+        poll.save()
         if selected_option == 'option1':
             poll.option_one_count += 1
         elif selected_option == 'option2':
@@ -42,7 +51,9 @@ def vote(request, id):
         poll.save()
 
 
-        return redirect('polls:results', poll.id)
+
+
+        return redirect('polls:index')
 
     context = {
         'poll' : poll

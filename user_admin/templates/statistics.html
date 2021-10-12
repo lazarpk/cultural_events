@@ -1,0 +1,50 @@
+{% extends 'index-admin.html' %}
+
+{% block title %}
+<title>Statistika</title>
+{% endblock %}
+
+{% block second_body %}
+<div class="row parent mt-3">
+    <div class="col-6 child">
+        <h1>Zatraži statistiku za korisnika:</h1>
+            <form action="{% url 'statistics' %}">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="mb-3">
+                    <label class="form-label" id="{{ field.auto_id }}">{{ field.label }}</label>
+                    {{ field }}
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-dark rounded-pill" value="Pretraži"/>
+                </div>
+                {% endfor %}
+            </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col" style = "height: 300px;overflow: auto;">
+        <table class="table">
+            <thead>
+            <th>Username</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th></th>
+            </thead>
+            <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>
+                    <a class="btn btn-dark rounded-pill" href="{% url 'statistics-user' %}?id={{ user.id }}">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

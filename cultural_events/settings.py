@@ -26,6 +26,9 @@ SECRET_KEY = 'django-insecure-a@qagj72sz9fbdy7$f#s+j+x_a$r-bw)jkxwb+n1!wc5*-8x(z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 ALLOWED_HOSTS = []
 
 
@@ -147,9 +150,29 @@ MEDIA_ROOT = os.path.join ( BASE_DIR, "media" );
 MEDIA_URL = "/media/";
 
 
+#email settings
+'''
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend';
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'laki95pk@gmail.com'
+EMAIL_HOST_PASSWORD = '#'
+'''
+
 LOGIN_REDIRECT_URL = "login_success"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# email settings
+DEFAULT_FROM_EMAIL = '<testnalog0505@gmail.com>'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend';
+EMAIL_HOST = 'smtp.gmail.com';
+EMAIL_USE_TLS = True;
+EMAIL_PORT = 587;
+EMAIL_HOST_USER = 'testnalog0505@gmail.com';
+EMAIL_HOST_PASSWORD = 'Sljiva002'

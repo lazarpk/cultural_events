@@ -5,6 +5,15 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Category(models.Model):
     Name = models.CharField(max_length=100)
+    valid_from = models.DateField(null=True, blank=False)
+    valid_to = models.DateField(null=True, blank=False)
+    approved = models.BooleanField(default=False)
+    status = models.BooleanField(default=True)
+
+    @staticmethod
+    def get_active():
+        data = Category.objects.filter(status=True, approved=True).all()
+        return data
 
     def __str__(self):
         return self.Name

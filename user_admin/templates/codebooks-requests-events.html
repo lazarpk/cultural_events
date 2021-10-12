@@ -1,0 +1,34 @@
+{% extends 'index-admin.html' %}
+
+{% block title %}
+<title>Kategorije za događaje</title>
+{% endblock %}
+
+{% block second_body %}
+<div class="row">
+    <div class="col" style = "height: 600px;overflow: auto;">
+        <table id="tabela" class="table">
+            <thead>
+            <th>ID</th>
+            <th>Ime</th>
+            <th>Važi od</th>
+            <th>Važi do</th>
+            <th></th>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>{{ category.valid_from }}</td>
+                <td>{{ category.valid_to }}</td>
+                <td>
+                    <a class="btn btn-dark rounded-pill" href="{% url 'codebooks-requests-events-approve' %}?id={{ category.id }}">Potvrdi</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

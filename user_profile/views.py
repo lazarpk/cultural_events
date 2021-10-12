@@ -1,10 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.shortcuts import HttpResponse, Http404
-from registration.models import Profile
+from registration.models import Profile, StreetAddress, WorkArea
 from .forms import UpdateUserForm, UpdateProfileForm
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from news.models import Article
+from .forms import OrgSearchForm
+from polls.models import Poll
+from events.models import CategoryEvents, SpaceCharacteristics
+from user_admin.forms import EventsCategorySearchForm, NewsCategorySearchForm, WorkAreaSearchForm, SpaceCharacteristicsSearchForm
+from news.models import Category
 # Create your views here.
 def details (request):
 
@@ -26,8 +31,26 @@ def details (request):
         raise Http404
     else:
         articles = Article.objects.filter(ArchivedDate__isnull=True, Author=request.user).order_by('-id')[:10]
+        polls = Poll.objects.filter (author=request.user)
+        profile = Profile.objects.get(user_id = request.user)
+        addresses = profile.address.all()
+        cities = profile.city.all()
+        work_areas = profile.work_area.all()
+        profile_work_area = ''
+        profile_city = ''
+        profile_adress = ''
+        for address in addresses:
+            profile_adress = address.name
+        for city in cities:
+            profile_city = city.name
+        for work_area in work_areas:
+            profile_work_area = work_area
         context = {
-            'articles': articles
+            'articles': articles,
+            'polls': polls,
+            'profile_adress': profile_adress,
+            'profile_city': profile_city,
+            'profile_work_area': profile_work_area
         }
         return render(request, 'details.html', context)
 
@@ -48,6 +71,9 @@ def edit (request):
     elif (request.method == "POST"):
         form = UpdateUserForm(request.POST, instance=request.user)
         form1 = UpdateProfileForm(request.POST)
+
+        #for field in form1:
+        #    print("Field Error:", field.errors)
         if (form.is_valid() and form1.is_valid()):
             user = User.objects.get(id = request.user.id)
             user.first_name = form.cleaned_data.get('first_name')
@@ -57,18 +83,26 @@ def edit (request):
             user.save()
 
             profile = Profile.objects.get(user_id = request.user.id)
-            profile.address = form1.cleaned_data.get('address')
+            #profile.address = form1.cleaned_data.get('address')
+            profile.address.set(form1.cleaned_data.get('address'))
+
             profile.number = form1.cleaned_data.get('number')
-            profile.city = form1.cleaned_data.get('city')
+            #profile.city = form1.cleaned_data.get('city')
+            profile.city.set(form1.cleaned_data.get('city'))
+
             profile.contact_person = form1.cleaned_data.get('contact_person')
             profile.phone = form1.cleaned_data.get('phone')
             profile.description = form1.cleaned_data.get('description')
-            profile.work_area = form1.cleaned_data.get('work_area')
+            #profile.work_area = form1.cleaned_data.get('work_area')
+            profile.work_area.set(form1.cleaned_data.get('work_area'))
+
             profile.web_site = form1.cleaned_data.get('web_site')
             profile.save()
 
-            return render(request, 'details.html')
+            #return render(request, 'details.html')
+            return redirect('/profile')
         else:
+
             form = UpdateUserForm(instance=request.user)
             form1 = UpdateProfileForm(instance=Profile.objects.get(user_id = request.user.id))
             context = {
@@ -76,3 +110,93 @@ def edit (request):
                 'form1': form1
             }
             return render (request, 'edit.html', context)
+
+
+def searchOrg (request):
+    form = OrgSearchForm(request.GET)
+    orgs = Profile.objects.all()
+
+    if (form.is_valid()):
+        username = form.cleaned_data.get('username')
+        orgs = orgs.filter(user__username__icontains=username)
+
+    context = {
+        'form': form,
+        'orgs': orgs
+    }
+    return render(request, 'search-organisations.html', context)
+
+def profileUser (request):
+    id = request.GET.get('id')
+    user = User.objects.get(id=id)
+    profile = Profile.objects.get(user_id=id)
+    addresses = profile.address.all()
+    cities = profile.city.all()
+    work_areas = profile.work_area.all()
+    profile_work_area = ''
+    profile_city = ''
+    profile_adress = ''
+    for address in addresses:
+        profile_adress = address.name
+    for city in cities:
+        profile_city = city.name
+    for work_area in work_areas:
+        profile_work_area = work_area
+    context = {
+        'user': user,
+        'profile_adress': profile_adress,
+        'profile_city': profile_city,
+        'profile_work_area': profile_work_area
+    }
+    return render(request, 'profile-user.html', context)
+
+def codebooksEdit (request):
+    return render(request, 'codebooks-edit-org.html')
+
+def eventsCategoriesOrg (request):
+    categories = CategoryEvents.objects.all().filter(approved=1)
+    form = EventsCategorySearchForm(request.GET)
+    if (form.is_valid()):
+        name = form.cleaned_data.get('name')
+        categories = categories.filter(name__icontains=name)
+    context = {
+        'form': form,
+        'categories': categories
+    }
+    return render(request, 'categories-events-org.html', context)
+
+def newsCategoriesOrg (request):
+    categories = Category.objects.all().filter(approved=1)
+    form = NewsCategorySearchForm(request.GET)
+    if (form.is_valid()):
+        name = form.cleaned_data.get('name')
+        categories = categories.filter(Name__icontains=name)
+    context = {
+        'form': form,
+        'categories': categories
+    }
+    return render(request, 'categories-news-org.html', context)
+
+def workAreaOrg(request):
+    workareas = WorkArea.objects.all().filter(approved=1)
+    form = WorkAreaSearchForm(request.GET)
+    if (form.is_valid()):
+        name = form.cleaned_data.get('name')
+        workareas = workareas.filter(name__icontains = name)
+    context = {
+        'form':form,
+        'workareas': workareas
+    }
+    return render (request, 'workarea-org.html', context)
+
+def spaceCharacteristicOrg(request):
+    spacecharacteristics = SpaceCharacteristics.objects.all().filter(approved=1)
+    form = SpaceCharacteristicsSearchForm(request.GET)
+    if (form.is_valid()):
+        name = form.cleaned_data.get('name')
+        spacecharacteristics = spacecharacteristics.filter(name__icontains=name)
+    context = {
+        'form': form,
+        'spacecharacteristics': spacecharacteristics
+    }
+    return render(request, 'spacecharacteristics-org.html', context)
