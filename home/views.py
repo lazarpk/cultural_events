@@ -48,14 +48,21 @@ def sendMail(request):
         if form.is_valid():
             cd = form.cleaned_data
             subject = cd['name'] + ' - ' + cd['subject']
-            message = cd['message']
+            message = 'Poruka je poslata sa e-mail adrese: ' + cd['email'] + '\n\n\n' + cd['message']
             from_email = cd['email']
 
-            # send the email to the recipent
-            send_mail(subject, message,
-                      from_email, ['gordanad2@msn.com'])
 
-            # set the variable initially created to True
+            send_mail(subject, message, from_email, ['lazarospk95@gmail.com'])
+
+            subject = 'Kulturni dogadjaji'
+            message = 'Poštovani,'+ '\n\n\n' + 'Vaša email poruka je primljena! Odgovorićemo Vam u najkraćem mogućem roku!'
+            from_email = 'testnalog0505@gmail.com'
+            to_email = cd['email']
+
+
+            send_mail(subject, message, from_email, [to_email])
+
+
             messageSent = True
 
     else:

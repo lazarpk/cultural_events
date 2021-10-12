@@ -22,9 +22,11 @@
                 {% for poll in polls %}
                 <li class="list-group-item">
                     <strong class='nav justify-content-left'>{{ poll.question }}</strong>
+                    {% if request.user not in poll.voter.all  %}
                     <span class="nav justify-content-end">
                         <a href="{% url 'polls:vote' poll.id %}" class="btn btn-warning btn-info btn-xs">Glasaj</a> &nbsp;
                     </span>
+                    {% endif %}
                     {% if poll.author.id == user.id or poll.public == 1 %}
                     <span class="nav justify-content-end fs-2">
                     <a href="{% url 'polls:results' poll.id %}" class="link-primary text-secondary">Vidi rezultate</a> &nbsp;

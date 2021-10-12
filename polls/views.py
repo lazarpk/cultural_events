@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import permission_required
 from .forms import CreatePollForm
 from .models import Poll
+from django.contrib.auth.admin import User
 
 def index(request):
     polls = Poll.objects.all()
@@ -33,8 +34,11 @@ def vote(request, id):
     poll = Poll.objects.get(pk=id)
 
     if request.method == 'POST':
-
         selected_option = request.POST['poll']
+        current_user = request.user
+
+        poll.voter.add(current_user)
+        poll.save()
         if selected_option == 'option1':
             poll.option_one_count += 1
         elif selected_option == 'option2':
@@ -45,6 +49,8 @@ def vote(request, id):
             return HttpResponse(400, 'Invalid form')
 
         poll.save()
+
+
 
 
         return redirect('polls:index')

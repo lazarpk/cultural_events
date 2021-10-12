@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class Poll(models.Model):
     question = models.TextField('Pitanje')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, )
+    author = models.ForeignKey(User, on_delete=models.CASCADE )
     option_one = models.CharField('Prva opcija',max_length=30)
     option_two = models.CharField('Druga opcija', max_length=30)
     option_three = models.CharField('Treća opcija', max_length=30)
