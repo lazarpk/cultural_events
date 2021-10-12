@@ -6,10 +6,16 @@
 
 
 {% block body %}
-<div class="row parent">
-    <div class="col-5 child">
-        <p>Logged out</p>
-        <a href="{% url 'login' %}">Click here to log in again</a>
+<div class="row mb-2 parent">
+        <div class="col-md-10 child">
+          <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column text-center">
+              <h3 class="mb-0">
+                <p>Žao nam je što odlaziš! Nadamo se da ćeš se vratiti uskoro !</p>
+                <a class="btn btn-primary" href="{% url 'login' %}">Prijavi se ponovo</a>
+              </h3>
+            </div>
+            </div>
+        </div>
     </div>
-</div>
 {% endblock %}
