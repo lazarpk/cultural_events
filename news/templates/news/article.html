@@ -8,13 +8,13 @@
     <div class="row mb-2">
         <div class="col-md-12">
           <div class="card flex-md-row mb-4 box-shadow h-md-250">
-            <div class="card-body d-flex flex-column align-items-start">
+            <div class="card-body d-flex flex-column align-items-start div_dogadjaj">
               <strong class="d-inline-block mb-2 text-primary">{{ article.Category.Name }}</strong>
               <h3 class="mb-0">
                 <h3 class="text-dark" href="/articles/{{ article.id }}">{{ article.Title }}</h3>
               </h3>
-              <div class="mb-1 text-muted">{{ article.CreationDate }} &nbsp&nbsp&nbsp{{ article.Author.username }}</div>
-              <p class="card-text mb-auto">{{ article.Content }}</p>
+              <div class="mb-1 text-muted">{{ article.CreationDate }} &nbsp&nbsp&nbsp Autor: {{ article.Author.username }}</div>
+              <p class="card-text mb-auto text-secondary">{{ article.Content }}</p>
                 {% if article.Author.id == user.id %}
                     <a href="/news/{{article.id}}/archive">Arhiviraj</a>
                     <a href="/news/{{article.id}}/delete">Obrisi</a>

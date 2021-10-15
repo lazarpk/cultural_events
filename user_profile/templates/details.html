@@ -14,13 +14,13 @@
         <a class="btn btn-dark rounded-pill" href="{% url 'adverts:create' %}">Dodaj oglas</a>
         <a class="btn btn-dark rounded-pill" href="{% url 'news:article_new' %}">Dodaj vest</a>
         <a class="btn btn-dark rounded-pill" href="{% url 'edit' %}?id={{ user.id }}">Uredi profil</a>
-        <a class="btn btn-dark rounded-pill" href="{% url 'search-org' %}">Pretrazi organizacije</a>
+        <a class="btn btn-dark rounded-pill" href="{% url 'search-org' %}">Pretraži organizacije</a>
         <a class="btn btn-dark rounded-pill" href="{% url 'codebooks-edit-org' %}">Ažuriraj šifarnike</a>
     </div>
 </div>
 <div class="row">
     <div class="col-9">
-        <table class="table table-secondary">
+        <table class="table table-secondary table-borderless">
             <thead>
             <tr>
                 <th>
