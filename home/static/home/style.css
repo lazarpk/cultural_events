@@ -44,3 +44,10 @@ table {
     background: linear-gradient(to right, #74ebd5, #ACB6E5);
     border-radius: 30px;
 }
+.div_dogadjaj {
+    background: -webkit-linear-gradient(to right, #74ebd5, #ACB6E5);
+    background: linear-gradient(to right, #74ebd5, #ACB6E5);
+    border-radius: 5px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
