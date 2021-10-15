@@ -24,8 +24,8 @@
 </div>
 
 <div class="row">
-    <div class="col" style = "height: 300px;overflow: auto;">
-        <table class="table">
+    <div class="col" style = "height: 600px;overflow: auto;">
+        <table class="table table-fixed table-borderless">
             <thead>
             <th>Username</th>
             <th>First name</th>
@@ -39,7 +39,7 @@
                 <td>{{ user.first_name }}</td>
                 <td>{{ user.last_name }}</td>
                 <td>
-                    <a class="btn btn-dark rounded-pill" href="{% url 'statistics-user' %}?id={{ user.id }}">Edit</a>
+                    <a class="btn btn-light rounded-pill" href="{% url 'statistics-user' %}?id={{ user.id }}">Izmeni</a>
                 </td>
             </tr>
             {% endfor %}

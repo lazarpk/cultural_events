@@ -22,7 +22,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col" style = "height: 300px;overflow: auto;">
+    <div class="col" style = "height: 500px;overflow: auto;">
         <table id="example" class="display table" width="100%" cellspacing="0">
             <thead>
             <th>Username</th>
@@ -37,7 +37,7 @@
                 <td>{{ user.first_name }}</td>
                 <td>{{ user.last_name }}</td>
                 <td>
-                    <a class="btn btn-dark rounded-pill" href="{% url 'edit-users' %}?id={{ user.id }}">Edit</a>
+                    <a class="btn btn-light rounded-pill" href="{% url 'edit-users' %}?id={{ user.id }}">Izmeni</a>
                 </td>
             </tr>
             {% endfor %}
