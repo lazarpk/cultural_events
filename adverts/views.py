@@ -34,7 +34,7 @@ def index(request):
     return render(request, 'adverts/index.html', context);
 
 
-@permission_required('advert_can_create', '/login')
+@permission_required('adverts.advert_can_create', '/login')
 def create(request):
     if request.method == 'GET':
         form = AdvertsCreateForm();

@@ -12,7 +12,7 @@ def index(request):
     }
     return render(request, 'polls/index.html', context)
 
-@permission_required('poll_can_create', '/login')
+@permission_required('polls.poll_can_create', '/login')
 def create(request):
     if request.method == 'POST':
         form = CreatePollForm(request.POST)

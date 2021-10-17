@@ -20,7 +20,7 @@ def articles(request):
     return render(request, "news/articles.html", {'articles': articles})
 
 
-@permission_required('article_can_create', '/login')
+@permission_required('news.article_can_create', '/login')
 def article_new(request):
     if (request.method == "GET"):
         form = ArticleForm()
