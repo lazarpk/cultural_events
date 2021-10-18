@@ -16,7 +16,10 @@ class Poll(models.Model):
 
     class Meta:
         permissions = [
-            ('poll_can_create', 'Can create poll')
+            ('poll_can_create', 'Can create poll'),
+            ('poll_edit', 'Can edit poll'),
+            ('poll_can_archive', 'Can archive poll'),
+            ('poll_can_delete', 'Can delete poll'),
         ]
     def total(self):
         return self.option_one_count + self.option_two_count + self.option_three_count
