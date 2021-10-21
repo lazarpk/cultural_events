@@ -47,7 +47,7 @@ class AdvertsSearchForm (forms.Form):
         widget= forms.TextInput (
             attrs={
                 'class':'form-control rounded-pill',
-                'placeholder': 'Pretražite događaje'
+                'placeholder': 'Pretražite oglase'
             }
         )
     );
